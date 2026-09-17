@@ -1,0 +1,2600 @@
+{
+  "schema_version": 2,
+  "project": {
+    "name": "risk_analytics_agent",
+    "mode": "init",
+    "profile": "prototype",
+    "objective": "Build a small-scale financial-document intelligence demo, inspired by Moody's multi-agent RAG architecture, as a personal proof-of-work project to show a credit-ratings/DCM finance professional at Adani Group. Scope: (1) ingest a handful of PUBLIC financial documents only - public annual reports, bond prospectuses, disclosures - never confidential or internal company data; (2) classify each page as text-heavy, table-heavy, or chart/image, and route to a matching extraction method; (3) chunk, embed, and store extracted content in a local vector store (Chroma or FAISS, no cloud infra); (4) implement an agentic retrieval loop - plan, search, reflect, iterate, synthesize with citations - instead of single-shot vector search; (5) implement 2-3 narrow specialist agents (credit analysis, ESG/climate, compliance) plus a router agent that decides which specialist(s) to invoke per query; (6) output a structured analysis note with citations, in the style of a first-pass credit-rating rationale note. Runs locally, small scale, built primarily via Claude Code, using the Anthropic API.",
+    "constraints": [],
+    "non_goals": [],
+    "trust_boundary": "local repository",
+    "created_at": "2026-09-15T15:05:11.365Z",
+    "updated_at": "2026-09-17T15:39:03.407Z"
+  },
+  "policy": {
+    "ponytail": "full",
+    "autonomy": "human-in-the-loop",
+    "learned_rule_promotion": "human-required",
+    "cleanup": "propose-only",
+    "traces": {
+      "storage": "local",
+      "commit_raw": false,
+      "redact_secrets": true
+    }
+  },
+  "lifecycle": {
+    "phase": "build",
+    "status": "active",
+    "active_task": "T7A",
+    "blocker": null,
+    "next_action": "Run the task pre-flight."
+  },
+  "commands": {},
+  "workflow": {
+    "type": "new-product",
+    "started_at": "2026-09-15T15:05:11.368Z",
+    "spec_check": {
+      "at": "2026-09-16T17:44:46.540Z",
+      "source_hash": "de8e4815cbdb6e9ad8f5d852537cce17298606217b0a67324cf38ffda8382b2a",
+      "requirements": [
+        "AC-1",
+        "AC-10",
+        "AC-11",
+        "AC-12",
+        "AC-2",
+        "AC-3",
+        "AC-4",
+        "AC-5",
+        "AC-6",
+        "AC-7",
+        "AC-8",
+        "AC-9",
+        "FR-1",
+        "FR-10",
+        "FR-11",
+        "FR-12",
+        "FR-13",
+        "FR-14",
+        "FR-15",
+        "FR-16",
+        "FR-17",
+        "FR-18",
+        "FR-19",
+        "FR-2",
+        "FR-3",
+        "FR-4",
+        "FR-5",
+        "FR-6",
+        "FR-7",
+        "FR-8",
+        "FR-9",
+        "NFR-1",
+        "NFR-2",
+        "NFR-3",
+        "NFR-4",
+        "NFR-5",
+        "NFR-6",
+        "NFR-7",
+        "NFR-8"
+      ]
+    },
+    "plan_check": {
+      "at": "2026-09-16T17:47:06.068Z",
+      "source_hash": "ea6080474ca1c6ae620fd71c8a89a19833dfb53421d57252679577d037c5ad82"
+    },
+    "plan_approval": {
+      "human": "Milap Vaghasia",
+      "reason": "Reviewed the rebuilt chain: vision dropped, corpus and gitignore owned by T3A, scopes matching the real package layout",
+      "at": "2026-09-16T17:49:05.326Z",
+      "source_hash": "ea6080474ca1c6ae620fd71c8a89a19833dfb53421d57252679577d037c5ad82"
+    }
+  },
+  "artifacts": [
+    {
+      "id": "SPEC-1",
+      "type": "specification",
+      "path": "SPEC.md",
+      "status": "approved",
+      "requirements": [
+        "AC-1",
+        "AC-10",
+        "AC-11",
+        "AC-12",
+        "AC-2",
+        "AC-3",
+        "AC-4",
+        "AC-5",
+        "AC-6",
+        "AC-7",
+        "AC-8",
+        "AC-9",
+        "FR-1",
+        "FR-10",
+        "FR-11",
+        "FR-12",
+        "FR-13",
+        "FR-14",
+        "FR-15",
+        "FR-16",
+        "FR-17",
+        "FR-18",
+        "FR-19",
+        "FR-2",
+        "FR-3",
+        "FR-4",
+        "FR-5",
+        "FR-6",
+        "FR-7",
+        "FR-8",
+        "FR-9",
+        "NFR-1",
+        "NFR-2",
+        "NFR-3",
+        "NFR-4",
+        "NFR-5",
+        "NFR-6",
+        "NFR-7",
+        "NFR-8"
+      ],
+      "source_hash": "de8e4815cbdb6e9ad8f5d852537cce17298606217b0a67324cf38ffda8382b2a",
+      "approval": {
+        "human": "Milap Vaghasia",
+        "reason": "Reviewed the amended FR-3, AC-9, corpus constraint, non-goals and risks",
+        "at": "2026-09-16T17:45:28.741Z",
+        "source_hash": "de8e4815cbdb6e9ad8f5d852537cce17298606217b0a67324cf38ffda8382b2a"
+      }
+    }
+  ],
+  "assumptions": [
+    {
+      "id": "ASSUMPTION-762e7a43",
+      "text": "The two corpus documents are annual reports of two different Adani listed entities, not two documents from one issuer. Peer and sector comparison is only meaningful across issuers; if the human supplies two documents from a single entity, the peer specialist must be dropped or the corpus widened.",
+      "status": "open",
+      "source": "discovery interview 2026-09-15",
+      "recorded_at": "2026-09-15T15:11:19.150Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "ASSUMPTION-75f6eed3",
+      "text": "Four specialists are registered (credit, ESG-climate, compliance-disclosure, peer-sector) but the router invokes at most two per query. This reconciles the stated objective of two to three narrow specialists with the four selected, and is what keeps a single run under the cost ceiling.",
+      "status": "open",
+      "source": "discovery interview 2026-09-15",
+      "recorded_at": "2026-09-15T15:11:20.040Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "ASSUMPTION-b6113a72",
+      "text": "Implementation language is Python 3.11 or newer using the official anthropic SDK, on Windows with local file storage. Not yet confirmed by the human.",
+      "status": "superseded",
+      "source": "discovery interview 2026-09-15",
+      "recorded_at": "2026-09-15T15:11:21.503Z",
+      "paths": [],
+      "tags": [],
+      "superseded_by": "ASSUMPTION-2e741718"
+    },
+    {
+      "id": "ASSUMPTION-2e741718",
+      "text": "Confirmed, no longer assumed: the host runs Python 3.11.15, satisfying the Python 3.11 or newer constraint. Verified by python --version on 2026-09-15.",
+      "status": "superseded",
+      "source": "host check 2026-09-15",
+      "recorded_at": "2026-09-15T15:20:27.670Z",
+      "paths": [],
+      "tags": [],
+      "supersedes": "ASSUMPTION-b6113a72",
+      "superseded_by": "ASSUMPTION-c7b5f9b9"
+    },
+    {
+      "id": "ASSUMPTION-c7b5f9b9",
+      "text": "Correction. The bare python on PATH is a Hermes agent venv (3.11.15) with no pip and must not be used. The usable base interpreter is CPython 3.12.5 at AppData/Local/Programs/Python/Python312, reached as py -3.12, which satisfies the Python 3.11 or newer constraint. The project venv is created from it, and gate commands continue to invoke .venv/Scripts/python.exe so the shadowed interpreter can never be picked up.",
+      "status": "open",
+      "source": "host check 2026-09-15, py -0p",
+      "recorded_at": "2026-09-15T15:28:47.777Z",
+      "paths": [],
+      "tags": [],
+      "supersedes": "ASSUMPTION-2e741718"
+    }
+  ],
+  "invariants": [
+    {
+      "id": "INVARIANT-aa1873bf",
+      "text": "Only publicly published documents are ever ingested, indexed or quoted. No confidential, internal or non-public company data enters the corpus, the vector store or any prompt.",
+      "source": "DECISION-a71c71b1",
+      "recorded_at": "2026-09-15T15:11:17.124Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "INVARIANT-946886e2",
+      "text": "Every material factual claim in a generated analysis note carries a citation resolving to a specific source document and page number that a reader can open and verify. An uncited material claim is a defect.",
+      "source": "discovery interview 2026-09-15",
+      "recorded_at": "2026-09-15T15:11:18.192Z",
+      "paths": [],
+      "tags": []
+    }
+  ],
+  "decisions": [
+    {
+      "id": "DECISION-c49d609a",
+      "title": "Embeddings come from a local sentence-transformers model",
+      "text": "The Anthropic API exposes no embeddings endpoint, so Claude covers router, specialist and synthesis calls only. Embeddings are produced locally by a sentence-transformers model (all-MiniLM-L6-v2 class). Keeps the no-cloud-infra constraint intact and avoids a second API key. Voyage AI voyage-finance-2 was rejected for this demo on cost and second-key grounds; it remains the upgrade path if retrieval quality proves insufficient.",
+      "status": "accepted",
+      "source": "discovery interview 2026-09-15",
+      "recorded_at": "2026-09-15T15:11:02.856Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-a71c71b1",
+      "title": "Corpus is public Adani-entity filings only",
+      "text": "Ingest only documents published on investor-relations or exchange sites of Adani listed entities: annual reports and public bond offer documents. Each source URL is verified as public before ingestion and recorded alongside the document. No confidential, internal, draft or non-public material is ingested under any circumstance.",
+      "status": "accepted",
+      "source": "discovery interview 2026-09-15",
+      "recorded_at": "2026-09-15T15:11:03.435Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-3979b0c1",
+      "title": "Delivery is a CLI that writes a cited Markdown note",
+      "text": "A single command takes an analyst question and writes a structured Markdown analysis note to disk in the style of a first-pass credit-rating rationale. No web UI in this release. Streamlit is an explicit non-goal, revisitable after the agent architecture is proven.",
+      "status": "accepted",
+      "source": "discovery interview 2026-09-15",
+      "recorded_at": "2026-09-15T15:11:03.976Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-e443f017",
+      "title": "Page routing is heuristic first, vision only for chart-suspect pages",
+      "text": "PyMuPDF layout statistics (text density, ruling-line count, image area fraction) classify each page as text-heavy, table-heavy or chart-image. Only pages the heuristic flags as chart-image are sent to Claude vision for interpretation. Keeps ingestion cost bounded and the routing decision inspectable and testable without API calls.",
+      "status": "accepted",
+      "source": "discovery interview 2026-09-15",
+      "recorded_at": "2026-09-15T15:11:04.556Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-eeb0fd0d",
+      "title": "The project owner is the sole named independent reviewer",
+      "text": "Milap Vaghasia reviews and approves every Genesis gate requiring human sign-off. No other reviewer exists for this project. No approval may be recorded unless he gave it explicitly in session.",
+      "status": "accepted",
+      "source": "discovery interview 2026-09-15",
+      "recorded_at": "2026-09-15T15:11:06.136Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-00bc5b49",
+      "title": "Gate commands invoke the project venv interpreter explicitly",
+      "text": "Dependencies install into a project-local .venv and every executable gate invokes .venv/Scripts/python.exe directly rather than a bare python. Gate commands must not depend on shell activation state, on which shell Genesis spawns, or on packages present in the user global interpreter. A gate that passes only inside an activated shell is not proof.",
+      "status": "accepted",
+      "source": "planning 2026-09-15",
+      "recorded_at": "2026-09-15T15:20:29.354Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-f21324fe",
+      "title": "Vector store is Chroma, with FAISS as the fallback",
+      "text": "Chroma is chosen over FAISS because it persists vectors and per-chunk metadata together, which FR-5 chunk provenance and AC-2 fresh-process queryability both need. FAISS would require a hand-rolled metadata sidecar and its own persistence handling for no gain at this corpus size. The tradeoff accepted is a heavier Windows dependency tree. Installation friction is not assumed away: the T-1 gate imports and round-trips the store, so a failed Chroma install fails that task and triggers the documented switch to faiss-cpu plus a metadata sidecar.",
+      "status": "accepted",
+      "source": "planning 2026-09-15, SPEC.md open question",
+      "recorded_at": "2026-09-15T15:20:30.508Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-39162611",
+      "title": "Starting model split is Haiku 4.5 for high-frequency calls, Opus 5 for analysis",
+      "text": "Router, reflection verdicts and chart-page vision run on claude-haiku-4-5 because they are high-frequency, short-output and structurally simple. Specialist analysis and final synthesis run on claude-opus-5 because they carry the reasoning quality the demo is judged on. Published rates are 1 and 5 dollars per million tokens for Haiku 4.5 against 5 and 25 for Opus 5, so this split is the lever that makes the NFR-1 ceiling reachable. This is a starting point, not a measured result: AC-8 measures actual per-run spend in T-8 and the split is retuned there if it misses. Both identifiers live at the single configuration point required by NFR-8.",
+      "status": "accepted",
+      "source": "planning 2026-09-15, bundled claude-api skill model table",
+      "recorded_at": "2026-09-15T15:20:31.785Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-e403e1ec",
+      "title": "sentence-transformers is declared but installed at T-4, not T-1",
+      "text": "The embedding dependency is declared in pyproject as the optional embed extra rather than a default dependency, and is installed when T-4 first exercises embedding. It pulls torch, roughly two gigabytes, and nothing in T-1 through T-3 touches it. The T-1 store round-trip test supplies explicit vectors, so it proves Chroma persistence without any embedding model present. The cost of this is that a fresh clone running pip install -e .[dev] cannot embed until the extra is installed; T-4 owns closing that.",
+      "status": "accepted",
+      "source": "T-1 implementation 2026-09-15",
+      "recorded_at": "2026-09-15T15:31:29.958Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-2200a628",
+      "title": "AC-1 is measured on a holdout split labelled after thresholds were fixed",
+      "text": "tests/labelled_pages.json holds 40 human-assigned page labels in two splits. The tune split of 20 was used while setting thresholds; the holdout split of 20 was rendered, read and labelled afterwards and never tuned against. Accuracy is 20 of 20 on holdout and 19 of 20 on tune, against an AC-1 floor of 85 percent. Both are asserted by the T2 gate, so a regression fails the build. Reporting the tune number alone would have been a fitted figure, not a measurement.",
+      "status": "accepted",
+      "source": "T2 measurement 2026-09-15",
+      "recorded_at": "2026-09-16T17:21:46.911Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-d75914e0",
+      "title": "Corpus documents stay in sample_pdf and are never committed",
+      "text": "The two PDFs live in sample_pdf where the human saved them. config.DOCUMENTS_DIR points there and corpus/manifest.json remains the committed record of what the corpus contains and where each document came from. Both are gitignored: they are public documents, but redistributing them through this repository is not this project's business, and the manifest makes the corpus reproducible from the recorded URLs without them.",
+      "status": "accepted",
+      "source": "2026-09-15",
+      "recorded_at": "2026-09-16T17:32:29.193Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-70a5ab26",
+      "title": "Three golden questions, drafted against what the corpus actually contains",
+      "text": "Q1 credit, table-only: As at 30 June 2026 what are APSEZ Net Gearing and DSCR, what covenant thresholds do they run against, and how much headroom remains? Answerable only from the covenant calculation table and the Regulation 52 ratio table. Q2 compliance and disclosure: What does the AGEL FY25 auditor report flag as Emphasis of Matter and Key Audit Matters, and what related-party and contingent-liability exposures accompany them? Mixes prose and note tables across both auditor report and notes. Q3 peer and credit, spans both issuers: Compare the disclosed financing profiles of AGEL and APSEZ on debt maturity structure, interest-rate exposure and reliance on related-party or promoter funding, and say which shows more refinancing risk on the disclosed evidence. The three are chosen to force three different specialist selections, which is what AC-7 measures. No ESG-led question is included because the corpus cannot support one.",
+      "status": "accepted",
+      "source": "T2 corpus survey 2026-09-15",
+      "recorded_at": "2026-09-16T17:38:32.798Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-975bc5c0",
+      "title": "The retrieval loop has a fourth stop condition: no_progress",
+      "text": "FR-9 names three terminations: sufficiency, iteration ceiling, spend ceiling. Implementation added a fourth. When reflection returns insufficient but proposes no query that was not already tried, continuing would spend money to retrieve exactly the chunks already held. The run stops and records no_progress. This is a superset of FR-9 rather than a departure from it, and it is visible in the trace, but the specification does not mention it and should be amended if the human wants the text to match the code.",
+      "status": "accepted",
+      "source": "T6A 2026-09-17",
+      "recorded_at": "2026-09-17T15:33:14.809Z",
+      "paths": [],
+      "tags": []
+    }
+  ],
+  "knowledge": [
+    {
+      "id": "KNOWLEDGE-740f4fdd",
+      "title": "Anthropic API has no embeddings endpoint",
+      "text": "The Anthropic API provides no embeddings endpoint. Verified against the bundled claude-api skill: its Current Models table and reading guide document no embeddings surface, and the only embedding string match in the skill is unrelated prose in prompt-caching.md. Any embedding step must therefore use a local model or a third-party provider such as Voyage AI.",
+      "source": "bundled claude-api skill, checked 2026-09-15",
+      "tags": [],
+      "recorded_at": "2026-09-15T15:11:22.550Z",
+      "paths": []
+    },
+    {
+      "id": "KNOWLEDGE-5444ad01",
+      "title": "Genesis gate commands run through cmd.exe on Windows and must quote the interpreter path",
+      "text": "Genesis spawns gate commands with shell true, which on win32 means cmd.exe. A bare relative path using forward slashes, such as .venv/Scripts/python.exe, makes cmd parse .venv as the command name and /Scripts/python.exe as switches, failing with 'is not recognized as an internal or external command' and exit 1, even though the identical string works in Git Bash. Verified by replicating the exact spawn options. Three forms work under cmd: backslashes, a leading dot-backslash, and the path in double quotes. The quoted form is used because it is the only one that is also correct under a POSIX shell. Any future gate that invokes an interpreter by relative path must quote it.",
+      "source": "T-1 gate failure, evidence T-1-scaffold-d4437d3d, 2026-09-15",
+      "tags": [],
+      "recorded_at": "2026-09-15T15:40:08.864Z",
+      "paths": []
+    },
+    {
+      "id": "KNOWLEDGE-35fe2525",
+      "title": "Neither corpus document contains any chart page; AC-9 is unreachable as things stand",
+      "text": "Classified all 401 pages. AGEL FY24-25 financial-reports: 204 text, 163 table, 0 chart, and no raster imagery on any page. APSEZ Q1 FY27: 15 text, 19 table, 0 chart, largest figure-sized image 3.9 percent of a page. Confirmed against 40 pages rendered and read by eye across two splits; not one is a chart. Consequences: AC-9 requires a golden question answerable only from a chart page and cannot be satisfied by this corpus, and the FR-3 vision extraction path in T3 will never execute on real data. A tripwire test fails if a chart page ever appears.",
+      "source": "T2 measurement 2026-09-15",
+      "tags": [],
+      "recorded_at": "2026-09-16T17:21:44.855Z",
+      "paths": []
+    },
+    {
+      "id": "KNOWLEDGE-c168123d",
+      "title": "Two layout facts that broke the first classifier, measured on the real corpus",
+      "text": "First: APSEZ Q1 FY27 carries a page-sized raster behind real text on every page, so raw image area is 1.0 document-wide and carries no information; two ordinary pages were classified chart because of it. Images covering 90 percent or more of a page are now excluded from the figure signal. Second: AGEL financial statements rule their rows but not their columns, so requiring both horizontal and vertical rules read the Statement of Profit and Loss and most notes as prose. Horizontal ruling plus modest numeric density is now sufficient. Both were found only by rendering pages and looking at them, not from the feature numbers.",
+      "source": "T2 measurement 2026-09-15",
+      "tags": [],
+      "recorded_at": "2026-09-16T17:21:45.886Z",
+      "paths": []
+    },
+    {
+      "id": "KNOWLEDGE-4ef75831",
+      "title": "The ESG/climate specialist has almost no material in the current corpus",
+      "text": "Term counts across both documents: AGEL has emission 1, climate 0, sustainab 2, carbon 4. The 176 hits for ESG are the ESG Overview page-header navigation repeated on nearly every page, not content. APSEZ has none. The supplied AGEL file is the financial-reports extract; the emissions, capacity and transition disclosures live in the Integrated Annual Report sections that were not supplied. Consequence: the ESG specialist can be built and routed but will correctly report insufficient evidence on this corpus. Adding the full AGEL Integrated Annual Report would close this gap and the chart gap in KNOWLEDGE-35fe2525 at the same time, since the ESG sections are where its charts are.",
+      "source": "T2 corpus survey 2026-09-15",
+      "tags": [],
+      "recorded_at": "2026-09-16T17:38:31.831Z",
+      "paths": []
+    },
+    {
+      "id": "KNOWLEDGE-e0801b64",
+      "title": "PDF table cells carry their own line breaks; rendering must collapse them",
+      "text": "APSEZ Q1 FY27 page 34 has a wrapped label that is one cell in the PDF but two physical lines. Rendering rows verbatim produced 19 lines for 18 rows, which silently broke the one-row-per-line invariant that FR-5 no-split-mid-row depends on. Table.to_text now collapses whitespace inside each cell while leaving Table.rows unmodified, so fidelity is kept for inspection and the invariant holds for chunking. Found by a test asserting line count equals row count, not by reading output.",
+      "source": "T4A 2026-09-16",
+      "tags": [],
+      "recorded_at": "2026-09-16T18:01:10.530Z",
+      "paths": []
+    },
+    {
+      "id": "KNOWLEDGE-4e8c088b",
+      "title": "Gate commands default to a 120 second timeout; slow suites need --timeout",
+      "text": "genesis gate uses 120000 ms unless --timeout is passed. The T5A index suite takes about 206 seconds because it loads the sentence-transformers model, ingests the 34-page APSEZ filing three times across the incremental-reuse tests, and spawns a second interpreter for the fresh-process persistence check. The first attempt failed with a timeout failure, not a test failure. Later gates that touch embedding or the live API need the same flag; genesis gate . <task> --timeout 900000 is what passed.",
+      "source": "T5A 2026-09-16",
+      "tags": [],
+      "recorded_at": "2026-09-16T18:31:38.750Z",
+      "paths": [],
+      "status": "superseded",
+      "superseded_by": "KNOWLEDGE-8803962e"
+    },
+    {
+      "id": "KNOWLEDGE-8803962e",
+      "title": "Embedding model now loads from cache; the gate fits the default timeout again",
+      "text": "sentence-transformers contacted the model hub on every load to check for updates. Behind a TLS-inspecting proxy that check failed with CERTIFICATE_VERIFY_FAILED, retried five times with backoff, then fell back to the cache anyway, costing roughly thirty seconds per load. Loading with local_files_only first, falling back to a normal load only when the model is not cached, cut load to 10.2 seconds. The full suite went from 224 to 61 seconds and the T5A gate now passes at the 120000 ms default, so --timeout is no longer needed. The earlier record recommending --timeout 900000 is superseded.",
+      "source": "T5A 2026-09-17",
+      "tags": [],
+      "recorded_at": "2026-09-16T18:42:32.896Z",
+      "paths": [],
+      "supersedes": "KNOWLEDGE-4e8c088b"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "SPEC-1",
+      "outcome": "Produce an approved, implementation-ready product specification",
+      "state": "done",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "SPEC.md"
+      ],
+      "dependencies": [],
+      "requirements": [],
+      "gates": [
+        {
+          "id": "independent-review",
+          "command": "",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "human": "Milap Vaghasia",
+            "reason": "Reviewed the amended FR-3, AC-9, corpus constraint, non-goals and risks",
+            "source_hash": "90264c4015d36b8da57c038c0b0f930dfdd9fe628651e6e3acbf19731c6ec077",
+            "observed_at": "2026-09-16T17:45:28.741Z"
+          },
+          "kind": "review"
+        }
+      ],
+      "next_action": "Interview the human, record durable context, and replace every placeholder in SPEC.md.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-15T15:05:11.368Z",
+      "updated_at": "2026-09-16T17:45:28.741Z"
+    },
+    {
+      "id": "T-1",
+      "outcome": "A runnable project skeleton exists: pinned dependencies in a local venv, one configuration point for model identifiers, credentials read only from the environment, and a corpus manifest that records a verified public source URL for every document",
+      "state": "rejected",
+      "risk": "low",
+      "owner": null,
+      "scope": [
+        "pyproject.toml",
+        "src",
+        "tests",
+        "corpus"
+      ],
+      "dependencies": [],
+      "requirements": [
+        "FR-1",
+        "NFR-2",
+        "NFR-3",
+        "NFR-4",
+        "NFR-8"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "scaffold",
+          "kind": "command",
+          "command": ".venv/Scripts/python.exe -m pytest tests/test_config.py tests/test_manifest.py tests/test_store_roundtrip.py -q",
+          "mandatory": true,
+          "status": "fail",
+          "evidence": {
+            "path": ".genesis/evidence/T-1-scaffold-d4437d3d-a877-4661-98d7-be0bc96bdab2.json",
+            "hash": "fde6d732f3b647b0631a1b17461f6081f74f9b11c3ce3dcb156e3a334aae3569",
+            "source_hash": "e6c708fa1f840d837f5dc3ddb15cd31e00e57dd83860f10e703e17bac419adf0",
+            "config_hash": "47bbe239b0f05475a9c046b8fb2d82c37f388434acaad7f0228f24a01d0a35d6",
+            "observed_at": "2026-09-15T15:38:53.706Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-15T15:20:33.081Z",
+      "updated_at": "2026-09-15T15:20:33.083Z",
+      "base_manifest": {
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "53f20948b7822c86cbe5586e9544a09b1237587537b7d598cdfe6c93b1155e9b"
+      }
+    },
+    {
+      "id": "T-2",
+      "outcome": "Every page of every corpus document is classified as text, table or chart from PyMuPDF layout statistics alone, and the class plus the routing decision is recorded per page",
+      "state": "rejected",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "src/ingest",
+        "tests"
+      ],
+      "dependencies": [
+        "T-1"
+      ],
+      "requirements": [
+        "FR-2",
+        "FR-4",
+        "NFR-5",
+        "AC-1",
+        "AC-12"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "offline-classification",
+          "actor": "ingest pipeline",
+          "scope": "every page of the two corpus documents",
+          "environment": "local, no network and no API key present",
+          "duration": "one full ingest pass",
+          "observable": "each page carries exactly one recorded class and routing decision, and the labelled sample scores at least 85 percent accuracy",
+          "gate": "classifier"
+        }
+      ],
+      "gates": [
+        {
+          "id": "classifier",
+          "kind": "command",
+          "command": ".venv/Scripts/python.exe -m pytest tests/test_classifier.py -q",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-15T15:20:34.236Z",
+      "updated_at": "2026-09-15T15:20:34.239Z"
+    },
+    {
+      "id": "T-3",
+      "outcome": "Each page is extracted by the method matching its class: prose extraction for text, structure-preserving extraction for tables, Claude vision interpretation for charts, with the method used recorded per page",
+      "state": "rejected",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "src/ingest",
+        "tests"
+      ],
+      "dependencies": [
+        "T-2"
+      ],
+      "requirements": [
+        "FR-3",
+        "FR-4"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "class-routed-extraction",
+          "actor": "ingest pipeline",
+          "scope": "one fixture page of each of the three classes",
+          "environment": "local, chart path against a recorded vision response",
+          "duration": "one extraction pass per fixture page",
+          "observable": "each fixture page is extracted by the method its class dictates and the method used is recorded, with table structure preserved row-wise",
+          "gate": "extract"
+        }
+      ],
+      "gates": [
+        {
+          "id": "extract",
+          "kind": "command",
+          "command": ".venv/Scripts/python.exe -m pytest tests/test_extract.py -q",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-15T15:20:35.460Z",
+      "updated_at": "2026-09-15T15:20:35.463Z"
+    },
+    {
+      "id": "T-4",
+      "outcome": "Extracted content is chunked without splitting tables mid-row, embedded by a local sentence-transformers model, and persisted to a local Chroma store that a fresh process can query, with unchanged documents skipped on re-ingest",
+      "state": "rejected",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "src/index",
+        "tests"
+      ],
+      "dependencies": [
+        "T-3"
+      ],
+      "requirements": [
+        "FR-5",
+        "FR-6",
+        "FR-7",
+        "NFR-2",
+        "AC-2",
+        "AC-3"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "persist-and-reuse",
+          "actor": "ingest pipeline",
+          "scope": "the full corpus index",
+          "environment": "local filesystem, embedding model offline, two sequential runs in separate processes",
+          "duration": "one ingest run followed by a second run over unchanged input",
+          "observable": "the second process queries the persisted store without re-ingesting and re-embeds no unchanged document, and every returned chunk carries document id, page number and page class",
+          "gate": "index"
+        }
+      ],
+      "gates": [
+        {
+          "id": "index",
+          "kind": "command",
+          "command": ".venv/Scripts/python.exe -m pytest tests/test_index.py -q",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-15T15:20:36.937Z",
+      "updated_at": "2026-09-15T15:20:36.941Z"
+    },
+    {
+      "id": "T-5",
+      "outcome": "A query is answered by an agentic loop that plans sub-queries, searches, reflects on sufficiency, iterates with revised queries when evidence is insufficient, halts on sufficiency or an iteration or spend ceiling, and emits a machine-readable trace of the whole run",
+      "state": "rejected",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "src/retrieval",
+        "tests"
+      ],
+      "dependencies": [
+        "T-4"
+      ],
+      "requirements": [
+        "FR-8",
+        "FR-9",
+        "FR-10",
+        "NFR-1",
+        "AC-6"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "reflect-and-iterate",
+          "actor": "retrieval loop",
+          "scope": "one query whose evidence is deliberately absent from the first sub-query results",
+          "environment": "local, against recorded model responses so the test spends nothing",
+          "duration": "one query run to termination",
+          "observable": "the trace records more than one iteration, a revised sub-query following an insufficient reflection verdict, and which of the three termination conditions ended the run",
+          "gate": "retrieval"
+        }
+      ],
+      "gates": [
+        {
+          "id": "retrieval",
+          "kind": "command",
+          "command": ".venv/Scripts/python.exe -m pytest tests/test_retrieval_loop.py -q",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-15T15:20:38.129Z",
+      "updated_at": "2026-09-15T15:20:38.133Z"
+    },
+    {
+      "id": "T-6",
+      "outcome": "A router selects at most two of the four specialists per query and records a stated reason for every selection and non-selection, and each specialist answers only from retrieved corpus evidence within its own scope",
+      "state": "rejected",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "src/agents",
+        "tests"
+      ],
+      "dependencies": [
+        "T-5"
+      ],
+      "requirements": [
+        "FR-11",
+        "FR-12",
+        "FR-13",
+        "AC-7"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "query-dependent-routing",
+          "actor": "router agent",
+          "scope": "three queries of different analytical character",
+          "environment": "local, against recorded model responses",
+          "duration": "one routing decision per query",
+          "observable": "the three queries do not all produce the same specialist set, no run selects more than two specialists, and every specialist carries a recorded selection or non-selection reason",
+          "gate": "router"
+        }
+      ],
+      "gates": [
+        {
+          "id": "router",
+          "kind": "command",
+          "command": ".venv/Scripts/python.exe -m pytest tests/test_router.py -q",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-15T15:20:39.309Z",
+      "updated_at": "2026-09-15T15:20:39.313Z"
+    },
+    {
+      "id": "T-7",
+      "outcome": "One CLI command turns an analyst question into a Markdown rationale note on disk that carries a structural citation on every material claim, surfaces rather than hides specialist disagreement, states the not-a-rating disclaimer, and reports specialists invoked, iterations and run cost",
+      "state": "rejected",
+      "risk": "high",
+      "owner": null,
+      "scope": [
+        "src/report",
+        "src/cli.py",
+        "tests"
+      ],
+      "dependencies": [
+        "T-6"
+      ],
+      "requirements": [
+        "FR-14",
+        "FR-15",
+        "FR-16",
+        "FR-17",
+        "FR-18",
+        "FR-19",
+        "NFR-7",
+        "AC-4",
+        "AC-10"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "cited-note-generation",
+          "actor": "analyst running the CLI",
+          "scope": "one question against the ingested corpus",
+          "environment": "local, against recorded model responses",
+          "duration": "one analysis command",
+          "observable": "a Markdown note is written whose every material claim carries a document and page citation traceable to a retrieved chunk, which contains the disclaimer and the cost, specialist and iteration report, and in which two conflicting specialist findings both appear rather than one being dropped",
+          "gate": "note"
+        }
+      ],
+      "gates": [
+        {
+          "id": "note",
+          "kind": "command",
+          "command": ".venv/Scripts/python.exe -m pytest tests/test_note.py -q",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-15T15:20:40.530Z",
+      "updated_at": "2026-09-15T15:20:40.532Z"
+    },
+    {
+      "id": "T-8",
+      "outcome": "Three golden questions run end to end against the real corpus and the live API, each within the cost ceiling and the time limit, with citations verified against source PDFs and the repository clean of credentials",
+      "state": "rejected",
+      "risk": "high",
+      "owner": null,
+      "scope": [
+        "tests",
+        "corpus",
+        "notes"
+      ],
+      "dependencies": [
+        "T-7"
+      ],
+      "requirements": [
+        "NFR-1",
+        "NFR-6",
+        "AC-5",
+        "AC-8",
+        "AC-9",
+        "AC-11"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "golden-question-runs",
+          "actor": "analyst running the CLI",
+          "scope": "the three golden questions against the two-document corpus",
+          "environment": "local against the live Anthropic API with a real key",
+          "duration": "three complete analysis runs",
+          "observable": "each run finishes inside five minutes and under twenty-five cents of reported spend, one question is answerable only from a table page and one only from a chart page and both are answered correctly, and a credential scan of the repository finds nothing",
+          "gate": "acceptance"
+        }
+      ],
+      "gates": [
+        {
+          "id": "acceptance",
+          "kind": "command",
+          "command": ".venv/Scripts/python.exe -m pytest tests/test_acceptance.py -q",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-15T15:20:41.831Z",
+      "updated_at": "2026-09-15T15:20:41.835Z"
+    },
+    {
+      "id": "T1",
+      "outcome": "A runnable project skeleton exists: pinned dependencies in a local venv, one configuration point for model identifiers, credentials read only from the environment, and a corpus manifest that records a verified public source URL for every document",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [
+        "pyproject.toml",
+        "src",
+        "tests",
+        "corpus"
+      ],
+      "dependencies": [],
+      "requirements": [
+        "FR-1",
+        "NFR-2",
+        "NFR-3",
+        "NFR-4",
+        "NFR-8"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "scaffold",
+          "kind": "command",
+          "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_config.py tests/test_manifest.py tests/test_store_roundtrip.py -q",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T1-scaffold-1651416b-ea7a-4500-91a6-803e7fbaf83d.json",
+            "hash": "8603b0b669ebb62fc3e6be15f26de614f8201a8bdaa6e40f4b3cbfe839956aed",
+            "source_hash": "e6c708fa1f840d837f5dc3ddb15cd31e00e57dd83860f10e703e17bac419adf0",
+            "config_hash": "1e7d7297f14e3cb3fdb072536530e22030b4e7dd9e8ca0acc7d87b551109fba2",
+            "observed_at": "2026-09-16T17:07:31.049Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-15T15:47:34.000Z",
+      "updated_at": "2026-09-16T17:07:37.011Z",
+      "base_manifest": {
+        ".gitignore": "b21b2658d939f29f6092c32c69eeeab4818f91a9359397ad0743c0440c59ed0f",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "53f20948b7822c86cbe5586e9544a09b1237587537b7d598cdfe6c93b1155e9b",
+        "corpus/README.md": "34de6979e99147fa6ea6619a79a84fdd1f95fdc6afee13955db079041fb801e7",
+        "corpus/manifest.json": "961c7285004d28b516f774434960b276c3ec62205f48f67875910f7aff1bed82",
+        "pyproject.toml": "641adbba3dd3214b20cc2c621d77a4b02ae3f8e3b147c3c0ccad8a8a1f65dc11",
+        "src/risk_analytics/__init__.py": "67e200eafe0d03e92c002ef4c95b0504fdb1c67721b083d043320bf43467eac7",
+        "src/risk_analytics/config.py": "fb9b27e0a8d6c677a41615d1d4c1aa23edd7fb392455d93e7613208bfe056965",
+        "src/risk_analytics/manifest.py": "07ded2894b47b6ed7d02b3750ab5ebfad294ac5bdb222722d56b9217bea5f72f",
+        "tests/test_config.py": "e09a777265581f6963b8ff7f26c8938e6c7ec1c3d457ec9a5da9831b7393776a",
+        "tests/test_manifest.py": "07859956a5f3887523fc8a05397b956c9152217544b7ca84e322b2819a429954",
+        "tests/test_store_roundtrip.py": "149600c1b16b25a83a952e9ce55e2e70281dd13312449b0ac797d015cf3ed6c9"
+      }
+    },
+    {
+      "id": "T2",
+      "outcome": "Every page of every corpus document is classified as text, table or chart from PyMuPDF layout statistics alone, and the class plus the routing decision is recorded per page",
+      "state": "done",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "src/risk_analytics",
+        "tests"
+      ],
+      "dependencies": [
+        "T1"
+      ],
+      "requirements": [
+        "FR-2",
+        "FR-4",
+        "NFR-5",
+        "AC-1",
+        "AC-12"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "offline-classification",
+          "actor": "ingest pipeline",
+          "scope": "every page of the two corpus documents",
+          "environment": "local, no network and no API key present",
+          "duration": "one full ingest pass",
+          "observable": "each page carries exactly one recorded class and routing decision, and the labelled sample scores at least 85 percent accuracy",
+          "gate": "classifier"
+        }
+      ],
+      "gates": [
+        {
+          "id": "classifier",
+          "kind": "command",
+          "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_classifier.py -q",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T2-classifier-3ad9b701-10a0-467e-a40d-114fbcd42ff7.json",
+            "hash": "f5a18103b9f0431cbc35253df3f5b08d8a82fc21912c37bcca06f86050e4685c",
+            "source_hash": "8573c5861d878f3f7b1ee64cffc7ac49c449eb942067101560e5b18b56c27b8f",
+            "config_hash": "246cb8820688fb5337a605825c7946b4544b8b8e258a5dae269f1344c338385e",
+            "observed_at": "2026-09-16T17:41:25.018Z"
+          }
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T2-independent-review-add3a541-a3a8-4a0c-b760-d620af347ba6.json",
+            "hash": "2adaa8869c7aa0112f45b6dd343cc66dea0df7d440e6e18b680fbbbc2c9d5acc",
+            "source_hash": "8573c5861d878f3f7b1ee64cffc7ac49c449eb942067101560e5b18b56c27b8f",
+            "config_hash": "246cb8820688fb5337a605825c7946b4544b8b8e258a5dae269f1344c338385e",
+            "observed_at": "2026-09-16T17:42:11.500Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [
+        "Classifier and offline tests complete: 17 tests, no network, no API key, no model. FR-2, FR-4, NFR-5 and AC-12 are met by the current evidence; AC-1 is not.",
+        "AC-1 met on real evidence: 100 percent on a 20-page unseen holdout, 95 percent on the 20-page tuning split, floor 85 percent. The single tuning miss is AGEL p95, a ruled list of entity names with almost no digits."
+      ],
+      "failures": [],
+      "limitations": [
+        "AC-1 is not demonstrated. It requires at least 85 percent correct classification over a 20-page stratified sample of the real corpus, and the corpus is still empty. The executable gate passes against seven synthetic pages built with PyMuPDF, which prove the classifier reads the layout signals it claims to read and that its rule ordering is right, but say nothing about whether the thresholds hold on real annual-report pages.",
+        "Thresholds in classify.py are first guesses set against synthetic pages. Tuning them against real documents is expected and is what AC-1 measures.",
+        "The chart class is unexercised by real data; neither corpus document has a chart page. The chart rules are proven only against synthetic fixtures.",
+        "Known failure mode: a ruled table of names with a very low digit ratio, such as AGEL p95, reads as prose. Fixing it by lowering the digit threshold would pull in ruled prose pages; it needs a row-regularity signal, which is not built."
+      ],
+      "created_at": "2026-09-15T15:47:34.487Z",
+      "updated_at": "2026-09-16T17:43:00.295Z",
+      "base_manifest": {
+        ".gitignore": "b21b2658d939f29f6092c32c69eeeab4818f91a9359397ad0743c0440c59ed0f",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "53f20948b7822c86cbe5586e9544a09b1237587537b7d598cdfe6c93b1155e9b",
+        "corpus/README.md": "34de6979e99147fa6ea6619a79a84fdd1f95fdc6afee13955db079041fb801e7",
+        "corpus/manifest.json": "961c7285004d28b516f774434960b276c3ec62205f48f67875910f7aff1bed82",
+        "pyproject.toml": "641adbba3dd3214b20cc2c621d77a4b02ae3f8e3b147c3c0ccad8a8a1f65dc11",
+        "src/risk_analytics/__init__.py": "67e200eafe0d03e92c002ef4c95b0504fdb1c67721b083d043320bf43467eac7",
+        "src/risk_analytics/config.py": "fb9b27e0a8d6c677a41615d1d4c1aa23edd7fb392455d93e7613208bfe056965",
+        "src/risk_analytics/manifest.py": "07ded2894b47b6ed7d02b3750ab5ebfad294ac5bdb222722d56b9217bea5f72f",
+        "tests/test_config.py": "e09a777265581f6963b8ff7f26c8938e6c7ec1c3d457ec9a5da9831b7393776a",
+        "tests/test_manifest.py": "07859956a5f3887523fc8a05397b956c9152217544b7ca84e322b2819a429954",
+        "tests/test_store_roundtrip.py": "149600c1b16b25a83a952e9ce55e2e70281dd13312449b0ac797d015cf3ed6c9"
+      }
+    },
+    {
+      "id": "T3",
+      "outcome": "Each page is extracted by the method matching its class: prose extraction for text, structure-preserving extraction for tables, Claude vision interpretation for charts, with the method used recorded per page",
+      "state": "rejected",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "src/risk_analytics",
+        "tests"
+      ],
+      "dependencies": [
+        "T2"
+      ],
+      "requirements": [
+        "FR-3",
+        "FR-4"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "class-routed-extraction",
+          "actor": "ingest pipeline",
+          "scope": "one fixture page of each of the three classes",
+          "environment": "local, chart path against a recorded vision response",
+          "duration": "one extraction pass per fixture page",
+          "observable": "each fixture page is extracted by the method its class dictates and the method used is recorded, with table structure preserved row-wise",
+          "gate": "extract"
+        }
+      ],
+      "gates": [
+        {
+          "id": "extract",
+          "kind": "command",
+          "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_extract.py -q",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-15T15:47:34.974Z",
+      "updated_at": "2026-09-15T15:47:34.975Z",
+      "base_manifest": {
+        ".gitignore": "b21b2658d939f29f6092c32c69eeeab4818f91a9359397ad0743c0440c59ed0f",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "53f20948b7822c86cbe5586e9544a09b1237587537b7d598cdfe6c93b1155e9b",
+        "corpus/README.md": "34de6979e99147fa6ea6619a79a84fdd1f95fdc6afee13955db079041fb801e7",
+        "corpus/manifest.json": "961c7285004d28b516f774434960b276c3ec62205f48f67875910f7aff1bed82",
+        "pyproject.toml": "641adbba3dd3214b20cc2c621d77a4b02ae3f8e3b147c3c0ccad8a8a1f65dc11",
+        "src/risk_analytics/__init__.py": "67e200eafe0d03e92c002ef4c95b0504fdb1c67721b083d043320bf43467eac7",
+        "src/risk_analytics/classify.py": "ad5bfaa37fc970f6c43bae35a332232a22613c48bd5bbff76c703d284dde995f",
+        "src/risk_analytics/config.py": "1ed316c91d9952e8b904e2aeaa44d438e4236ea33d3ff101cb85426468dd57ec",
+        "src/risk_analytics/manifest.py": "26927c2c7b58d36421555e4b7c4c5b23b36e049c58d79aa734806be36fd2514a",
+        "tests/labelled_pages.json": "b2cc3759acc6241005aed16908d782a14d16fce2eb9c7037eeda4bb2f1124c3f",
+        "tests/synthetic.py": "fd0b30cce3b34128f9b4df462829ec0b2ab82754ff2eb28cae69ce4f2d8c7e72",
+        "tests/test_classifier.py": "fb21950492cf9289d7b609d78bb19c1c53087e539ab77f2c05b1c653093e1e3e",
+        "tests/test_config.py": "e09a777265581f6963b8ff7f26c8938e6c7ec1c3d457ec9a5da9831b7393776a",
+        "tests/test_manifest.py": "07859956a5f3887523fc8a05397b956c9152217544b7ca84e322b2819a429954",
+        "tests/test_store_roundtrip.py": "149600c1b16b25a83a952e9ce55e2e70281dd13312449b0ac797d015cf3ed6c9"
+      }
+    },
+    {
+      "id": "T4",
+      "outcome": "Extracted content is chunked without splitting tables mid-row, embedded by a local sentence-transformers model, and persisted to a local Chroma store that a fresh process can query, with unchanged documents skipped on re-ingest",
+      "state": "rejected",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "src/risk_analytics",
+        "tests",
+        "pyproject.toml"
+      ],
+      "dependencies": [
+        "T3"
+      ],
+      "requirements": [
+        "FR-5",
+        "FR-6",
+        "FR-7",
+        "NFR-2",
+        "AC-2",
+        "AC-3"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "persist-and-reuse",
+          "actor": "ingest pipeline",
+          "scope": "the full corpus index",
+          "environment": "local filesystem, embedding model offline, two sequential runs in separate processes",
+          "duration": "one ingest run followed by a second run over unchanged input",
+          "observable": "the second process queries the persisted store without re-ingesting and re-embeds no unchanged document, and every returned chunk carries document id, page number and page class",
+          "gate": "index"
+        }
+      ],
+      "gates": [
+        {
+          "id": "index",
+          "kind": "command",
+          "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_index.py -q",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-15T15:47:35.473Z",
+      "updated_at": "2026-09-15T15:47:35.474Z"
+    },
+    {
+      "id": "T5",
+      "outcome": "A query is answered by an agentic loop that plans sub-queries, searches, reflects on sufficiency, iterates with revised queries when evidence is insufficient, halts on sufficiency or an iteration or spend ceiling, and emits a machine-readable trace of the whole run",
+      "state": "rejected",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "src/risk_analytics",
+        "tests"
+      ],
+      "dependencies": [
+        "T4"
+      ],
+      "requirements": [
+        "FR-8",
+        "FR-9",
+        "FR-10",
+        "NFR-1",
+        "AC-6"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "reflect-and-iterate",
+          "actor": "retrieval loop",
+          "scope": "one query whose evidence is deliberately absent from the first sub-query results",
+          "environment": "local, against recorded model responses so the test spends nothing",
+          "duration": "one query run to termination",
+          "observable": "the trace records more than one iteration, a revised sub-query following an insufficient reflection verdict, and which of the three termination conditions ended the run",
+          "gate": "retrieval"
+        }
+      ],
+      "gates": [
+        {
+          "id": "retrieval",
+          "kind": "command",
+          "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_retrieval_loop.py -q",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-15T15:47:35.956Z",
+      "updated_at": "2026-09-15T15:47:35.957Z"
+    },
+    {
+      "id": "T6",
+      "outcome": "A router selects at most two of the four specialists per query and records a stated reason for every selection and non-selection, and each specialist answers only from retrieved corpus evidence within its own scope",
+      "state": "rejected",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "src/risk_analytics",
+        "tests"
+      ],
+      "dependencies": [
+        "T5"
+      ],
+      "requirements": [
+        "FR-11",
+        "FR-12",
+        "FR-13",
+        "AC-7"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "query-dependent-routing",
+          "actor": "router agent",
+          "scope": "three queries of different analytical character",
+          "environment": "local, against recorded model responses",
+          "duration": "one routing decision per query",
+          "observable": "the three queries do not all produce the same specialist set, no run selects more than two specialists, and every specialist carries a recorded selection or non-selection reason",
+          "gate": "router"
+        }
+      ],
+      "gates": [
+        {
+          "id": "router",
+          "kind": "command",
+          "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_router.py -q",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-15T15:47:36.454Z",
+      "updated_at": "2026-09-15T15:47:36.455Z"
+    },
+    {
+      "id": "T7",
+      "outcome": "One CLI command turns an analyst question into a Markdown rationale note on disk that carries a structural citation on every material claim, surfaces rather than hides specialist disagreement, states the not-a-rating disclaimer, and reports specialists invoked, iterations and run cost",
+      "state": "rejected",
+      "risk": "high",
+      "owner": null,
+      "scope": [
+        "src/risk_analytics",
+        "tests"
+      ],
+      "dependencies": [
+        "T6"
+      ],
+      "requirements": [
+        "FR-14",
+        "FR-15",
+        "FR-16",
+        "FR-17",
+        "FR-18",
+        "FR-19",
+        "NFR-7",
+        "AC-4",
+        "AC-10"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "cited-note-generation",
+          "actor": "analyst running the CLI",
+          "scope": "one question against the ingested corpus",
+          "environment": "local, against recorded model responses",
+          "duration": "one analysis command",
+          "observable": "a Markdown note is written whose every material claim carries a document and page citation traceable to a retrieved chunk, which contains the disclaimer and the cost, specialist and iteration report, and in which two conflicting specialist findings both appear rather than one being dropped",
+          "gate": "note"
+        }
+      ],
+      "gates": [
+        {
+          "id": "note",
+          "kind": "command",
+          "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_note.py -q",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-15T15:47:36.927Z",
+      "updated_at": "2026-09-15T15:47:36.928Z"
+    },
+    {
+      "id": "T8",
+      "outcome": "Three golden questions run end to end against the real corpus and the live API, each within the cost ceiling and the time limit, with citations verified against source PDFs and the repository clean of credentials",
+      "state": "rejected",
+      "risk": "high",
+      "owner": null,
+      "scope": [
+        "tests",
+        "corpus",
+        "notes"
+      ],
+      "dependencies": [
+        "T7"
+      ],
+      "requirements": [
+        "NFR-1",
+        "NFR-6",
+        "AC-5",
+        "AC-8",
+        "AC-9",
+        "AC-11"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "golden-question-runs",
+          "actor": "analyst running the CLI",
+          "scope": "the three golden questions against the two-document corpus",
+          "environment": "local against the live Anthropic API with a real key",
+          "duration": "three complete analysis runs",
+          "observable": "each run finishes inside five minutes and under twenty-five cents of reported spend, one question is answerable only from a table page and one only from a chart page and both are answered correctly, and a credential scan of the repository finds nothing",
+          "gate": "acceptance"
+        }
+      ],
+      "gates": [
+        {
+          "id": "acceptance",
+          "kind": "command",
+          "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_acceptance.py -q",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-15T15:47:37.414Z",
+      "updated_at": "2026-09-15T15:47:37.415Z"
+    },
+    {
+      "id": "T3A",
+      "outcome": "Both corpus documents are registered in corpus/manifest.json with verified public source URLs, the PDFs are excluded from version control, and every document the pipeline reads is resolved through the manifest rather than a hardcoded path",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [
+        "corpus",
+        ".gitignore",
+        "src/risk_analytics",
+        "tests"
+      ],
+      "dependencies": [],
+      "requirements": [
+        "FR-1",
+        "NFR-3",
+        "AC-11"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "corpus",
+          "kind": "command",
+          "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_manifest.py tests/test_corpus_registration.py -q",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T3A-corpus-d9b2b72c-e255-4b17-b257-92c5175df23d.json",
+            "hash": "10b1044635a49229dd6dd510ccaeb9a24a591918f6fc6c5239bc78a109e96dc1",
+            "source_hash": "135db648d528b4ecef7bcfaf4361b593fef7b518c946d660615fbb7fd3246447",
+            "config_hash": "3efbe0b44cc88d252b9ef52b83fa89bcda7a2913e72a2a60b3cbcfa1516dd277",
+            "observed_at": "2026-09-16T17:51:32.628Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-16T17:47:01.609Z",
+      "updated_at": "2026-09-16T17:51:33.652Z",
+      "base_manifest": {
+        ".gitignore": "b21b2658d939f29f6092c32c69eeeab4818f91a9359397ad0743c0440c59ed0f",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "cc89f63dcbaec7f4a83502de8e5a5392460c8f0338a0814523554846233b2cf3",
+        "corpus/README.md": "34de6979e99147fa6ea6619a79a84fdd1f95fdc6afee13955db079041fb801e7",
+        "corpus/manifest.json": "aeed2629546b5cf398f7a2b0754817e8c4e7781ef18cd7efcdc0e7841ed49b5c",
+        "pyproject.toml": "641adbba3dd3214b20cc2c621d77a4b02ae3f8e3b147c3c0ccad8a8a1f65dc11",
+        "src/risk_analytics/__init__.py": "67e200eafe0d03e92c002ef4c95b0504fdb1c67721b083d043320bf43467eac7",
+        "src/risk_analytics/classify.py": "ad5bfaa37fc970f6c43bae35a332232a22613c48bd5bbff76c703d284dde995f",
+        "src/risk_analytics/config.py": "1ed316c91d9952e8b904e2aeaa44d438e4236ea33d3ff101cb85426468dd57ec",
+        "src/risk_analytics/manifest.py": "26927c2c7b58d36421555e4b7c4c5b23b36e049c58d79aa734806be36fd2514a",
+        "tests/labelled_pages.json": "b2cc3759acc6241005aed16908d782a14d16fce2eb9c7037eeda4bb2f1124c3f",
+        "tests/synthetic.py": "fd0b30cce3b34128f9b4df462829ec0b2ab82754ff2eb28cae69ce4f2d8c7e72",
+        "tests/test_classifier.py": "fb21950492cf9289d7b609d78bb19c1c53087e539ab77f2c05b1c653093e1e3e",
+        "tests/test_config.py": "e09a777265581f6963b8ff7f26c8938e6c7ec1c3d457ec9a5da9831b7393776a",
+        "tests/test_manifest.py": "07859956a5f3887523fc8a05397b956c9152217544b7ca84e322b2819a429954",
+        "tests/test_store_roundtrip.py": "149600c1b16b25a83a952e9ce55e2e70281dd13312449b0ac797d015cf3ed6c9"
+      }
+    },
+    {
+      "id": "T4A",
+      "outcome": "Text pages are extracted as prose and table pages with their row and column structure preserved, each page recording the method actually used; chart pages are recorded and skipped without any model call",
+      "state": "done",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "src/risk_analytics",
+        "tests"
+      ],
+      "dependencies": [
+        "T3A"
+      ],
+      "requirements": [
+        "FR-3",
+        "FR-4"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "class-routed-extraction",
+          "actor": "ingest pipeline",
+          "scope": "one real page of each class drawn from the registered corpus",
+          "environment": "local, no network and no API key present",
+          "duration": "one extraction pass per page",
+          "observable": "each page is extracted by the method its class dictates and records which method ran, table rows survive intact rather than collapsing into a line of prose, and any chart page is recorded as skipped with no model call attempted",
+          "gate": "extract"
+        }
+      ],
+      "gates": [
+        {
+          "id": "extract",
+          "kind": "command",
+          "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_extract.py -q",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T4A-extract-8878d4ac-a0cc-4e89-ab2b-909a845f5da2.json",
+            "hash": "042faa18f3e74a13ad270b41b4e64c45469836e8bd249ea170a5eb8ff1a1f174",
+            "source_hash": "fdadeaef76bec5560447dfafef7206b43452e42d4df8f2a79c8c4fe21a36f6d8",
+            "config_hash": "68f0932d8503cd8bcf3950567ccc9fac601d80c685b35ec05600a6baa67d5b06",
+            "observed_at": "2026-09-16T18:00:57.244Z"
+          }
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T4A-independent-review-cfcee5a1-d533-4c62-8be8-7dbf57f7d7de.json",
+            "hash": "22e1e19fb26d3804298adaf165853cc994db709b38593dfc46a75eaedd41fd88",
+            "source_hash": "fdadeaef76bec5560447dfafef7206b43452e42d4df8f2a79c8c4fe21a36f6d8",
+            "config_hash": "68f0932d8503cd8bcf3950567ccc9fac601d80c685b35ec05600a6baa67d5b06",
+            "observed_at": "2026-09-16T18:06:51.659Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [
+        "Extraction routes by class: prose for text, PyMuPDF find_tables for table pages, chart pages recorded and skipped with no model call. A table page whose grid cannot be resolved falls back to prose and records that it did, rather than emitting unaligned figures that read like a table."
+      ],
+      "failures": [],
+      "limitations": [
+        "The chart branch is exercised only against a synthetic page, since the corpus has no chart page. Consistent with the amended FR-3, which withdraws figure interpretation.",
+        "Table detection quality is not measured the way page classification was. AC-9 covers it indirectly at T9A by requiring the APSEZ covenant question to be answered from table pages alone; there is no per-table accuracy figure."
+      ],
+      "created_at": "2026-09-16T17:47:02.227Z",
+      "updated_at": "2026-09-16T18:06:53.187Z",
+      "base_manifest": {
+        ".gitignore": "9355d28940d35abe2597f2f07b49462e1dc05e140175c0be52f84b514cf2c4f1",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "cc89f63dcbaec7f4a83502de8e5a5392460c8f0338a0814523554846233b2cf3",
+        "corpus/README.md": "34de6979e99147fa6ea6619a79a84fdd1f95fdc6afee13955db079041fb801e7",
+        "corpus/manifest.json": "7b49964bf103211e1abe2eaf9052e11af0f0f6a5d6e5c52686375ae79a8d8fc3",
+        "pyproject.toml": "641adbba3dd3214b20cc2c621d77a4b02ae3f8e3b147c3c0ccad8a8a1f65dc11",
+        "src/risk_analytics/__init__.py": "67e200eafe0d03e92c002ef4c95b0504fdb1c67721b083d043320bf43467eac7",
+        "src/risk_analytics/classify.py": "ad5bfaa37fc970f6c43bae35a332232a22613c48bd5bbff76c703d284dde995f",
+        "src/risk_analytics/config.py": "1ed316c91d9952e8b904e2aeaa44d438e4236ea33d3ff101cb85426468dd57ec",
+        "src/risk_analytics/manifest.py": "3302b9a6e9c418fd741a34a10b1f0f529b9ca66080c0890cfad04f6eb52a698f",
+        "tests/labelled_pages.json": "abd8416cd217dadbcf13aeed3989a481a5fd23fe1f3d99efd12f1a21012d4ede",
+        "tests/synthetic.py": "fd0b30cce3b34128f9b4df462829ec0b2ab82754ff2eb28cae69ce4f2d8c7e72",
+        "tests/test_classifier.py": "c54272f467bb6b6313def86b22f01ff68dc348806725fdc0f25857e73df9697c",
+        "tests/test_config.py": "3d3364be94718b62719ac0a3212735019994d619b9c4f4c81a15f15aed90ccd2",
+        "tests/test_corpus_registration.py": "111257ac57f5a8faeb105136892a996961b0282f527fc4b1ec413c7bc8cd2965",
+        "tests/test_manifest.py": "07859956a5f3887523fc8a05397b956c9152217544b7ca84e322b2819a429954",
+        "tests/test_store_roundtrip.py": "149600c1b16b25a83a952e9ce55e2e70281dd13312449b0ac797d015cf3ed6c9"
+      }
+    },
+    {
+      "id": "T5A",
+      "outcome": "Extracted content is chunked without splitting a table mid-row, embedded by a local sentence-transformers model, and persisted to a local Chroma store a fresh process can query, with unchanged documents skipped on re-ingest",
+      "state": "done",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "src/risk_analytics",
+        "tests",
+        "pyproject.toml"
+      ],
+      "dependencies": [
+        "T4A"
+      ],
+      "requirements": [
+        "FR-5",
+        "FR-6",
+        "FR-7",
+        "NFR-2",
+        "AC-2",
+        "AC-3"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "persist-and-reuse",
+          "actor": "ingest pipeline",
+          "scope": "the full 401-page corpus index",
+          "environment": "local filesystem, embedding model running offline, two sequential runs in separate processes",
+          "duration": "one ingest run followed by a second over unchanged input",
+          "observable": "the second process queries the persisted store without re-ingesting and re-embeds no unchanged document, and every retrieved chunk carries document id, page number and page class",
+          "gate": "index"
+        }
+      ],
+      "gates": [
+        {
+          "id": "index",
+          "kind": "command",
+          "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_index.py -q",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T5A-index-8777a564-6087-4f2e-bb1b-3e0347cd1284.json",
+            "hash": "95e493cc66342a36b11b4c1d0373f8b935483a8f7d95671c0fe12febbe6973ff",
+            "source_hash": "28443fa9df996ca147470d67462136acad1b7a839f442351b0c6606a9a3ad01f",
+            "config_hash": "08b4e653120dc7272e87787baa832b42302d0ab9af08e4d9800e167db16ab620",
+            "observed_at": "2026-09-16T18:42:21.162Z"
+          }
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T5A-independent-review-f0b4bdc6-cdfa-48a9-87f5-2454328808b2.json",
+            "hash": "6f74f88c0d32566fa5795ad42bb1dccf36b3132828157778f7479855c41ed189",
+            "source_hash": "28443fa9df996ca147470d67462136acad1b7a839f442351b0c6606a9a3ad01f",
+            "config_hash": "08b4e653120dc7272e87787baa832b42302d0ab9af08e4d9800e167db16ab620",
+            "observed_at": "2026-09-16T18:44:29.969Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [
+        "Chunking, local embedding and Chroma persistence complete. 21 tests in the index suite, 114 across the project. Table chunks split only on row boundaries with the header repeated; documents fingerprinted by file bytes so an unchanged corpus re-embeds nothing; store proven queryable from a separate interpreter. Covenant figures 0.55 and 5.42 are retrievable from table-filtered search, which is the retrieval half of golden question 1.",
+        "Loader fix: model loads from local cache first, so the offline path is the default rather than a fallback after five failed hub retries. Full corpus indexed at 1799 chunks; retrieval sanity-checked against all three golden questions and returns correct pages with checkable citations."
+      ],
+      "failures": [],
+      "limitations": [
+        "The embedding model is downloaded once on first use, so the very first ingest on a clean machine does touch the network. Embedding itself does not: a test sets HF_HUB_OFFLINE and TRANSFORMERS_OFFLINE and still embeds.",
+        "Retrieval quality is not measured. The covenant-figure test proves those two values are reachable for one query; there is no recall or precision figure over a question set. AC-5 and AC-9 exercise this indirectly at T9A.",
+        "The index suite takes about 206 seconds, so its gate needs --timeout 900000 rather than the 120 second default (KNOWLEDGE for the reason).",
+        "First use on a machine with no cached model still downloads it once, about 90 MB. Embedding itself never reaches the network, proven by a test that forces HF_HUB_OFFLINE and TRANSFORMERS_OFFLINE."
+      ],
+      "created_at": "2026-09-16T17:47:02.859Z",
+      "updated_at": "2026-09-17T15:22:21.801Z",
+      "base_manifest": {
+        ".gitignore": "9355d28940d35abe2597f2f07b49462e1dc05e140175c0be52f84b514cf2c4f1",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "cc89f63dcbaec7f4a83502de8e5a5392460c8f0338a0814523554846233b2cf3",
+        "corpus/README.md": "34de6979e99147fa6ea6619a79a84fdd1f95fdc6afee13955db079041fb801e7",
+        "corpus/manifest.json": "7b49964bf103211e1abe2eaf9052e11af0f0f6a5d6e5c52686375ae79a8d8fc3",
+        "pyproject.toml": "641adbba3dd3214b20cc2c621d77a4b02ae3f8e3b147c3c0ccad8a8a1f65dc11",
+        "src/risk_analytics/__init__.py": "67e200eafe0d03e92c002ef4c95b0504fdb1c67721b083d043320bf43467eac7",
+        "src/risk_analytics/classify.py": "ad5bfaa37fc970f6c43bae35a332232a22613c48bd5bbff76c703d284dde995f",
+        "src/risk_analytics/config.py": "1ed316c91d9952e8b904e2aeaa44d438e4236ea33d3ff101cb85426468dd57ec",
+        "src/risk_analytics/extract.py": "683dc8fffd50d3daf7a717e831dade666b23fc33fbc9a2bc7f517e3dde169b7c",
+        "src/risk_analytics/manifest.py": "3302b9a6e9c418fd741a34a10b1f0f529b9ca66080c0890cfad04f6eb52a698f",
+        "tests/labelled_pages.json": "abd8416cd217dadbcf13aeed3989a481a5fd23fe1f3d99efd12f1a21012d4ede",
+        "tests/synthetic.py": "fd0b30cce3b34128f9b4df462829ec0b2ab82754ff2eb28cae69ce4f2d8c7e72",
+        "tests/test_classifier.py": "c54272f467bb6b6313def86b22f01ff68dc348806725fdc0f25857e73df9697c",
+        "tests/test_config.py": "3d3364be94718b62719ac0a3212735019994d619b9c4f4c81a15f15aed90ccd2",
+        "tests/test_corpus_registration.py": "111257ac57f5a8faeb105136892a996961b0282f527fc4b1ec413c7bc8cd2965",
+        "tests/test_extract.py": "3dd2bd6ae2158a8841f11611198c279513e5fc1851f822b69d13bb5689b11e8d",
+        "tests/test_manifest.py": "07859956a5f3887523fc8a05397b956c9152217544b7ca84e322b2819a429954",
+        "tests/test_store_roundtrip.py": "149600c1b16b25a83a952e9ce55e2e70281dd13312449b0ac797d015cf3ed6c9"
+      }
+    },
+    {
+      "id": "T6A",
+      "outcome": "A query is answered by an agentic loop that plans sub-queries, searches, reflects on whether the evidence suffices, revises and retries when it does not, halts on sufficiency or an iteration or spend ceiling, and emits a machine-readable trace of the whole run",
+      "state": "done",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "src/risk_analytics",
+        "tests"
+      ],
+      "dependencies": [
+        "T5A"
+      ],
+      "requirements": [
+        "FR-8",
+        "FR-9",
+        "FR-10",
+        "NFR-1",
+        "AC-6"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "reflect-and-iterate",
+          "actor": "retrieval loop",
+          "scope": "one query whose evidence is deliberately absent from the first sub-query results",
+          "environment": "local, against recorded model responses so the test spends nothing",
+          "duration": "one query run to termination",
+          "observable": "the trace records more than one iteration, a revised sub-query following an insufficient reflection verdict, and which of the three termination conditions ended the run",
+          "gate": "retrieval"
+        }
+      ],
+      "gates": [
+        {
+          "id": "retrieval",
+          "kind": "command",
+          "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_retrieval_loop.py -q",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T6A-retrieval-1711ef82-0538-43da-bf63-19f3f24eeaef.json",
+            "hash": "12e779fda82e4f24d8b273ce556432f998e1a63b2e74131814b74eace51c5c29",
+            "source_hash": "d65a56a9547a05813b54a1f214e65c02e41ae42026302c906ac0c029a4fb5056",
+            "config_hash": "280fbd17c06f6987c5a23263bf2a5b4a180d00486aed2e608cf9461508c24a79",
+            "observed_at": "2026-09-17T15:32:53.217Z"
+          }
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T6A-independent-review-592a3d7f-5a0d-4d00-9527-a0fdc42c92ca.json",
+            "hash": "b2b3e7a790aa312206f2d46b6d77992ea73c35e3260c5840572000f074415803",
+            "source_hash": "d65a56a9547a05813b54a1f214e65c02e41ae42026302c906ac0c029a4fb5056",
+            "config_hash": "280fbd17c06f6987c5a23263bf2a5b4a180d00486aed2e608cf9461508c24a79",
+            "observed_at": "2026-09-17T15:34:21.133Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [
+        "Agentic loop complete: plan into sub-queries, search each, reflect on sufficiency, iterate with revised queries, halt on sufficiency, iteration ceiling, spend ceiling or no-progress. 17 tests, all against a scripted model over a real index, so the suite spends nothing and stays deterministic. Trace is JSON round-trippable and carries per-call cost by purpose."
+      ],
+      "failures": [],
+      "limitations": [
+        "No call has ever been made against the live Anthropic API. The client wrapper is written to the documented Messages API shape including structured outputs, but no key exists yet, so request shape, structured-output behaviour and token accounting are unverified against the real service. T9A is the first task that proves any of it.",
+        "A fourth termination condition, no_progress, was added beyond the three FR-9 names: reflection reporting insufficient while offering no new queries. Looping there would re-retrieve identical chunks at real cost. It is recorded in the trace like the others but is not in the specification text."
+      ],
+      "created_at": "2026-09-16T17:47:03.476Z",
+      "updated_at": "2026-09-17T15:39:03.249Z",
+      "base_manifest": {
+        ".gitignore": "9355d28940d35abe2597f2f07b49462e1dc05e140175c0be52f84b514cf2c4f1",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "cc89f63dcbaec7f4a83502de8e5a5392460c8f0338a0814523554846233b2cf3",
+        "corpus/README.md": "34de6979e99147fa6ea6619a79a84fdd1f95fdc6afee13955db079041fb801e7",
+        "corpus/manifest.json": "7b49964bf103211e1abe2eaf9052e11af0f0f6a5d6e5c52686375ae79a8d8fc3",
+        "pyproject.toml": "641adbba3dd3214b20cc2c621d77a4b02ae3f8e3b147c3c0ccad8a8a1f65dc11",
+        "src/risk_analytics/__init__.py": "67e200eafe0d03e92c002ef4c95b0504fdb1c67721b083d043320bf43467eac7",
+        "src/risk_analytics/classify.py": "ad5bfaa37fc970f6c43bae35a332232a22613c48bd5bbff76c703d284dde995f",
+        "src/risk_analytics/config.py": "4c9c9cb628b57ff419b34d80bf25323988a9299783e3806e58d6eee31a72a703",
+        "src/risk_analytics/extract.py": "683dc8fffd50d3daf7a717e831dade666b23fc33fbc9a2bc7f517e3dde169b7c",
+        "src/risk_analytics/indexing.py": "35a6ecf74f2435d8148fe46ce094d1f01a660f1aeed00d5e8f6282560b15b390",
+        "src/risk_analytics/manifest.py": "3302b9a6e9c418fd741a34a10b1f0f529b9ca66080c0890cfad04f6eb52a698f",
+        "tests/labelled_pages.json": "abd8416cd217dadbcf13aeed3989a481a5fd23fe1f3d99efd12f1a21012d4ede",
+        "tests/synthetic.py": "fd0b30cce3b34128f9b4df462829ec0b2ab82754ff2eb28cae69ce4f2d8c7e72",
+        "tests/test_classifier.py": "c54272f467bb6b6313def86b22f01ff68dc348806725fdc0f25857e73df9697c",
+        "tests/test_config.py": "3d3364be94718b62719ac0a3212735019994d619b9c4f4c81a15f15aed90ccd2",
+        "tests/test_corpus_registration.py": "111257ac57f5a8faeb105136892a996961b0282f527fc4b1ec413c7bc8cd2965",
+        "tests/test_extract.py": "3dd2bd6ae2158a8841f11611198c279513e5fc1851f822b69d13bb5689b11e8d",
+        "tests/test_index.py": "6871c0c7b96aa6d1fedf9de06d07f5dc1e3cd2bb591237599b589e6b5b04031f",
+        "tests/test_manifest.py": "07859956a5f3887523fc8a05397b956c9152217544b7ca84e322b2819a429954",
+        "tests/test_store_roundtrip.py": "149600c1b16b25a83a952e9ce55e2e70281dd13312449b0ac797d015cf3ed6c9"
+      }
+    },
+    {
+      "id": "T7A",
+      "outcome": "A router selects at most two of the four specialists per query and records a stated reason for every selection and non-selection, and each specialist answers only from retrieved corpus evidence, reporting insufficient evidence rather than filling a gap from general knowledge",
+      "state": "active",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "src/risk_analytics",
+        "tests"
+      ],
+      "dependencies": [
+        "T6A"
+      ],
+      "requirements": [
+        "FR-11",
+        "FR-12",
+        "FR-13",
+        "AC-7"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "query-dependent-routing",
+          "actor": "router agent",
+          "scope": "the three golden questions of DECISION-70a5ab26",
+          "environment": "local, against recorded model responses",
+          "duration": "one routing decision per question",
+          "observable": "the three questions do not all produce the same specialist set, no run selects more than two specialists, every specialist carries a recorded selection or non-selection reason, and the ESG specialist asked about this corpus returns insufficient evidence rather than a manufactured finding",
+          "gate": "router"
+        }
+      ],
+      "gates": [
+        {
+          "id": "router",
+          "kind": "command",
+          "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_router.py -q",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-16T17:47:04.129Z",
+      "updated_at": "2026-09-16T17:47:04.130Z",
+      "base_manifest": {
+        ".gitignore": "9355d28940d35abe2597f2f07b49462e1dc05e140175c0be52f84b514cf2c4f1",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "cc89f63dcbaec7f4a83502de8e5a5392460c8f0338a0814523554846233b2cf3",
+        "corpus/README.md": "34de6979e99147fa6ea6619a79a84fdd1f95fdc6afee13955db079041fb801e7",
+        "corpus/manifest.json": "7b49964bf103211e1abe2eaf9052e11af0f0f6a5d6e5c52686375ae79a8d8fc3",
+        "pyproject.toml": "641adbba3dd3214b20cc2c621d77a4b02ae3f8e3b147c3c0ccad8a8a1f65dc11",
+        "src/risk_analytics/__init__.py": "67e200eafe0d03e92c002ef4c95b0504fdb1c67721b083d043320bf43467eac7",
+        "src/risk_analytics/classify.py": "ad5bfaa37fc970f6c43bae35a332232a22613c48bd5bbff76c703d284dde995f",
+        "src/risk_analytics/config.py": "4c9c9cb628b57ff419b34d80bf25323988a9299783e3806e58d6eee31a72a703",
+        "src/risk_analytics/extract.py": "683dc8fffd50d3daf7a717e831dade666b23fc33fbc9a2bc7f517e3dde169b7c",
+        "src/risk_analytics/indexing.py": "35a6ecf74f2435d8148fe46ce094d1f01a660f1aeed00d5e8f6282560b15b390",
+        "src/risk_analytics/llm.py": "c474a8f09e4df8259ae7206e22d8c482f2c14b2f69432e664c6686e8488744e8",
+        "src/risk_analytics/manifest.py": "3302b9a6e9c418fd741a34a10b1f0f529b9ca66080c0890cfad04f6eb52a698f",
+        "src/risk_analytics/retrieval.py": "247299f4d1b7b149146a94a1edef07b3c86c29445853921dff6afdde7bdb36b7",
+        "tests/labelled_pages.json": "abd8416cd217dadbcf13aeed3989a481a5fd23fe1f3d99efd12f1a21012d4ede",
+        "tests/synthetic.py": "fd0b30cce3b34128f9b4df462829ec0b2ab82754ff2eb28cae69ce4f2d8c7e72",
+        "tests/test_classifier.py": "c54272f467bb6b6313def86b22f01ff68dc348806725fdc0f25857e73df9697c",
+        "tests/test_config.py": "3d3364be94718b62719ac0a3212735019994d619b9c4f4c81a15f15aed90ccd2",
+        "tests/test_corpus_registration.py": "111257ac57f5a8faeb105136892a996961b0282f527fc4b1ec413c7bc8cd2965",
+        "tests/test_extract.py": "3dd2bd6ae2158a8841f11611198c279513e5fc1851f822b69d13bb5689b11e8d",
+        "tests/test_index.py": "6871c0c7b96aa6d1fedf9de06d07f5dc1e3cd2bb591237599b589e6b5b04031f",
+        "tests/test_manifest.py": "07859956a5f3887523fc8a05397b956c9152217544b7ca84e322b2819a429954",
+        "tests/test_retrieval_loop.py": "9048b4ff139029adcb7522ee942a60e5ce9621fe7fdcea9e46e42967daf0cbae",
+        "tests/test_store_roundtrip.py": "149600c1b16b25a83a952e9ce55e2e70281dd13312449b0ac797d015cf3ed6c9"
+      }
+    },
+    {
+      "id": "T8A",
+      "outcome": "One CLI command turns an analyst question into a Markdown rationale note on disk carrying a structural citation on every material claim, surfacing rather than hiding specialist disagreement, stating the not-a-rating disclaimer, and reporting specialists invoked, iterations and run cost",
+      "state": "queued",
+      "risk": "high",
+      "owner": null,
+      "scope": [
+        "src/risk_analytics",
+        "tests"
+      ],
+      "dependencies": [
+        "T7A"
+      ],
+      "requirements": [
+        "FR-14",
+        "FR-15",
+        "FR-16",
+        "FR-17",
+        "FR-18",
+        "FR-19",
+        "NFR-7",
+        "AC-4",
+        "AC-10"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "cited-note-generation",
+          "actor": "analyst running the CLI",
+          "scope": "one golden question against the ingested corpus",
+          "environment": "local, against recorded model responses",
+          "duration": "one analysis command",
+          "observable": "a Markdown note is written whose every material claim carries a document and page citation traceable to a retrieved chunk, which contains the disclaimer and the cost, specialist and iteration report, and in which two conflicting specialist findings both appear rather than one being silently dropped",
+          "gate": "note"
+        }
+      ],
+      "gates": [
+        {
+          "id": "note",
+          "kind": "command",
+          "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_note.py -q",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-16T17:47:04.750Z",
+      "updated_at": "2026-09-16T17:47:04.751Z"
+    },
+    {
+      "id": "T9A",
+      "outcome": "The three golden questions run end to end against the real corpus and the live API, each inside the cost ceiling and the time limit, with every citation verified by hand against the source PDFs and the repository clean of credentials",
+      "state": "queued",
+      "risk": "high",
+      "owner": null,
+      "scope": [
+        "tests",
+        "corpus",
+        "notes"
+      ],
+      "dependencies": [
+        "T8A"
+      ],
+      "requirements": [
+        "NFR-1",
+        "NFR-6",
+        "AC-5",
+        "AC-8",
+        "AC-9",
+        "AC-11"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "golden-question-runs",
+          "actor": "analyst running the CLI",
+          "scope": "the three golden questions against the 401-page two-document corpus",
+          "environment": "local, against the live Anthropic API with a funded key",
+          "duration": "three complete analysis runs",
+          "observable": "each run finishes inside five minutes and under twenty-five cents of reported spend, the APSEZ covenant question is answered correctly from table pages alone, and a credential scan of the repository finds nothing",
+          "gate": "acceptance"
+        }
+      ],
+      "gates": [
+        {
+          "id": "acceptance",
+          "kind": "command",
+          "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_acceptance.py -q",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-16T17:47:05.394Z",
+      "updated_at": "2026-09-16T17:47:05.395Z"
+    }
+  ],
+  "learning_proposals": [],
+  "cleanup_proposals": [],
+  "controls": [
+    {
+      "id": "86ca2525-e218-4213-a378-366dd3bab7e5",
+      "at": "2026-09-15T15:28:48.904Z",
+      "action": "resume",
+      "task": "T-1",
+      "human": "Milap Vaghasia",
+      "reason": "Plan approved; starting the first bounded task",
+      "revision": null
+    },
+    {
+      "id": "1caec1cf-4916-4f1a-ba3a-5a15373ac6c0",
+      "at": "2026-09-15T15:40:27.424Z",
+      "action": "reject",
+      "task": "T-1",
+      "human": null,
+      "reason": "Gate command used an unquoted relative path that cmd.exe cannot parse (KNOWLEDGE-5444ad01). Replaced by an identical task whose only difference is the quoted interpreter path. Agent-initiated mechanical correction; no human decision is claimed.",
+      "revision": null
+    },
+    {
+      "id": "5544d755-5e15-45fe-b6a4-ad13ec0a68e3",
+      "at": "2026-09-15T15:40:27.871Z",
+      "action": "reject",
+      "task": "T-2",
+      "human": null,
+      "reason": "Gate command used an unquoted relative path that cmd.exe cannot parse (KNOWLEDGE-5444ad01). Replaced by an identical task whose only difference is the quoted interpreter path. Agent-initiated mechanical correction; no human decision is claimed.",
+      "revision": null
+    },
+    {
+      "id": "c2b2ffd6-47cc-4f6a-bae5-cecb7f3017ff",
+      "at": "2026-09-15T15:40:28.338Z",
+      "action": "reject",
+      "task": "T-3",
+      "human": null,
+      "reason": "Gate command used an unquoted relative path that cmd.exe cannot parse (KNOWLEDGE-5444ad01). Replaced by an identical task whose only difference is the quoted interpreter path. Agent-initiated mechanical correction; no human decision is claimed.",
+      "revision": null
+    },
+    {
+      "id": "aaa0fb33-7ad0-455c-9ce4-d61d1b7ce2d6",
+      "at": "2026-09-15T15:40:28.794Z",
+      "action": "reject",
+      "task": "T-4",
+      "human": null,
+      "reason": "Gate command used an unquoted relative path that cmd.exe cannot parse (KNOWLEDGE-5444ad01). Replaced by an identical task whose only difference is the quoted interpreter path. Agent-initiated mechanical correction; no human decision is claimed.",
+      "revision": null
+    },
+    {
+      "id": "b9266ff2-6211-413f-b34a-cc63a919f6b6",
+      "at": "2026-09-15T15:40:29.232Z",
+      "action": "reject",
+      "task": "T-5",
+      "human": null,
+      "reason": "Gate command used an unquoted relative path that cmd.exe cannot parse (KNOWLEDGE-5444ad01). Replaced by an identical task whose only difference is the quoted interpreter path. Agent-initiated mechanical correction; no human decision is claimed.",
+      "revision": null
+    },
+    {
+      "id": "ef112fb2-0563-4dd2-844b-93bf7a2536ad",
+      "at": "2026-09-15T15:40:29.662Z",
+      "action": "reject",
+      "task": "T-6",
+      "human": null,
+      "reason": "Gate command used an unquoted relative path that cmd.exe cannot parse (KNOWLEDGE-5444ad01). Replaced by an identical task whose only difference is the quoted interpreter path. Agent-initiated mechanical correction; no human decision is claimed.",
+      "revision": null
+    },
+    {
+      "id": "078f5da8-0892-4285-8066-e462c4f428a9",
+      "at": "2026-09-15T15:40:30.089Z",
+      "action": "reject",
+      "task": "T-7",
+      "human": null,
+      "reason": "Gate command used an unquoted relative path that cmd.exe cannot parse (KNOWLEDGE-5444ad01). Replaced by an identical task whose only difference is the quoted interpreter path. Agent-initiated mechanical correction; no human decision is claimed.",
+      "revision": null
+    },
+    {
+      "id": "15dc1e0e-3ef6-44c5-8c8a-aef2a1914d39",
+      "at": "2026-09-15T15:40:30.557Z",
+      "action": "reject",
+      "task": "T-8",
+      "human": null,
+      "reason": "Gate command used an unquoted relative path that cmd.exe cannot parse (KNOWLEDGE-5444ad01). Replaced by an identical task whose only difference is the quoted interpreter path. Agent-initiated mechanical correction; no human decision is claimed.",
+      "revision": null
+    },
+    {
+      "id": "d0e5e7ae-df78-4034-b76c-27f735d6bd8f",
+      "at": "2026-09-16T17:07:08.886Z",
+      "action": "resume",
+      "task": "T1",
+      "human": null,
+      "reason": "Plan re-approved; resuming the scaffold task whose code is already written",
+      "revision": null
+    },
+    {
+      "id": "a097e20c-85b1-4b16-a272-d376d4b9c74b",
+      "at": "2026-09-16T17:29:20.565Z",
+      "action": "approve",
+      "task": "T2",
+      "human": "Milap Vaghasia",
+      "reason": "Reviewed classifier and AC-1 holdout measurement",
+      "revision": null
+    },
+    {
+      "id": "eaec516f-3ac0-404b-b000-a2558d1e9cad",
+      "at": "2026-09-16T17:33:16.729Z",
+      "action": "approve",
+      "task": "T2",
+      "human": "Milap Vaghasia",
+      "reason": "Reviewed classifier and AC-1 holdout measurement",
+      "revision": null
+    },
+    {
+      "id": "da82ac33-6d2a-4477-842e-47bf69c7c309",
+      "at": "2026-09-16T17:39:34.002Z",
+      "action": "approve",
+      "task": "T2",
+      "human": "Milap Vaghasia",
+      "reason": "Re-reviewed after out-of-scope files were reverted",
+      "revision": null
+    },
+    {
+      "id": "add3a541-a3a8-4a0c-b760-d620af347ba6",
+      "at": "2026-09-16T17:42:11.500Z",
+      "action": "approve",
+      "task": "T2",
+      "human": "Milap Vaghasia",
+      "reason": "Re-reviewed; classifier unchanged, out-of-scope files restored to baseline",
+      "revision": null
+    },
+    {
+      "id": "83c5fcae-f110-4ccd-9843-81da4889c663",
+      "at": "2026-09-16T17:43:19.887Z",
+      "action": "reject",
+      "task": "T3",
+      "human": null,
+      "reason": "Outcome promises Claude vision interpretation for chart pages. The human directed that AC-9 be amended and the vision path dropped, and the corpus contains no chart page (KNOWLEDGE-35fe2525), so this outcome cannot be honestly delivered. Replaced by a task covering prose and table extraction only.",
+      "revision": null
+    },
+    {
+      "id": "6a5cac7a-0267-4443-93be-61fa412790e2",
+      "at": "2026-09-16T17:46:58.424Z",
+      "action": "reject",
+      "task": "T4",
+      "human": null,
+      "reason": "Depended on T3, which was rejected when the vision path was dropped, so it can never become ready. Replaced by an equivalent task on the new chain.",
+      "revision": null
+    },
+    {
+      "id": "f264ec72-cef9-4927-a0cc-2f603ab048d2",
+      "at": "2026-09-16T17:46:59.056Z",
+      "action": "reject",
+      "task": "T5",
+      "human": null,
+      "reason": "Depended on T3, which was rejected when the vision path was dropped, so it can never become ready. Replaced by an equivalent task on the new chain.",
+      "revision": null
+    },
+    {
+      "id": "c6af936d-32ef-46f9-9fee-d2cbb83269f4",
+      "at": "2026-09-16T17:46:59.676Z",
+      "action": "reject",
+      "task": "T6",
+      "human": null,
+      "reason": "Depended on T3, which was rejected when the vision path was dropped, so it can never become ready. Replaced by an equivalent task on the new chain.",
+      "revision": null
+    },
+    {
+      "id": "93069558-a522-46fa-a6d5-400bc861fc9c",
+      "at": "2026-09-16T17:47:00.325Z",
+      "action": "reject",
+      "task": "T7",
+      "human": null,
+      "reason": "Depended on T3, which was rejected when the vision path was dropped, so it can never become ready. Replaced by an equivalent task on the new chain.",
+      "revision": null
+    },
+    {
+      "id": "71114ee5-6c50-4c85-ba6e-0ceff333686c",
+      "at": "2026-09-16T17:47:00.967Z",
+      "action": "reject",
+      "task": "T8",
+      "human": null,
+      "reason": "Depended on T3, which was rejected when the vision path was dropped, so it can never become ready. Replaced by an equivalent task on the new chain.",
+      "revision": null
+    },
+    {
+      "id": "28ab1185-52fd-4f0b-a152-ffb74f4eeac5",
+      "at": "2026-09-16T17:49:52.115Z",
+      "action": "resume",
+      "task": "T3A",
+      "human": null,
+      "reason": "Plan approved; starting corpus registration",
+      "revision": null
+    },
+    {
+      "id": "fa8c9c47-1be7-440a-b42c-07f756631c6d",
+      "at": "2026-09-16T18:05:59.252Z",
+      "action": "approve",
+      "task": "T4A",
+      "human": "Milap Vaghasia",
+      "reason": "Reviewed extraction routing, table structure preservation and the prose fallback",
+      "revision": null
+    },
+    {
+      "id": "ca390027-77b2-405e-b098-6a0f32a6d658",
+      "at": "2026-09-16T18:06:41.272Z",
+      "action": "approve",
+      "task": "T4A",
+      "human": "Milap Vaghasia",
+      "reason": "Reviewed extraction routing, table structure preservation and the prose fallback",
+      "revision": null
+    },
+    {
+      "id": "cfcee5a1-d533-4c62-8be8-7dbf57f7d7de",
+      "at": "2026-09-16T18:06:51.659Z",
+      "action": "approve",
+      "task": "T4A",
+      "human": "Milap Vaghasia",
+      "reason": "Reviewed extraction routing, table structure preservation and the prose fallback. Approval given by the reviewer in session; recorded by the agent because the reviewer terminal was in a corrupted state and the command did not execute.",
+      "revision": null
+    },
+    {
+      "id": "f0b4bdc6-cdfa-48a9-87f5-2454328808b2",
+      "at": "2026-09-16T18:44:29.969Z",
+      "action": "approve",
+      "task": "T5A",
+      "human": "Milap Vaghasia",
+      "reason": "Reviewed chunking, local embedding and store persistence",
+      "revision": null
+    },
+    {
+      "id": "592a3d7f-5a0d-4d00-9527-a0fdc42c92ca",
+      "at": "2026-09-17T15:34:21.133Z",
+      "action": "approve",
+      "task": "T6A",
+      "human": "Milap Vaghasia",
+      "reason": "Reviewed the agentic loop, termination conditions, trace and budget accounting",
+      "revision": null
+    }
+  ],
+  "attempts": [
+    {
+      "id": "d4437d3d-a877-4661-98d7-be0bc96bdab2",
+      "task": "T-1",
+      "kind": "gate",
+      "command": ".venv/Scripts/python.exe -m pytest tests/test_config.py tests/test_manifest.py tests/test_store_roundtrip.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 16304,
+      "child_pid": 10436,
+      "started_at": "2026-09-15T15:38:53.046Z",
+      "status": "failed",
+      "before_hash": "e6c708fa1f840d837f5dc3ddb15cd31e00e57dd83860f10e703e17bac419adf0",
+      "config_hash": "47bbe239b0f05475a9c046b8fb2d82c37f388434acaad7f0228f24a01d0a35d6",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": "command-failed",
+      "ended_at": "2026-09-15T15:38:53.706Z"
+    },
+    {
+      "id": "1651416b-ea7a-4500-91a6-803e7fbaf83d",
+      "task": "T1",
+      "kind": "gate",
+      "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_config.py tests/test_manifest.py tests/test_store_roundtrip.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 20088,
+      "child_pid": 20464,
+      "started_at": "2026-09-16T17:07:14.423Z",
+      "status": "passed",
+      "before_hash": "e6c708fa1f840d837f5dc3ddb15cd31e00e57dd83860f10e703e17bac419adf0",
+      "config_hash": "1e7d7297f14e3cb3fdb072536530e22030b4e7dd9e8ca0acc7d87b551109fba2",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-16T17:07:31.048Z"
+    },
+    {
+      "id": "2db8dc83-1a76-413d-a2c7-6810d02c11f6",
+      "task": "T2",
+      "kind": "gate",
+      "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_classifier.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 5780,
+      "child_pid": 22232,
+      "started_at": "2026-09-16T17:10:22.472Z",
+      "status": "passed",
+      "before_hash": "32571a5711bdac8699f3e621fe4ea2f853ca1aa14d11114f4a5a3488a9f28d41",
+      "config_hash": "246cb8820688fb5337a605825c7946b4544b8b8e258a5dae269f1344c338385e",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-16T17:10:24.744Z"
+    },
+    {
+      "id": "e11dc8ad-1196-49c3-8cfa-ca84ceef3dd8",
+      "task": "T2",
+      "kind": "gate",
+      "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_classifier.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 2172,
+      "child_pid": 14080,
+      "started_at": "2026-09-16T17:21:22.616Z",
+      "status": "passed",
+      "before_hash": "5dbb6c691c30b0d0f3c4e8b97b10510b6a3363b2953b4772e762da33bb7bea9a",
+      "config_hash": "246cb8820688fb5337a605825c7946b4544b8b8e258a5dae269f1344c338385e",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-16T17:21:28.388Z"
+    },
+    {
+      "id": "6be11963-6863-423e-a88a-0b894b39297e",
+      "task": "T2",
+      "kind": "gate",
+      "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_classifier.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 5264,
+      "child_pid": 3036,
+      "started_at": "2026-09-16T17:32:22.174Z",
+      "status": "passed",
+      "before_hash": "d93813e25e755c56fc7957c644895962cbf426b3458e0cb2f433943bb29d22e7",
+      "config_hash": "246cb8820688fb5337a605825c7946b4544b8b8e258a5dae269f1344c338385e",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-16T17:32:28.216Z"
+    },
+    {
+      "id": "2a3962af-4129-4c1a-b9dd-cedd75101a00",
+      "task": "T2",
+      "kind": "gate",
+      "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_classifier.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 7608,
+      "child_pid": 22900,
+      "started_at": "2026-09-16T17:37:32.609Z",
+      "status": "passed",
+      "before_hash": "b519f965738ad4f262189d4d21f2f2bffb5bb4db9f03ff51710d2b0829e8544f",
+      "config_hash": "246cb8820688fb5337a605825c7946b4544b8b8e258a5dae269f1344c338385e",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-16T17:37:39.860Z"
+    },
+    {
+      "id": "3ad9b701-10a0-467e-a40d-114fbcd42ff7",
+      "task": "T2",
+      "kind": "gate",
+      "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_classifier.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 11380,
+      "child_pid": 21408,
+      "started_at": "2026-09-16T17:41:18.943Z",
+      "status": "passed",
+      "before_hash": "8573c5861d878f3f7b1ee64cffc7ac49c449eb942067101560e5b18b56c27b8f",
+      "config_hash": "246cb8820688fb5337a605825c7946b4544b8b8e258a5dae269f1344c338385e",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-16T17:41:25.018Z"
+    },
+    {
+      "id": "d9b2b72c-e255-4b17-b257-92c5175df23d",
+      "task": "T3A",
+      "kind": "gate",
+      "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_manifest.py tests/test_corpus_registration.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 14388,
+      "child_pid": 21284,
+      "started_at": "2026-09-16T17:51:30.859Z",
+      "status": "passed",
+      "before_hash": "135db648d528b4ecef7bcfaf4361b593fef7b518c946d660615fbb7fd3246447",
+      "config_hash": "3efbe0b44cc88d252b9ef52b83fa89bcda7a2913e72a2a60b3cbcfa1516dd277",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-16T17:51:32.628Z"
+    },
+    {
+      "id": "8878d4ac-a0cc-4e89-ab2b-909a845f5da2",
+      "task": "T4A",
+      "kind": "gate",
+      "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_extract.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 17264,
+      "child_pid": 13280,
+      "started_at": "2026-09-16T18:00:47.436Z",
+      "status": "passed",
+      "before_hash": "fdadeaef76bec5560447dfafef7206b43452e42d4df8f2a79c8c4fe21a36f6d8",
+      "config_hash": "68f0932d8503cd8bcf3950567ccc9fac601d80c685b35ec05600a6baa67d5b06",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-16T18:00:57.244Z"
+    },
+    {
+      "id": "58410636-3ac5-4ce8-90dc-bc8e7c5a84ac",
+      "task": "T5A",
+      "kind": "gate",
+      "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_index.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 20372,
+      "child_pid": 15596,
+      "started_at": "2026-09-16T18:24:09.912Z",
+      "status": "failed",
+      "before_hash": "99345b6574c6caa9e70e252979323aa77c8dc28a189fbb50f24e5cc8afd89db9",
+      "config_hash": "08b4e653120dc7272e87787baa832b42302d0ab9af08e4d9800e167db16ab620",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": "timeout",
+      "ended_at": "2026-09-16T18:27:32.438Z"
+    },
+    {
+      "id": "2774572e-adf8-4dab-bd41-51ce0c30f556",
+      "task": "T5A",
+      "kind": "gate",
+      "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_index.py -q",
+      "timeout": 900000,
+      "authorization": null,
+      "pid": 4780,
+      "child_pid": 2980,
+      "started_at": "2026-09-16T18:27:56.760Z",
+      "status": "passed",
+      "before_hash": "99345b6574c6caa9e70e252979323aa77c8dc28a189fbb50f24e5cc8afd89db9",
+      "config_hash": "08b4e653120dc7272e87787baa832b42302d0ab9af08e4d9800e167db16ab620",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-16T18:31:24.233Z"
+    },
+    {
+      "id": "8777a564-6087-4f2e-bb1b-3e0347cd1284",
+      "task": "T5A",
+      "kind": "gate",
+      "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_index.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 11500,
+      "child_pid": 22384,
+      "started_at": "2026-09-16T18:41:30.905Z",
+      "status": "passed",
+      "before_hash": "28443fa9df996ca147470d67462136acad1b7a839f442351b0c6606a9a3ad01f",
+      "config_hash": "08b4e653120dc7272e87787baa832b42302d0ab9af08e4d9800e167db16ab620",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-16T18:42:21.162Z"
+    },
+    {
+      "id": "1711ef82-0538-43da-bf63-19f3f24eeaef",
+      "task": "T6A",
+      "kind": "gate",
+      "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_retrieval_loop.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 21904,
+      "child_pid": 4180,
+      "started_at": "2026-09-17T15:31:43.322Z",
+      "status": "passed",
+      "before_hash": "d65a56a9547a05813b54a1f214e65c02e41ae42026302c906ac0c029a4fb5056",
+      "config_hash": "280fbd17c06f6987c5a23263bf2a5b4a180d00486aed2e608cf9461508c24a79",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-17T15:32:53.217Z"
+    }
+  ],
+  "authorizations": [],
+  "experiments": [],
+  "incidents": [],
+  "discovery": null,
+  "checkpoint": {
+    "at": "2026-09-17T15:33:17.627Z",
+    "revision": {
+      "commit": null,
+      "dirty": null,
+      "source_hash": "d65a56a9547a05813b54a1f214e65c02e41ae42026302c906ac0c029a4fb5056"
+    },
+    "active_task": "T6A",
+    "next_action": "Run the task pre-flight."
+  },
+  "legacy": null
+}

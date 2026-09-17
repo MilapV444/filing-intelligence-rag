@@ -1,0 +1,30 @@
+{
+  "task": "T1",
+  "gate": "scaffold",
+  "kind": "command",
+  "attempt": "1651416b-ea7a-4500-91a6-803e7fbaf83d",
+  "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_config.py tests/test_manifest.py tests/test_store_roundtrip.py -q",
+  "started_at": "2026-09-16T17:07:14.423Z",
+  "observed_at": "2026-09-16T17:07:31.049Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "................................................                         [100%]\r\n48 passed in 10.97s\r\n",
+  "stderr": "",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": null,
+    "dirty": null
+  },
+  "source_hash": "e6c708fa1f840d837f5dc3ddb15cd31e00e57dd83860f10e703e17bac419adf0",
+  "before_hash": "e6c708fa1f840d837f5dc3ddb15cd31e00e57dd83860f10e703e17bac419adf0",
+  "config_hash": "1e7d7297f14e3cb3fdb072536530e22030b4e7dd9e8ca0acc7d87b551109fba2",
+  "environment": {
+    "node": "v22.23.0",
+    "platform": "win32",
+    "arch": "x64",
+    "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+    "variables": {}
+  },
+  "hash": "8603b0b669ebb62fc3e6be15f26de614f8201a8bdaa6e40f4b3cbfe839956aed"
+}

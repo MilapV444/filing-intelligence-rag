@@ -1,0 +1,247 @@
+{
+  "_README": "Ground truth for AC-1. Each page was rendered and read by eye, then labelled by what a human analyst would call it. The tune split was used while setting thresholds in classify.py; the holdout split was labelled afterwards and never used for tuning, so accuracy on holdout is the honest number. 'doc' is a manifest doc_id: documents are resolved through corpus/manifest.json, never by path. Page numbers are 1-indexed PDF pages, not the printed folio.",
+  "tune": [
+    {
+      "doc": "agel-fy25",
+      "page": 1,
+      "label": "text",
+      "note": "Independent Auditor's Report, two-column prose"
+    },
+    {
+      "doc": "agel-fy25",
+      "page": 14,
+      "label": "table",
+      "note": "Standalone Statement of Profit and Loss"
+    },
+    {
+      "doc": "agel-fy25",
+      "page": 31,
+      "label": "text",
+      "note": "Notes narrative, two columns, a few decorative rules"
+    },
+    {
+      "doc": "agel-fy25",
+      "page": 37,
+      "label": "table",
+      "note": "Note 5 Financial Assets: Investments"
+    },
+    {
+      "doc": "agel-fy25",
+      "page": 57,
+      "label": "table",
+      "note": "Note 14 shareholding tables"
+    },
+    {
+      "doc": "agel-fy25",
+      "page": 95,
+      "label": "table",
+      "note": "Note 36 related party entity list, ruled rows"
+    },
+    {
+      "doc": "agel-fy25",
+      "page": 150,
+      "label": "table",
+      "note": "Consolidated Statement of Profit and Loss"
+    },
+    {
+      "doc": "agel-fy25",
+      "page": 200,
+      "label": "table",
+      "note": "Note 9 Other Assets and Note 10 Inventories"
+    },
+    {
+      "doc": "agel-fy25",
+      "page": 250,
+      "label": "text",
+      "note": "Note 32 narrative paragraphs only"
+    },
+    {
+      "doc": "agel-fy25",
+      "page": 300,
+      "label": "table",
+      "note": "Note 38 segment tables"
+    },
+    {
+      "doc": "agel-fy25",
+      "page": 340,
+      "label": "table",
+      "note": "Form AOC-1, landscape-rotated subsidiary table"
+    },
+    {
+      "doc": "agel-fy25",
+      "page": 367,
+      "label": "text",
+      "note": "Disclosures, short two-column prose, mostly empty"
+    },
+    {
+      "doc": "apsez-q1fy27",
+      "page": 2,
+      "label": "text",
+      "note": "Covering letter to the exchanges"
+    },
+    {
+      "doc": "apsez-q1fy27",
+      "page": 3,
+      "label": "text",
+      "note": "Auditor's Review Report, numbered prose"
+    },
+    {
+      "doc": "apsez-q1fy27",
+      "page": 5,
+      "label": "table",
+      "note": "Annexure 1 entity list, fully ruled"
+    },
+    {
+      "doc": "apsez-q1fy27",
+      "page": 10,
+      "label": "table",
+      "note": "Annexure 1 continuation, short ruled table"
+    },
+    {
+      "doc": "apsez-q1fy27",
+      "page": 16,
+      "label": "table",
+      "note": "Standalone financial results for the quarter"
+    },
+    {
+      "doc": "apsez-q1fy27",
+      "page": 23,
+      "label": "table",
+      "note": "Annexure I(A) security cover table"
+    },
+    {
+      "doc": "apsez-q1fy27",
+      "page": 32,
+      "label": "text",
+      "note": "Annexure A asset cover certificate, prose"
+    },
+    {
+      "doc": "apsez-q1fy27",
+      "page": 34,
+      "label": "table",
+      "note": "Calculation of Financial Covenants"
+    }
+  ],
+  "holdout": [
+    {
+      "doc": "agel-fy25",
+      "page": 5,
+      "label": "text",
+      "note": "Auditor's report continuation, two-column prose"
+    },
+    {
+      "doc": "agel-fy25",
+      "page": 12,
+      "label": "text",
+      "note": "Opinion and signature blocks, prose"
+    },
+    {
+      "doc": "agel-fy25",
+      "page": 25,
+      "label": "text",
+      "note": "Accounting policies narrative"
+    },
+    {
+      "doc": "agel-fy25",
+      "page": 45,
+      "label": "table",
+      "note": "Note 5 Investments continuation"
+    },
+    {
+      "doc": "agel-fy25",
+      "page": 70,
+      "label": "text",
+      "note": "Note 31 risk narrative with one small inset table; page is predominantly prose"
+    },
+    {
+      "doc": "agel-fy25",
+      "page": 110,
+      "label": "table",
+      "note": "Note 36b related party transactions, landscape-rotated"
+    },
+    {
+      "doc": "agel-fy25",
+      "page": 175,
+      "label": "text",
+      "note": "Consolidated accounting policies narrative"
+    },
+    {
+      "doc": "agel-fy25",
+      "page": 225,
+      "label": "text",
+      "note": "Note 19 borrowings narrative"
+    },
+    {
+      "doc": "agel-fy25",
+      "page": 275,
+      "label": "text",
+      "note": "Note 32 related party narrative paragraphs"
+    },
+    {
+      "doc": "agel-fy25",
+      "page": 320,
+      "label": "table",
+      "note": "Note 43 Schedule III additional information, rotated"
+    },
+    {
+      "doc": "agel-fy25",
+      "page": 355,
+      "label": "text",
+      "note": "Notice e-voting instructions; one inset table, dominant content prose"
+    },
+    {
+      "doc": "agel-fy25",
+      "page": 360,
+      "label": "text",
+      "note": "Notice explanatory statement, two-column prose"
+    },
+    {
+      "doc": "apsez-q1fy27",
+      "page": 1,
+      "label": "text",
+      "note": "Covering letter to BSE and NSE"
+    },
+    {
+      "doc": "apsez-q1fy27",
+      "page": 6,
+      "label": "table",
+      "note": "Annexure 1 entity list, fully ruled"
+    },
+    {
+      "doc": "apsez-q1fy27",
+      "page": 12,
+      "label": "table",
+      "note": "Segment results and Regulation 52 ratios"
+    },
+    {
+      "doc": "apsez-q1fy27",
+      "page": 19,
+      "label": "text",
+      "note": "Auditors' report on security cover, prose"
+    },
+    {
+      "doc": "apsez-q1fy27",
+      "page": 26,
+      "label": "text",
+      "note": "Auditor's report on security cover, standalone, prose"
+    },
+    {
+      "doc": "apsez-q1fy27",
+      "page": 29,
+      "label": "table",
+      "note": "Annexure I(B) security cover table"
+    },
+    {
+      "doc": "apsez-q1fy27",
+      "page": 31,
+      "label": "table",
+      "note": "Annexure I(B) continuation, wide ruled table"
+    },
+    {
+      "doc": "apsez-q1fy27",
+      "page": 33,
+      "label": "text",
+      "note": "Annexure II covenant definitions, prose"
+    }
+  ]
+}

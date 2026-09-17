@@ -1,0 +1,13 @@
+{
+  "task": "T2",
+  "gate": "independent-review",
+  "kind": "review",
+  "attempt": "add3a541-a3a8-4a0c-b760-d620af347ba6",
+  "human": "Milap Vaghasia",
+  "reason": "Re-reviewed; classifier unchanged, out-of-scope files restored to baseline",
+  "observed_at": "2026-09-16T17:42:11.500Z",
+  "source_hash": "8573c5861d878f3f7b1ee64cffc7ac49c449eb942067101560e5b18b56c27b8f",
+  "config_hash": "246cb8820688fb5337a605825c7946b4544b8b8e258a5dae269f1344c338385e",
+  "reviewed_proofs": "82a96ff2decfa2e878d7e99abe8422ac8502fa7e187b281647ded13e5604d038",
+  "hash": "2adaa8869c7aa0112f45b6dd343cc66dea0df7d440e6e18b680fbbbc2c9d5acc"
+}

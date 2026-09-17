@@ -1,0 +1,13 @@
+{
+  "task": "T6A",
+  "gate": "independent-review",
+  "kind": "review",
+  "attempt": "592a3d7f-5a0d-4d00-9527-a0fdc42c92ca",
+  "human": "Milap Vaghasia",
+  "reason": "Reviewed the agentic loop, termination conditions, trace and budget accounting",
+  "observed_at": "2026-09-17T15:34:21.133Z",
+  "source_hash": "d65a56a9547a05813b54a1f214e65c02e41ae42026302c906ac0c029a4fb5056",
+  "config_hash": "280fbd17c06f6987c5a23263bf2a5b4a180d00486aed2e608cf9461508c24a79",
+  "reviewed_proofs": "c9017918f3018d89ba05060010c40c0cbedcd19d7d64025acf1215def715ff7c",
+  "hash": "b2b3e7a790aa312206f2d46b6d77992ea73c35e3260c5840572000f074415803"
+}

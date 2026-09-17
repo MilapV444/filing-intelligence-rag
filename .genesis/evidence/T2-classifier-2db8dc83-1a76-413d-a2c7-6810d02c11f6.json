@@ -1,0 +1,30 @@
+{
+  "task": "T2",
+  "gate": "classifier",
+  "kind": "command",
+  "attempt": "2db8dc83-1a76-413d-a2c7-6810d02c11f6",
+  "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_classifier.py -q",
+  "started_at": "2026-09-16T17:10:22.472Z",
+  "observed_at": "2026-09-16T17:10:24.744Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": ".................                                                        [100%]\r\n17 passed in 0.80s\r\n",
+  "stderr": "",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": null,
+    "dirty": null
+  },
+  "source_hash": "32571a5711bdac8699f3e621fe4ea2f853ca1aa14d11114f4a5a3488a9f28d41",
+  "before_hash": "32571a5711bdac8699f3e621fe4ea2f853ca1aa14d11114f4a5a3488a9f28d41",
+  "config_hash": "246cb8820688fb5337a605825c7946b4544b8b8e258a5dae269f1344c338385e",
+  "environment": {
+    "node": "v22.23.0",
+    "platform": "win32",
+    "arch": "x64",
+    "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+    "variables": {}
+  },
+  "hash": "1f5ef8439e1be74fc8a0255ee076e3cc77ed1fb78a90b669eb9f376b904e9001"
+}

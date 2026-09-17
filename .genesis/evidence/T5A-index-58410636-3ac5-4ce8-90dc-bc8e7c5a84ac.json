@@ -1,0 +1,30 @@
+{
+  "task": "T5A",
+  "gate": "index",
+  "kind": "command",
+  "attempt": "58410636-3ac5-4ce8-90dc-bc8e7c5a84ac",
+  "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_index.py -q",
+  "started_at": "2026-09-16T18:24:09.912Z",
+  "observed_at": "2026-09-16T18:27:32.438Z",
+  "exit_code": null,
+  "signal": "SIGKILL",
+  "stdout": ".....................                                                    [100%]\r\n21 passed in 199.48s (0:03:19)\r\n",
+  "stderr": "",
+  "failure": "timeout",
+  "receipt": null,
+  "revision": {
+    "commit": null,
+    "dirty": null
+  },
+  "source_hash": "99345b6574c6caa9e70e252979323aa77c8dc28a189fbb50f24e5cc8afd89db9",
+  "before_hash": "99345b6574c6caa9e70e252979323aa77c8dc28a189fbb50f24e5cc8afd89db9",
+  "config_hash": "08b4e653120dc7272e87787baa832b42302d0ab9af08e4d9800e167db16ab620",
+  "environment": {
+    "node": "v22.23.0",
+    "platform": "win32",
+    "arch": "x64",
+    "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+    "variables": {}
+  },
+  "hash": "cd7b666d8e135462edd2350233ec71dad9fd0f27233af73d36e143818ce1f754"
+}

@@ -1,0 +1,22 @@
+{
+  "documents": [
+    {
+      "doc_id": "agel-fy25",
+      "title": "Integrated Annual Report 2024-25 - Financial Reports",
+      "issuer": "Adani Green Energy Limited",
+      "doc_type": "annual_report_financials",
+      "published": "2025-04-28",
+      "source_url": "https://connect.adani.com/annual_report/2025/agel/pdf/financial-reports.pdf",
+      "filename": "AGEL FY24-25 financial-reports.pdf"
+    },
+    {
+      "doc_id": "apsez-q1fy27",
+      "title": "Unaudited Financial Results for the quarter ended June 30, 2026",
+      "issuer": "Adani Ports and Special Economic Zone Limited",
+      "doc_type": "quarterly_results",
+      "published": "2026-07-29",
+      "source_url": "https://www.adaniports.com/investors/investor-downloads",
+      "filename": "APSEZ Q1 FY27.pdf"
+    }
+  ]
+}

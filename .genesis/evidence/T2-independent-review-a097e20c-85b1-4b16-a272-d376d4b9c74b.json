@@ -1,0 +1,13 @@
+{
+  "task": "T2",
+  "gate": "independent-review",
+  "kind": "review",
+  "attempt": "a097e20c-85b1-4b16-a272-d376d4b9c74b",
+  "human": "Milap Vaghasia",
+  "reason": "Reviewed classifier and AC-1 holdout measurement",
+  "observed_at": "2026-09-16T17:29:20.565Z",
+  "source_hash": "5dbb6c691c30b0d0f3c4e8b97b10510b6a3363b2953b4772e762da33bb7bea9a",
+  "config_hash": "246cb8820688fb5337a605825c7946b4544b8b8e258a5dae269f1344c338385e",
+  "reviewed_proofs": "29e0702d7bb627a2f415097c4dc77a41b4d82005fd74b885ad7ef5d608f4ad79",
+  "hash": "c04e1fbe27e1cb383e3c849cac214ae8e372f603578eb6932b80e403225446e4"
+}

@@ -1,0 +1,13 @@
+{
+  "task": "T4A",
+  "gate": "independent-review",
+  "kind": "review",
+  "attempt": "fa8c9c47-1be7-440a-b42c-07f756631c6d",
+  "human": "Milap Vaghasia",
+  "reason": "Reviewed extraction routing, table structure preservation and the prose fallback",
+  "observed_at": "2026-09-16T18:05:59.252Z",
+  "source_hash": "fdadeaef76bec5560447dfafef7206b43452e42d4df8f2a79c8c4fe21a36f6d8",
+  "config_hash": "68f0932d8503cd8bcf3950567ccc9fac601d80c685b35ec05600a6baa67d5b06",
+  "reviewed_proofs": "696002d8f56025e1e0548524157604263209aff4280d1afd5e138deee3330f4e",
+  "hash": "7dcf44ec03c2455f1ec6b6d5a70951c895b97d378ea774f04e83c64365f2c28d"
+}

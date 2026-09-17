@@ -1,0 +1,30 @@
+{
+  "task": "T5A",
+  "gate": "index",
+  "kind": "command",
+  "attempt": "8777a564-6087-4f2e-bb1b-3e0347cd1284",
+  "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_index.py -q",
+  "started_at": "2026-09-16T18:41:30.905Z",
+  "observed_at": "2026-09-16T18:42:21.162Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "......................                                                   [100%]\r\n22 passed in 47.34s\r\n",
+  "stderr": "",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": null,
+    "dirty": null
+  },
+  "source_hash": "28443fa9df996ca147470d67462136acad1b7a839f442351b0c6606a9a3ad01f",
+  "before_hash": "28443fa9df996ca147470d67462136acad1b7a839f442351b0c6606a9a3ad01f",
+  "config_hash": "08b4e653120dc7272e87787baa832b42302d0ab9af08e4d9800e167db16ab620",
+  "environment": {
+    "node": "v22.23.0",
+    "platform": "win32",
+    "arch": "x64",
+    "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+    "variables": {}
+  },
+  "hash": "95e493cc66342a36b11b4c1d0373f8b935483a8f7d95671c0fe12febbe6973ff"
+}

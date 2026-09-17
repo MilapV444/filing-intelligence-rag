@@ -1,0 +1,30 @@
+{
+  "task": "T-1",
+  "gate": "scaffold",
+  "kind": "command",
+  "attempt": "d4437d3d-a877-4661-98d7-be0bc96bdab2",
+  "command": ".venv/Scripts/python.exe -m pytest tests/test_config.py tests/test_manifest.py tests/test_store_roundtrip.py -q",
+  "started_at": "2026-09-15T15:38:53.046Z",
+  "observed_at": "2026-09-15T15:38:53.706Z",
+  "exit_code": 1,
+  "signal": null,
+  "stdout": "",
+  "stderr": "'.venv' is not recognized as an internal or external command,\r\noperable program or batch file.\r\n",
+  "failure": "command-failed",
+  "receipt": null,
+  "revision": {
+    "commit": null,
+    "dirty": null
+  },
+  "source_hash": "e6c708fa1f840d837f5dc3ddb15cd31e00e57dd83860f10e703e17bac419adf0",
+  "before_hash": "e6c708fa1f840d837f5dc3ddb15cd31e00e57dd83860f10e703e17bac419adf0",
+  "config_hash": "47bbe239b0f05475a9c046b8fb2d82c37f388434acaad7f0228f24a01d0a35d6",
+  "environment": {
+    "node": "v22.23.0",
+    "platform": "win32",
+    "arch": "x64",
+    "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+    "variables": {}
+  },
+  "hash": "fde6d732f3b647b0631a1b17461f6081f74f9b11c3ce3dcb156e3a334aae3569"
+}

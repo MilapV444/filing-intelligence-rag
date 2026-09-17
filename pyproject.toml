@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "risk-analytics-agent"
+version = "0.1.0"
+description = "Multi-agent RAG over public financial documents, producing cited first-pass credit rationale notes."
+requires-python = ">=3.11"
+dependencies = [
+    "anthropic",
+    "chromadb",
+    "pymupdf",
+]
+
+[project.optional-dependencies]
+# Installed at T-4, where the embedding step is first exercised. Kept out of the
+# default set because it pulls torch (~2 GB) and nothing before T-4 needs it.
+embed = ["sentence-transformers"]
+dev = ["pytest"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

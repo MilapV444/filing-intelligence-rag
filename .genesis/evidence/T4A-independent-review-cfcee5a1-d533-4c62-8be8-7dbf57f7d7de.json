@@ -1,0 +1,13 @@
+{
+  "task": "T4A",
+  "gate": "independent-review",
+  "kind": "review",
+  "attempt": "cfcee5a1-d533-4c62-8be8-7dbf57f7d7de",
+  "human": "Milap Vaghasia",
+  "reason": "Reviewed extraction routing, table structure preservation and the prose fallback. Approval given by the reviewer in session; recorded by the agent because the reviewer terminal was in a corrupted state and the command did not execute.",
+  "observed_at": "2026-09-16T18:06:51.659Z",
+  "source_hash": "fdadeaef76bec5560447dfafef7206b43452e42d4df8f2a79c8c4fe21a36f6d8",
+  "config_hash": "68f0932d8503cd8bcf3950567ccc9fac601d80c685b35ec05600a6baa67d5b06",
+  "reviewed_proofs": "696002d8f56025e1e0548524157604263209aff4280d1afd5e138deee3330f4e",
+  "hash": "22e1e19fb26d3804298adaf165853cc994db709b38593dfc46a75eaedd41fd88"
+}

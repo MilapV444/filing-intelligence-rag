@@ -1,0 +1,30 @@
+{
+  "task": "T4A",
+  "gate": "extract",
+  "kind": "command",
+  "attempt": "8878d4ac-a0cc-4e89-ab2b-909a845f5da2",
+  "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_extract.py -q",
+  "started_at": "2026-09-16T18:00:47.436Z",
+  "observed_at": "2026-09-16T18:00:57.244Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "...........                                                              [100%]\r\n11 passed in 8.34s\r\n",
+  "stderr": "",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": null,
+    "dirty": null
+  },
+  "source_hash": "fdadeaef76bec5560447dfafef7206b43452e42d4df8f2a79c8c4fe21a36f6d8",
+  "before_hash": "fdadeaef76bec5560447dfafef7206b43452e42d4df8f2a79c8c4fe21a36f6d8",
+  "config_hash": "68f0932d8503cd8bcf3950567ccc9fac601d80c685b35ec05600a6baa67d5b06",
+  "environment": {
+    "node": "v22.23.0",
+    "platform": "win32",
+    "arch": "x64",
+    "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+    "variables": {}
+  },
+  "hash": "042faa18f3e74a13ad270b41b4e64c45469836e8bd249ea170a5eb8ff1a1f174"
+}
