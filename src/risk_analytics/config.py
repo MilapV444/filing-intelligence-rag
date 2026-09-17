@@ -32,13 +32,20 @@ NOTES_DIR = ROOT / "notes"
 ROUTER_MODEL = "claude-haiku-4-5"
 REFLECTION_MODEL = "claude-haiku-4-5"
 VISION_MODEL = "claude-haiku-4-5"
-SPECIALIST_MODEL = "claude-opus-5"
+# Retuned at T11A against measured spend, as DECISION-39162611 said it would be.
+# On Opus 5 one specialist call cost $0.1393 with evidence already capped, so two
+# specialists plus synthesis could not fit under the $0.25 ceiling: the second
+# specialist and the synthesis were both correctly refused and the note came out
+# incomplete. Sonnet 5 is 2.5x cheaper per token and carries the specialist work;
+# synthesis stays on Opus 5 because the note's final prose is what a reader judges.
+SPECIALIST_MODEL = "claude-sonnet-5"
 SYNTHESIS_MODEL = "claude-opus-5"
 
 # USD per million tokens, for the run cost report required by FR-18 and the
 # ceiling enforced by NFR-1. Published Anthropic API rates.
 MODEL_RATES_USD_PER_MTOK = {
     "claude-haiku-4-5": {"input": 1.00, "output": 5.00},
+    "claude-sonnet-5": {"input": 2.00, "output": 10.00},
     "claude-opus-5": {"input": 5.00, "output": 25.00},
 }
 
@@ -49,6 +56,17 @@ MODEL_RATES_USD_PER_MTOK = {
 RUN_COST_CEILING_USD = 0.25
 MAX_RETRIEVAL_ITERATIONS = 4
 MAX_SPECIALISTS_PER_QUERY = 2  # FR-13
+
+# The retrieval loop accumulates evidence across iterations; sending all of it
+# to a specialist is what blew the first live run past its ceiling (52 chunks,
+# 22k input tokens on Opus 5, twice). Only the best-ranked chunks are sent.
+MAX_EVIDENCE_CHUNKS = 10
+REFLECTION_EVIDENCE_CHUNKS = 14
+
+# Rough characters-per-token for pre-flight cost estimation. Deliberately
+# pessimistic: under-estimating input is what lets a ceiling be overshot.
+CHARS_PER_TOKEN = 3.5
+ASSUMED_OUTPUT_TOKENS = 4000
 
 # --- Embedding ---------------------------------------------------------------
 # DECISION-c49d609a: the Anthropic API exposes no embeddings endpoint, so
@@ -75,9 +93,15 @@ def _from_env_file(name: str) -> str:
 
     Deliberately minimal: KEY=VALUE per line, # comments, optional surrounding
     quotes. No dependency, and nothing here executes the file's contents.
+
+    Read as utf-8-sig, not utf-8. Windows PowerShell's `Set-Content -Encoding
+    utf8` and Notepad both write a byte-order mark, which makes the first key
+    parse as "\\ufeffANTHROPIC_API_KEY" and never match. The file looks correct
+    in every editor and the credential is simply not found -- a failure with no
+    visible cause.
     """
     try:
-        text = ENV_FILE.read_text(encoding="utf-8")
+        text = ENV_FILE.read_text(encoding="utf-8-sig")
     except (OSError, UnicodeDecodeError):
         return ""
     for line in text.splitlines():

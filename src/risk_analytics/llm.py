@@ -17,6 +17,10 @@ from dataclasses import dataclass, field
 from . import config
 
 
+class Truncated(RuntimeError):
+    """The model ran out of output tokens before finishing its reply."""
+
+
 class BudgetExceeded(RuntimeError):
     """Raised before a call that would breach the run's spend ceiling.
 
@@ -75,6 +79,27 @@ class Budget:
                 f"ceiling; refusing to start {purpose or 'another call'}"
             )
 
+    def check_projected(self, model: str, prompt_chars: int, purpose: str = "") -> None:
+        """Refuse a call whose likely cost would breach the ceiling.
+
+        Checking only what has already been spent is not a ceiling: the first
+        live run sat at $0.228 of $0.25, started one more Opus call, and finished
+        at $0.4302. A ceiling has to price the call it is about to authorise.
+        """
+        self.check(purpose)
+        projected = config.cost_usd(
+            model,
+            int(prompt_chars / config.CHARS_PER_TOKEN),
+            config.ASSUMED_OUTPUT_TOKENS,
+        )
+        if self.spent_usd + projected > self.ceiling_usd:
+            raise BudgetExceeded(
+                f"{purpose or 'this call'} is projected to cost about "
+                f"${projected:.4f} on {model}, which would take the run past its "
+                f"${self.ceiling_usd:.2f} ceiling (spent ${self.spent_usd:.4f}). "
+                "Refusing before spending rather than reporting the overrun after."
+            )
+
     def to_dict(self) -> dict:
         return {
             "ceiling_usd": self.ceiling_usd,
@@ -96,20 +121,28 @@ class LLM:
 
         Lazily so that importing this module -- which the offline ingest path
         does transitively -- never demands a credential.
+
+        The key is passed explicitly rather than left to the SDK. The SDK
+        resolves credentials from the process environment only, so a key living
+        in .env satisfied config.api_key() and was invisible to the client: the
+        first live call this project ever made failed with "could not resolve
+        authentication method" over a correctly configured .env. Our resolution
+        chain is the authority, so whatever it returns is what the client gets.
         """
         if self._client is None:
             import anthropic
 
-            # No api_key argument: the SDK resolves the environment itself.
-            # config.api_key() is called first so a missing key fails with our
-            # message, which names the .env option, rather than the SDK's.
-            config.api_key()
-            self._client = anthropic.Anthropic()
+            self._client = anthropic.Anthropic(api_key=config.api_key())
         return self._client
+
+    # Non-streaming default. 4000 was too low: a specialist reading a full
+    # evidence block ran past it and returned JSON cut off mid-string, which
+    # surfaced as a parse error rather than as "the answer did not fit".
+    DEFAULT_MAX_TOKENS = 16000
 
     def _send(self, *, model: str, system: str, prompt: str, purpose: str,
               max_tokens: int, output_config: dict | None = None):
-        self.budget.check(purpose)
+        self.budget.check_projected(model, len(system) + len(prompt), purpose)
         kwargs = dict(
             model=model,
             max_tokens=max_tokens,
@@ -120,6 +153,13 @@ class LLM:
             kwargs["output_config"] = output_config
 
         response = self.client().messages.create(**kwargs)
+        if getattr(response, "stop_reason", None) == "max_tokens":
+            # Say what actually happened. Truncated JSON otherwise reads as a
+            # model that cannot follow a schema.
+            raise Truncated(
+                f"{purpose}: the response hit the {max_tokens} token limit and was "
+                "cut off. Raise max_tokens or reduce the evidence sent."
+            )
         usage = Usage(
             model=model,
             input_tokens=response.usage.input_tokens,
@@ -137,20 +177,22 @@ class LLM:
         return ""
 
     def text(self, *, model: str, system: str, prompt: str, purpose: str,
-             max_tokens: int = 4000) -> tuple[str, Usage]:
+             max_tokens: int | None = None) -> tuple[str, Usage]:
+        max_tokens = max_tokens or self.DEFAULT_MAX_TOKENS
         response, usage = self._send(
             model=model, system=system, prompt=prompt, purpose=purpose, max_tokens=max_tokens
         )
         return self._first_text(response), usage
 
     def json(self, *, model: str, system: str, prompt: str, schema: dict, purpose: str,
-             max_tokens: int = 4000) -> tuple[dict, Usage]:
+             max_tokens: int | None = None) -> tuple[dict, Usage]:
         """Ask for a response constrained to `schema`.
 
         Structured output is used rather than "reply with JSON" in the prompt
         because the loop branches on these values; a stray prose preamble would
         turn a parse failure into a silent behaviour change.
         """
+        max_tokens = max_tokens or self.DEFAULT_MAX_TOKENS
         response, usage = self._send(
             model=model, system=system, prompt=prompt, purpose=purpose,
             max_tokens=max_tokens,

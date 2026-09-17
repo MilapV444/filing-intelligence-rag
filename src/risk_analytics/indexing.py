@@ -289,7 +289,31 @@ class Hit:
         return f"[{self.doc_id} p.{self.page_number}]"
 
 
-def search(query: str, k: int = 8, where: dict | None = None, index_dir: Path | None = None) -> list[Hit]:
+def search(
+    query: str,
+    k: int = 8,
+    where: dict | None = None,
+    index_dir: Path | None = None,
+    doc_ids: list[str] | None = None,
+) -> list[Hit]:
+    """Search the store, optionally giving each document its own share of `k`.
+
+    The corpus is lopsided: 1666 chunks for one issuer against 133 for the
+    other. A single ranked query for a question spanning both returned nothing
+    at all from the smaller document, and the specialists correctly reported
+    that no comparison could be made. Retrieving per document and merging gives
+    the smaller filing a floor rather than leaving it to out-rank twelve times
+    its own volume.
+    """
+    if doc_ids and len(doc_ids) > 1:
+        per_doc = max(2, k // len(doc_ids))
+        merged: list[Hit] = []
+        for doc_id in doc_ids:
+            clause = {"doc_id": doc_id}
+            scoped = {"$and": [where, clause]} if where else clause
+            merged.extend(search(query, per_doc, scoped, index_dir))
+        return sorted(merged, key=lambda h: h.distance)
+
     store = collection(index_dir)
     result = store.query(
         query_embeddings=embed([query]),

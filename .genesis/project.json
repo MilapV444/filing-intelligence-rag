@@ -9,7 +9,7 @@
     "non_goals": [],
     "trust_boundary": "local repository",
     "created_at": "2026-09-15T15:05:11.365Z",
-    "updated_at": "2026-09-17T15:39:03.407Z"
+    "updated_at": "2026-09-17T18:13:37.033Z"
   },
   "policy": {
     "ponytail": "full",
@@ -23,11 +23,11 @@
     }
   },
   "lifecycle": {
-    "phase": "build",
-    "status": "active",
-    "active_task": "T7A",
+    "phase": "verify",
+    "status": "ready",
+    "active_task": null,
     "blocker": null,
-    "next_action": "Run the task pre-flight."
+    "next_action": "Review completed work and choose the next bounded outcome."
   },
   "commands": {},
   "workflow": {
@@ -79,14 +79,14 @@
       ]
     },
     "plan_check": {
-      "at": "2026-09-16T17:47:06.068Z",
-      "source_hash": "ea6080474ca1c6ae620fd71c8a89a19833dfb53421d57252679577d037c5ad82"
+      "at": "2026-09-17T17:21:45.914Z",
+      "source_hash": "c145d36591acb539f7f5bef511931019d9a69f675b5a463d89b1c04bd200d7bb"
     },
     "plan_approval": {
       "human": "Milap Vaghasia",
-      "reason": "Reviewed the rebuilt chain: vision dropped, corpus and gitignore owned by T3A, scopes matching the real package layout",
-      "at": "2026-09-16T17:49:05.326Z",
-      "source_hash": "ea6080474ca1c6ae620fd71c8a89a19833dfb53421d57252679577d037c5ad82"
+      "reason": "Reviewed the credential fix task and the widened acceptance scope",
+      "at": "2026-09-17T17:23:11.622Z",
+      "source_hash": "c145d36591acb539f7f5bef511931019d9a69f675b5a463d89b1c04bd200d7bb"
     }
   },
   "artifacts": [
@@ -344,6 +344,46 @@
       "recorded_at": "2026-09-17T15:33:14.809Z",
       "paths": [],
       "tags": []
+    },
+    {
+      "id": "DECISION-9badbc56",
+      "title": "Citation integrity is enforced in code, not requested in a prompt",
+      "text": "Two rules the model cannot override. The router may name any specialists it likes; route() truncates to MAX_SPECIALISTS_PER_QUERY and records which were dropped and why, so FR-13 holds even when the instruction is ignored. Specialists are told to cite chunk ids; consult() then intersects every claim's cited ids against the retrieved set, keeps only real ones, and drops any claim left citing nothing, recording it in dropped_claims. A claim citing an id that was never retrieved is the fabrication case that would most damage credibility with a ratings audience, so it is removed rather than printed with a caveat.",
+      "status": "accepted",
+      "source": "T7A 2026-09-17",
+      "recorded_at": "2026-09-17T15:48:10.083Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-0be9232f",
+      "title": "The note surfaces specialist disagreement instead of resolving it",
+      "text": "FR-14 requires contradictions to be surfaced. find_contradictions flags pairs of claims from different specialists that share at least three substantive words and disagree in polarity, and render prints both under a Specialist disagreement heading marked as reported rather than resolved. The heuristic is crude and deliberately biased toward false positives: a surfaced non-contradiction costs the reader a moment, while a buried contradiction is a synthesis quietly picking a winner and presenting it with the authority of a single answer.",
+      "status": "accepted",
+      "source": "T8A 2026-09-17",
+      "recorded_at": "2026-09-17T16:09:26.748Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-15852802",
+      "title": "The sources table marks which documents a note actually cited",
+      "text": "The rendered note lists the whole registered corpus under Sources, because a reader needs to know what was available. Listing both documents without saying which were used implied AGEL had been analysed in a note that cited only APSEZ. A used-here column now marks each document cited or not cited, and a test asserts both values appear. Found by reading a rendered note rather than by a failing test.",
+      "status": "accepted",
+      "source": "T8A 2026-09-17",
+      "recorded_at": "2026-09-17T16:09:30.697Z",
+      "paths": [],
+      "tags": []
+    },
+    {
+      "id": "DECISION-c46c5918",
+      "title": "Model split retuned against measured spend: specialists on Sonnet 5",
+      "text": "DECISION-39162611 set Haiku for routing and Opus for analysis as a starting point and said AC-8 would retune it. Measured: one specialist call on Opus 5 cost 0.1393 dollars with evidence already capped, so two specialists plus synthesis could not fit under the 0.25 ceiling; the second specialist and the synthesis were both refused and the note came out incomplete. Specialists moved to Sonnet 5 at 2 and 10 dollars per million against 5 and 25. Synthesis stays on Opus 5 because the note's final prose is what a reader judges. Measured result across the three golden questions: 0.1109, 0.1247 and 0.1904 dollars, all inside the ceiling.",
+      "status": "accepted",
+      "source": "T11A live runs 2026-09-17",
+      "recorded_at": "2026-09-17T18:10:16.043Z",
+      "paths": [],
+      "tags": []
     }
   ],
   "knowledge": [
@@ -421,6 +461,78 @@
       "recorded_at": "2026-09-16T18:42:32.896Z",
       "paths": [],
       "supersedes": "KNOWLEDGE-4e8c088b"
+    },
+    {
+      "id": "KNOWLEDGE-c018610c",
+      "title": "core.autocrlf was true and would have invalidated every Genesis proof",
+      "text": "The repository inherited core.autocrlf=true from global git config. Committed blobs are stored LF but a checkout would rewrite every working-tree file to CRLF, changing content hashes and invalidating the source-bound proof of all completed tasks. This is the same failure that broke T2 completion when a Python write_text call produced CRLF. Set core.autocrlf=false locally after the first commit and normalised the one file, manifest.py, that already carried CRLF. Local git config is not part of the tracked tree, so it does not affect task scope. A clone on another machine will inherit the global setting again and should set it before running any gate.",
+      "source": "T7A 2026-09-17, first commit ed1bf76",
+      "tags": [],
+      "recorded_at": "2026-09-17T15:48:13.526Z",
+      "paths": []
+    },
+    {
+      "id": "KNOWLEDGE-edd2fc8b",
+      "title": "Windows writes .env with a BOM, which hid the key entirely",
+      "text": "PowerShell Set-Content -Encoding utf8 and Notepad both prepend a UTF-8 byte-order mark. Read as plain utf-8 the first line parses as a key name carrying an invisible prefix, so it never matches ANTHROPIC_API_KEY and api_key raises key-is-not-set over a file that looks perfectly correct in any editor. Confirmed on this project's own .env, which the human created with the Set-Content command and which does carry a BOM. Fixed by reading utf-8-sig. Tests cover BOM, CRLF, quoted values, surrounding spaces and comments, because every one of those is what a Windows user will actually produce by hand.",
+      "source": "T8A 2026-09-17",
+      "tags": [],
+      "recorded_at": "2026-09-17T16:27:53.403Z",
+      "paths": []
+    },
+    {
+      "id": "KNOWLEDGE-03151306",
+      "title": "Credential tests must isolate ENV_FILE or a real .env silently disables them",
+      "text": "Three tests in test_config asserted that a missing credential raises. Once a real .env existed on the machine, api_key fell through to it and those tests stopped testing anything, failing with DID NOT RAISE. The .env fallback introduced a dependency on developer machine state that the tests did not account for. An autouse fixture now points config.ENV_FILE at a non-existent path for every test in the module, and fixtures that need a file set it explicitly. Any future credential source added to the resolution chain must be isolated the same way.",
+      "source": "T8A 2026-09-17",
+      "tags": [],
+      "recorded_at": "2026-09-17T16:27:55.287Z",
+      "paths": []
+    },
+    {
+      "id": "KNOWLEDGE-98966dee",
+      "title": "The .env key never reached the SDK: auth resolved in config but not in the client",
+      "text": "First live call ever attempted failed with TypeError, could not resolve authentication method. llm.client() called config.api_key() to validate a key is present, then constructed anthropic.Anthropic() with no arguments, and the SDK resolves credentials from os.environ only. A key living in .env therefore satisfied our own check and was invisible to the client. Confirmed by injecting anthropic.Anthropic(api_key=config.api_key()), which got past authentication to a billing error. The fix is one line in llm.client(), but src/risk_analytics is not in T9A's declared scope, so it cannot be made under the active task. Every test passed throughout because every test injects a fake client and never exercises the real construction path.",
+      "source": "T9A live probe 2026-09-17",
+      "tags": [],
+      "recorded_at": "2026-09-17T16:31:27.325Z",
+      "paths": []
+    },
+    {
+      "id": "KNOWLEDGE-4c122f02",
+      "title": "The API key is valid but the Console balance is zero",
+      "text": "With the key injected correctly the API returned 400 invalid_request_error: credit balance is too low to access the Anthropic API. The key itself authenticates. T9A cannot measure AC-8 per-run spend or run the three golden questions until credits are purchased in the Console. No tokens were billed by the failed calls.",
+      "source": "T9A live probe 2026-09-17, request_id req_011Cf9L96xGeCSoR2JWQ9dWq",
+      "tags": [],
+      "recorded_at": "2026-09-17T16:31:28.670Z",
+      "paths": []
+    },
+    {
+      "id": "KNOWLEDGE-2137310e",
+      "title": "Structured-output schemas reject maxItems; array bounds must be enforced in code",
+      "text": "The first live structured-output call returned 400 invalid_request_error: output_config.format.schema: For array type, property maxItems is not supported. PLAN_SCHEMA, REFLECT_SCHEMA and ROUTE_SCHEMA all declare maxItems. Whether minItems is accepted is not yet established. This is a second shape defect the whole offline suite could not catch, because every test injects a fake client that never validates a schema against the service. Array bounds have to move into code, which is where FR-13's specialist cap already lives for the same reason: the model is asked, the limit is enforced.",
+      "source": "T10A live probe 2026-09-17, request_id req_011Cf9QFAYSraWugAqXHmrQP",
+      "tags": [],
+      "recorded_at": "2026-09-17T17:27:30.550Z",
+      "paths": []
+    },
+    {
+      "id": "KNOWLEDGE-7bf8ea9a",
+      "title": "Four retrieval-quality defects only live runs could expose",
+      "text": "One: reflection rendered the first twelve chunks in insertion order while the evidence set grew, so it never saw new evidence and could not converge, burning every iteration. Fixed by ranking on distance. Two: all accumulated evidence went to every specialist, 52 chunks and 22k input tokens on Opus, twice, which is what breached the ceiling. Capped to the ten best. Three: issuer scoping was defeated by the word and, a token unique to Adani Ports and Special Economic Zone, so any question containing and matched both documents and scoped to neither; minimum token length raised to four. Four: the corpus is lopsided at 1666 chunks against 133, so a cross-issuer comparison retrieved 74 chunks all from the larger document and both specialists correctly reported that no comparison could be made. Fixed by retrieving per document and merging. Every one of these passed 192 offline tests.",
+      "source": "T11A live runs 2026-09-17",
+      "tags": [],
+      "recorded_at": "2026-09-17T18:10:17.833Z",
+      "paths": []
+    },
+    {
+      "id": "KNOWLEDGE-d071436f",
+      "title": "The contradiction detector was noise at its original threshold",
+      "text": "On a real run it flagged 11 pairs from 16 claims, nearly all of them two specialists agreeing in different words about different measures. Raised the shared-word threshold from three to eight, deduplicated pairs and capped the section at three. The section is also relabelled Possible specialist disagreement and states that it is a lexical heuristic and not verified, because presenting heuristic guesses as confirmed contradictions in front of a ratings professional is its own credibility failure.",
+      "source": "T11A 2026-09-17",
+      "tags": [],
+      "recorded_at": "2026-09-17T18:10:19.593Z",
+      "paths": []
     }
   ],
   "tasks": [
@@ -1823,7 +1935,7 @@
     {
       "id": "T7A",
       "outcome": "A router selects at most two of the four specialists per query and records a stated reason for every selection and non-selection, and each specialist answers only from retrieved corpus evidence, reporting insufficient evidence rather than filling a gap from general knowledge",
-      "state": "active",
+      "state": "done",
       "risk": "medium",
       "owner": null,
       "scope": [
@@ -1858,25 +1970,42 @@
           "kind": "command",
           "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_router.py -q",
           "mandatory": true,
-          "status": "pending",
-          "evidence": null
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T7A-router-c4920dad-7ed9-429b-b354-ed78be105d9d.json",
+            "hash": "c4c84e47bb7b60386763c8b44d8693d2e813e7561a5e220b26b3dd0d9105a200",
+            "source_hash": "9bba5d188fc9233c63b576f2585efde639747c867227f4562d718d5887db4da5",
+            "config_hash": "1d83f948d7208c9ec2fdd5b3dd1144645dd46dbba8708cbc5aa2d2e7cc7e43cb",
+            "observed_at": "2026-09-17T15:47:48.699Z"
+          }
         },
         {
           "id": "independent-review",
           "kind": "review",
           "command": "",
           "mandatory": true,
-          "status": "pending",
-          "evidence": null
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T7A-independent-review-a3968ed4-4c4d-4efe-a158-1448d27fa895.json",
+            "hash": "f758fe404f7928b89fb2a55c76c8fc73ae0ce575974af3a63373d6939bfc5dd9",
+            "source_hash": "9bba5d188fc9233c63b576f2585efde639747c867227f4562d718d5887db4da5",
+            "config_hash": "1d83f948d7208c9ec2fdd5b3dd1144645dd46dbba8708cbc5aa2d2e7cc7e43cb",
+            "observed_at": "2026-09-17T15:57:37.019Z"
+          }
         }
       ],
       "next_action": "Run the task pre-flight.",
       "blocker": null,
-      "notes": [],
+      "notes": [
+        "Router plus four narrow specialists. 17 tests; the ones that matter check misbehaviour: over-selection is truncated, unknown specialist names ignored, claims citing non-existent evidence dropped and recorded, a finding with no surviving claims marked insufficient rather than reading as a successful analysis."
+      ],
       "failures": [],
-      "limitations": [],
+      "limitations": [
+        "AC-7 is proven with a scripted router, so it shows the machinery routes differently when the model decides differently. Whether the real model actually varies its selection across the three golden questions is measured at T9A.",
+        "Specialist prompt quality is unmeasured. There is no eval of whether findings are useful or well-grounded, only that unsupported claims cannot survive into the output."
+      ],
       "created_at": "2026-09-16T17:47:04.129Z",
-      "updated_at": "2026-09-16T17:47:04.130Z",
+      "updated_at": "2026-09-17T15:57:41.870Z",
       "base_manifest": {
         ".gitignore": "9355d28940d35abe2597f2f07b49462e1dc05e140175c0be52f84b514cf2c4f1",
         "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
@@ -1908,7 +2037,7 @@
     {
       "id": "T8A",
       "outcome": "One CLI command turns an analyst question into a Markdown rationale note on disk carrying a structural citation on every material claim, surfacing rather than hiding specialist disagreement, stating the not-a-rating disclaimer, and reporting specialists invoked, iterations and run cost",
-      "state": "queued",
+      "state": "done",
       "risk": "high",
       "owner": null,
       "scope": [
@@ -1948,30 +2077,78 @@
           "kind": "command",
           "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_note.py -q",
           "mandatory": true,
-          "status": "pending",
-          "evidence": null
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T8A-note-bfbe4e4b-1b6b-49de-922d-7046f48c884e.json",
+            "hash": "100fc546026c4b96cd7bdc174a283ec3618807a1ecc082e4c9c7f546621f1ef4",
+            "source_hash": "f5ffa879dcf3c59dc1e589b50369fc98b78c8ab2baad1acc7ffafdc845bf11ea",
+            "config_hash": "2d7ffcdb20df25550239d1b7956b695af44da7d0474997783e783e5769a2edb4",
+            "observed_at": "2026-09-17T16:27:36.732Z"
+          }
         },
         {
           "id": "independent-review",
           "kind": "review",
           "command": "",
           "mandatory": true,
-          "status": "pending",
-          "evidence": null
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T8A-independent-review-e67c4849-7d2c-4918-8796-3d6fe08d934e.json",
+            "hash": "fda7692ec67fab5fd700f7e41c8e760077402f0dbb5cca96d0873bcc13948c7e",
+            "source_hash": "f5ffa879dcf3c59dc1e589b50369fc98b78c8ab2baad1acc7ffafdc845bf11ea",
+            "config_hash": "2d7ffcdb20df25550239d1b7956b695af44da7d0474997783e783e5769a2edb4",
+            "observed_at": "2026-09-17T16:30:08.810Z"
+          }
         }
       ],
       "next_action": "Run the task pre-flight.",
       "blocker": null,
-      "notes": [],
+      "notes": [
+        "Synthesis, Markdown note and CLI complete. 20 tests in the note suite, 169 across the project. Citations are assembled from stored chunk metadata; the model names evidence ids and never writes a page number. A synthesised finding citing an id that was not retrieved is dropped and counted in the run record. python -m risk_analytics ingest and ask are separate commands.",
+        "Two defects found and fixed after the gate first passed, both surfaced by the human creating a real .env rather than by a failing test: the BOM parsing bug, and test isolation against a real credential file. 179 tests pass."
+      ],
       "failures": [],
-      "limitations": [],
+      "limitations": [
+        "The contradiction detector is lexical, not semantic. It will miss disagreements phrased without a polarity word and will flag unrelated claims that happen to share vocabulary. It is a prompt for the reader, not a guarantee.",
+        "Note quality has no eval. The tests prove structure, citation integrity and honest degradation; whether the prose is useful to a credit analyst is judged by the human at T9A.",
+        "Still no call has been made against the live Anthropic API. Request shape, structured-output behaviour and token accounting remain unverified."
+      ],
       "created_at": "2026-09-16T17:47:04.750Z",
-      "updated_at": "2026-09-16T17:47:04.751Z"
+      "updated_at": "2026-09-17T16:30:25.639Z",
+      "base_manifest": {
+        ".gitignore": "9355d28940d35abe2597f2f07b49462e1dc05e140175c0be52f84b514cf2c4f1",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "cc89f63dcbaec7f4a83502de8e5a5392460c8f0338a0814523554846233b2cf3",
+        "corpus/README.md": "34de6979e99147fa6ea6619a79a84fdd1f95fdc6afee13955db079041fb801e7",
+        "corpus/manifest.json": "7b49964bf103211e1abe2eaf9052e11af0f0f6a5d6e5c52686375ae79a8d8fc3",
+        "pyproject.toml": "641adbba3dd3214b20cc2c621d77a4b02ae3f8e3b147c3c0ccad8a8a1f65dc11",
+        "src/risk_analytics/__init__.py": "67e200eafe0d03e92c002ef4c95b0504fdb1c67721b083d043320bf43467eac7",
+        "src/risk_analytics/agents.py": "725aff177cdf237cd7bf25c4c677ec8586c90ad09976684ffd466cd998ab8db9",
+        "src/risk_analytics/classify.py": "ad5bfaa37fc970f6c43bae35a332232a22613c48bd5bbff76c703d284dde995f",
+        "src/risk_analytics/config.py": "4c9c9cb628b57ff419b34d80bf25323988a9299783e3806e58d6eee31a72a703",
+        "src/risk_analytics/extract.py": "683dc8fffd50d3daf7a717e831dade666b23fc33fbc9a2bc7f517e3dde169b7c",
+        "src/risk_analytics/indexing.py": "35a6ecf74f2435d8148fe46ce094d1f01a660f1aeed00d5e8f6282560b15b390",
+        "src/risk_analytics/llm.py": "c474a8f09e4df8259ae7206e22d8c482f2c14b2f69432e664c6686e8488744e8",
+        "src/risk_analytics/manifest.py": "44e8d9446fb6bb95686443e355be222c54b6e831507b9c5f034b9db2aa82f960",
+        "src/risk_analytics/retrieval.py": "247299f4d1b7b149146a94a1edef07b3c86c29445853921dff6afdde7bdb36b7",
+        "tests/labelled_pages.json": "abd8416cd217dadbcf13aeed3989a481a5fd23fe1f3d99efd12f1a21012d4ede",
+        "tests/synthetic.py": "fd0b30cce3b34128f9b4df462829ec0b2ab82754ff2eb28cae69ce4f2d8c7e72",
+        "tests/test_classifier.py": "c54272f467bb6b6313def86b22f01ff68dc348806725fdc0f25857e73df9697c",
+        "tests/test_config.py": "3d3364be94718b62719ac0a3212735019994d619b9c4f4c81a15f15aed90ccd2",
+        "tests/test_corpus_registration.py": "111257ac57f5a8faeb105136892a996961b0282f527fc4b1ec413c7bc8cd2965",
+        "tests/test_extract.py": "3dd2bd6ae2158a8841f11611198c279513e5fc1851f822b69d13bb5689b11e8d",
+        "tests/test_index.py": "6871c0c7b96aa6d1fedf9de06d07f5dc1e3cd2bb591237599b589e6b5b04031f",
+        "tests/test_manifest.py": "07859956a5f3887523fc8a05397b956c9152217544b7ca84e322b2819a429954",
+        "tests/test_retrieval_loop.py": "9048b4ff139029adcb7522ee942a60e5ce9621fe7fdcea9e46e42967daf0cbae",
+        "tests/test_router.py": "4a164ecaa51280a0fa611252f6d731bbca86f0bb52612e6a690dc2c0919ee9ba",
+        "tests/test_store_roundtrip.py": "149600c1b16b25a83a952e9ce55e2e70281dd13312449b0ac797d015cf3ed6c9"
+      }
     },
     {
       "id": "T9A",
       "outcome": "The three golden questions run end to end against the real corpus and the live API, each inside the cost ceiling and the time limit, with every citation verified by hand against the source PDFs and the repository clean of credentials",
-      "state": "queued",
+      "state": "rejected",
       "risk": "high",
       "owner": null,
       "scope": [
@@ -2022,12 +2199,256 @@
         }
       ],
       "next_action": "Run the task pre-flight.",
-      "blocker": null,
+      "blocker": "Two blockers: the credential fix needs src/risk_analytics in scope, which requires a plan change; and the Console balance is zero so no live run can be measured.",
       "notes": [],
       "failures": [],
       "limitations": [],
       "created_at": "2026-09-16T17:47:05.394Z",
-      "updated_at": "2026-09-16T17:47:05.395Z"
+      "updated_at": "2026-09-17T16:31:30.336Z",
+      "base_manifest": {
+        ".gitignore": "9355d28940d35abe2597f2f07b49462e1dc05e140175c0be52f84b514cf2c4f1",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "cc89f63dcbaec7f4a83502de8e5a5392460c8f0338a0814523554846233b2cf3",
+        "corpus/README.md": "34de6979e99147fa6ea6619a79a84fdd1f95fdc6afee13955db079041fb801e7",
+        "corpus/manifest.json": "7b49964bf103211e1abe2eaf9052e11af0f0f6a5d6e5c52686375ae79a8d8fc3",
+        "pyproject.toml": "641adbba3dd3214b20cc2c621d77a4b02ae3f8e3b147c3c0ccad8a8a1f65dc11",
+        "src/risk_analytics/__init__.py": "67e200eafe0d03e92c002ef4c95b0504fdb1c67721b083d043320bf43467eac7",
+        "src/risk_analytics/__main__.py": "1e83fdc33fa81c618835aadf804ae88ffeced9eebe988124bb14a16973f67009",
+        "src/risk_analytics/agents.py": "725aff177cdf237cd7bf25c4c677ec8586c90ad09976684ffd466cd998ab8db9",
+        "src/risk_analytics/classify.py": "ad5bfaa37fc970f6c43bae35a332232a22613c48bd5bbff76c703d284dde995f",
+        "src/risk_analytics/cli.py": "265516e6e9087d1f4a098464c6ec7e538bbc401d093c64befe5399649da89588",
+        "src/risk_analytics/config.py": "60381db5ba88376ede532b85914f3cf91dcb394edbedb073927d488679b471cd",
+        "src/risk_analytics/extract.py": "683dc8fffd50d3daf7a717e831dade666b23fc33fbc9a2bc7f517e3dde169b7c",
+        "src/risk_analytics/indexing.py": "35a6ecf74f2435d8148fe46ce094d1f01a660f1aeed00d5e8f6282560b15b390",
+        "src/risk_analytics/llm.py": "c474a8f09e4df8259ae7206e22d8c482f2c14b2f69432e664c6686e8488744e8",
+        "src/risk_analytics/manifest.py": "44e8d9446fb6bb95686443e355be222c54b6e831507b9c5f034b9db2aa82f960",
+        "src/risk_analytics/note.py": "cb633c2d341744b1112950ed754febb6a45d319928073cb39124206a4a7addae",
+        "src/risk_analytics/retrieval.py": "247299f4d1b7b149146a94a1edef07b3c86c29445853921dff6afdde7bdb36b7",
+        "tests/labelled_pages.json": "abd8416cd217dadbcf13aeed3989a481a5fd23fe1f3d99efd12f1a21012d4ede",
+        "tests/synthetic.py": "fd0b30cce3b34128f9b4df462829ec0b2ab82754ff2eb28cae69ce4f2d8c7e72",
+        "tests/test_classifier.py": "c54272f467bb6b6313def86b22f01ff68dc348806725fdc0f25857e73df9697c",
+        "tests/test_config.py": "1ebc92a2ba581ebf4fc7c68bbd38260de86da04dc160d297a66678fe8b05c126",
+        "tests/test_corpus_registration.py": "111257ac57f5a8faeb105136892a996961b0282f527fc4b1ec413c7bc8cd2965",
+        "tests/test_extract.py": "3dd2bd6ae2158a8841f11611198c279513e5fc1851f822b69d13bb5689b11e8d",
+        "tests/test_index.py": "6871c0c7b96aa6d1fedf9de06d07f5dc1e3cd2bb591237599b589e6b5b04031f",
+        "tests/test_manifest.py": "07859956a5f3887523fc8a05397b956c9152217544b7ca84e322b2819a429954",
+        "tests/test_note.py": "c504651281c05c7288799fd3c10983db6856913963c50f9fd89823358987c9a3",
+        "tests/test_retrieval_loop.py": "9048b4ff139029adcb7522ee942a60e5ce9621fe7fdcea9e46e42967daf0cbae",
+        "tests/test_router.py": "4a164ecaa51280a0fa611252f6d731bbca86f0bb52612e6a690dc2c0919ee9ba",
+        "tests/test_store_roundtrip.py": "149600c1b16b25a83a952e9ce55e2e70281dd13312449b0ac797d015cf3ed6c9"
+      }
+    },
+    {
+      "id": "T10A",
+      "outcome": "A key resolved from .env reaches the Anthropic SDK, so the documented credential path works end to end rather than only satisfying an internal check",
+      "state": "done",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "src/risk_analytics",
+        "tests"
+      ],
+      "dependencies": [],
+      "requirements": [
+        "NFR-4",
+        "NFR-8"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "dotenv-reaches-the-sdk",
+          "actor": "the pipeline constructing its model client",
+          "scope": "credential resolution from .env with no environment variable set",
+          "environment": "local, ANTHROPIC_API_KEY absent from the environment, key present only in .env",
+          "duration": "one client construction",
+          "observable": "the constructed client carries the key from .env, and a client built with no credential available raises the project error naming .env rather than an SDK TypeError",
+          "gate": "credentials"
+        }
+      ],
+      "gates": [
+        {
+          "id": "credentials",
+          "kind": "command",
+          "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_credentials.py -q",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T10A-credentials-e58e5af4-dcf8-495c-bb34-85efa5749a09.json",
+            "hash": "a95be35bec35ba0451f7af1ce9b41e94d8af7cf12ebc3494b7b8f6ad284bbd06",
+            "source_hash": "2d44e2e07d91df43341b3c7c4f7accdd19bcae1c4479127cf18b7845de8edfdf",
+            "config_hash": "25b44f572c1bec44190d117975426c32cea821e09a60f68388d490cd6a3385fe",
+            "observed_at": "2026-09-17T17:27:10.298Z"
+          }
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T10A-independent-review-bb10626d-7520-4b90-a11e-c3256a46b19a.json",
+            "hash": "f6c9996226d42a2d7396cd2e4faf3a5fc92b1713c66d340978c0fc3ac3263bd9",
+            "source_hash": "2d44e2e07d91df43341b3c7c4f7accdd19bcae1c4479127cf18b7845de8edfdf",
+            "config_hash": "25b44f572c1bec44190d117975426c32cea821e09a60f68388d490cd6a3385fe",
+            "observed_at": "2026-09-17T17:28:24.699Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [
+        "Credential fix verified against the live API: a key present only in .env now reaches the SDK, and the first successful live call returned OK for 15 in / 4 out tokens at $0.000035. Eight regression tests construct the real client, which no other suite does."
+      ],
+      "failures": [],
+      "limitations": [
+        "A second live defect was found while probing and is deliberately left for T11A: structured-output schemas reject maxItems. It is a schema-shape problem, not a credential one, and folding it into this task would blur what this gate proves."
+      ],
+      "created_at": "2026-09-17T17:21:43.021Z",
+      "updated_at": "2026-09-17T17:28:50.878Z",
+      "base_manifest": {
+        ".gitignore": "9355d28940d35abe2597f2f07b49462e1dc05e140175c0be52f84b514cf2c4f1",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "cc89f63dcbaec7f4a83502de8e5a5392460c8f0338a0814523554846233b2cf3",
+        "corpus/README.md": "34de6979e99147fa6ea6619a79a84fdd1f95fdc6afee13955db079041fb801e7",
+        "corpus/manifest.json": "7b49964bf103211e1abe2eaf9052e11af0f0f6a5d6e5c52686375ae79a8d8fc3",
+        "pyproject.toml": "641adbba3dd3214b20cc2c621d77a4b02ae3f8e3b147c3c0ccad8a8a1f65dc11",
+        "src/risk_analytics/__init__.py": "67e200eafe0d03e92c002ef4c95b0504fdb1c67721b083d043320bf43467eac7",
+        "src/risk_analytics/__main__.py": "1e83fdc33fa81c618835aadf804ae88ffeced9eebe988124bb14a16973f67009",
+        "src/risk_analytics/agents.py": "725aff177cdf237cd7bf25c4c677ec8586c90ad09976684ffd466cd998ab8db9",
+        "src/risk_analytics/classify.py": "ad5bfaa37fc970f6c43bae35a332232a22613c48bd5bbff76c703d284dde995f",
+        "src/risk_analytics/cli.py": "265516e6e9087d1f4a098464c6ec7e538bbc401d093c64befe5399649da89588",
+        "src/risk_analytics/config.py": "60381db5ba88376ede532b85914f3cf91dcb394edbedb073927d488679b471cd",
+        "src/risk_analytics/extract.py": "683dc8fffd50d3daf7a717e831dade666b23fc33fbc9a2bc7f517e3dde169b7c",
+        "src/risk_analytics/indexing.py": "35a6ecf74f2435d8148fe46ce094d1f01a660f1aeed00d5e8f6282560b15b390",
+        "src/risk_analytics/llm.py": "c474a8f09e4df8259ae7206e22d8c482f2c14b2f69432e664c6686e8488744e8",
+        "src/risk_analytics/manifest.py": "44e8d9446fb6bb95686443e355be222c54b6e831507b9c5f034b9db2aa82f960",
+        "src/risk_analytics/note.py": "cb633c2d341744b1112950ed754febb6a45d319928073cb39124206a4a7addae",
+        "src/risk_analytics/retrieval.py": "247299f4d1b7b149146a94a1edef07b3c86c29445853921dff6afdde7bdb36b7",
+        "tests/labelled_pages.json": "abd8416cd217dadbcf13aeed3989a481a5fd23fe1f3d99efd12f1a21012d4ede",
+        "tests/synthetic.py": "fd0b30cce3b34128f9b4df462829ec0b2ab82754ff2eb28cae69ce4f2d8c7e72",
+        "tests/test_classifier.py": "c54272f467bb6b6313def86b22f01ff68dc348806725fdc0f25857e73df9697c",
+        "tests/test_config.py": "1ebc92a2ba581ebf4fc7c68bbd38260de86da04dc160d297a66678fe8b05c126",
+        "tests/test_corpus_registration.py": "111257ac57f5a8faeb105136892a996961b0282f527fc4b1ec413c7bc8cd2965",
+        "tests/test_extract.py": "3dd2bd6ae2158a8841f11611198c279513e5fc1851f822b69d13bb5689b11e8d",
+        "tests/test_index.py": "6871c0c7b96aa6d1fedf9de06d07f5dc1e3cd2bb591237599b589e6b5b04031f",
+        "tests/test_manifest.py": "07859956a5f3887523fc8a05397b956c9152217544b7ca84e322b2819a429954",
+        "tests/test_note.py": "c504651281c05c7288799fd3c10983db6856913963c50f9fd89823358987c9a3",
+        "tests/test_retrieval_loop.py": "9048b4ff139029adcb7522ee942a60e5ce9621fe7fdcea9e46e42967daf0cbae",
+        "tests/test_router.py": "4a164ecaa51280a0fa611252f6d731bbca86f0bb52612e6a690dc2c0919ee9ba",
+        "tests/test_store_roundtrip.py": "149600c1b16b25a83a952e9ce55e2e70281dd13312449b0ac797d015cf3ed6c9"
+      }
+    },
+    {
+      "id": "T11A",
+      "outcome": "The three golden questions run end to end against the real corpus and the live API, each inside the cost ceiling and the time limit, with every citation verified by hand against the source PDFs and the repository clean of credentials",
+      "state": "done",
+      "risk": "high",
+      "owner": null,
+      "scope": [
+        "tests",
+        "corpus",
+        "notes",
+        "src/risk_analytics"
+      ],
+      "dependencies": [
+        "T10A"
+      ],
+      "requirements": [
+        "NFR-1",
+        "NFR-6",
+        "AC-5",
+        "AC-8",
+        "AC-9",
+        "AC-11"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "golden-question-runs",
+          "actor": "analyst running the CLI",
+          "scope": "the three golden questions against the 401-page two-document corpus",
+          "environment": "local, against the live Anthropic API with a funded key",
+          "duration": "three complete analysis runs",
+          "observable": "each run finishes inside five minutes and under twenty-five cents of reported spend, the APSEZ covenant question is answered correctly from table pages alone, and a credential scan of the repository finds nothing",
+          "gate": "acceptance"
+        }
+      ],
+      "gates": [
+        {
+          "id": "acceptance",
+          "kind": "command",
+          "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_acceptance.py -q",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T11A-acceptance-4d2d8b54-421b-4a26-83f8-7213bba69e74.json",
+            "hash": "618fabde21ffb7188fd063944416204e58e5e0fa71a12bab1028c258fdc9c996",
+            "source_hash": "d07ee681afba7a06b081b2aa92f4ee0d73ec0ec263664589999d6e7097bb240a",
+            "config_hash": "1f403585b73804a43a76f3959f97a9913b1dd20ab5f13fb79c111636ef1f76aa",
+            "observed_at": "2026-09-17T18:09:55.187Z"
+          }
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T11A-independent-review-5bf86b67-ddef-4afe-921b-eba62387f077.json",
+            "hash": "d5be8845253abfd7c0d86c9868fa329b195a8f4649e2130311ec06325f97675f",
+            "source_hash": "d07ee681afba7a06b081b2aa92f4ee0d73ec0ec263664589999d6e7097bb240a",
+            "config_hash": "1f403585b73804a43a76f3959f97a9913b1dd20ab5f13fb79c111636ef1f76aa",
+            "observed_at": "2026-09-17T18:12:44.866Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-17T17:21:44.539Z",
+      "updated_at": "2026-09-17T18:13:37.032Z",
+      "base_manifest": {
+        ".gitignore": "9355d28940d35abe2597f2f07b49462e1dc05e140175c0be52f84b514cf2c4f1",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "cc89f63dcbaec7f4a83502de8e5a5392460c8f0338a0814523554846233b2cf3",
+        "corpus/README.md": "34de6979e99147fa6ea6619a79a84fdd1f95fdc6afee13955db079041fb801e7",
+        "corpus/manifest.json": "7b49964bf103211e1abe2eaf9052e11af0f0f6a5d6e5c52686375ae79a8d8fc3",
+        "pyproject.toml": "641adbba3dd3214b20cc2c621d77a4b02ae3f8e3b147c3c0ccad8a8a1f65dc11",
+        "src/risk_analytics/__init__.py": "67e200eafe0d03e92c002ef4c95b0504fdb1c67721b083d043320bf43467eac7",
+        "src/risk_analytics/__main__.py": "1e83fdc33fa81c618835aadf804ae88ffeced9eebe988124bb14a16973f67009",
+        "src/risk_analytics/agents.py": "725aff177cdf237cd7bf25c4c677ec8586c90ad09976684ffd466cd998ab8db9",
+        "src/risk_analytics/classify.py": "ad5bfaa37fc970f6c43bae35a332232a22613c48bd5bbff76c703d284dde995f",
+        "src/risk_analytics/cli.py": "265516e6e9087d1f4a098464c6ec7e538bbc401d093c64befe5399649da89588",
+        "src/risk_analytics/config.py": "60381db5ba88376ede532b85914f3cf91dcb394edbedb073927d488679b471cd",
+        "src/risk_analytics/extract.py": "683dc8fffd50d3daf7a717e831dade666b23fc33fbc9a2bc7f517e3dde169b7c",
+        "src/risk_analytics/indexing.py": "35a6ecf74f2435d8148fe46ce094d1f01a660f1aeed00d5e8f6282560b15b390",
+        "src/risk_analytics/llm.py": "76359f881401e26e2e5754ea2332ada44e5cc8f26d9a1f07b4597e50671febe7",
+        "src/risk_analytics/manifest.py": "44e8d9446fb6bb95686443e355be222c54b6e831507b9c5f034b9db2aa82f960",
+        "src/risk_analytics/note.py": "cb633c2d341744b1112950ed754febb6a45d319928073cb39124206a4a7addae",
+        "src/risk_analytics/retrieval.py": "247299f4d1b7b149146a94a1edef07b3c86c29445853921dff6afdde7bdb36b7",
+        "tests/labelled_pages.json": "abd8416cd217dadbcf13aeed3989a481a5fd23fe1f3d99efd12f1a21012d4ede",
+        "tests/synthetic.py": "fd0b30cce3b34128f9b4df462829ec0b2ab82754ff2eb28cae69ce4f2d8c7e72",
+        "tests/test_classifier.py": "c54272f467bb6b6313def86b22f01ff68dc348806725fdc0f25857e73df9697c",
+        "tests/test_config.py": "1ebc92a2ba581ebf4fc7c68bbd38260de86da04dc160d297a66678fe8b05c126",
+        "tests/test_corpus_registration.py": "111257ac57f5a8faeb105136892a996961b0282f527fc4b1ec413c7bc8cd2965",
+        "tests/test_credentials.py": "34a04785bb6c4c34d81630a615c5ad48192caaab58905dc64c08eef670be2ecc",
+        "tests/test_extract.py": "3dd2bd6ae2158a8841f11611198c279513e5fc1851f822b69d13bb5689b11e8d",
+        "tests/test_index.py": "6871c0c7b96aa6d1fedf9de06d07f5dc1e3cd2bb591237599b589e6b5b04031f",
+        "tests/test_manifest.py": "07859956a5f3887523fc8a05397b956c9152217544b7ca84e322b2819a429954",
+        "tests/test_note.py": "c504651281c05c7288799fd3c10983db6856913963c50f9fd89823358987c9a3",
+        "tests/test_retrieval_loop.py": "9048b4ff139029adcb7522ee942a60e5ce9621fe7fdcea9e46e42967daf0cbae",
+        "tests/test_router.py": "4a164ecaa51280a0fa611252f6d731bbca86f0bb52612e6a690dc2c0919ee9ba",
+        "tests/test_store_roundtrip.py": "149600c1b16b25a83a952e9ce55e2e70281dd13312449b0ac797d015cf3ed6c9"
+      }
     }
   ],
   "learning_proposals": [],
@@ -2265,6 +2686,69 @@
       "task": "T6A",
       "human": "Milap Vaghasia",
       "reason": "Reviewed the agentic loop, termination conditions, trace and budget accounting",
+      "revision": null
+    },
+    {
+      "id": "a3968ed4-4c4d-4efe-a158-1448d27fa895",
+      "at": "2026-09-17T15:57:37.019Z",
+      "action": "approve",
+      "task": "T7A",
+      "human": "Milap Vaghasia",
+      "reason": "Approval stated in session: reviewed routing, specialist scope enforcement and citation-integrity handling. Recorded by the agent because the CLI had no record of it; the human asserted it in conversation.",
+      "revision": null
+    },
+    {
+      "id": "96f11ccc-d226-43d9-892f-ab77d24d0c0f",
+      "at": "2026-09-17T16:16:01.529Z",
+      "action": "approve",
+      "task": "T8A",
+      "human": "Milap Vaghasia",
+      "reason": "Reviewed synthesis, citation integrity, contradiction surfacing and the CLI",
+      "revision": null
+    },
+    {
+      "id": "e67c4849-7d2c-4918-8796-3d6fe08d934e",
+      "at": "2026-09-17T16:30:08.810Z",
+      "action": "approve",
+      "task": "T8A",
+      "human": "Milap Vaghasia",
+      "reason": "Reviewed synthesis, citation integrity, contradiction surfacing, the CLI and the .env handling",
+      "revision": null
+    },
+    {
+      "id": "d19ec7a7-b96b-4c61-8018-dae2caefc5f7",
+      "at": "2026-09-17T17:21:40.251Z",
+      "action": "reject",
+      "task": "T9A",
+      "human": null,
+      "reason": "Declared scope tests, corpus, notes cannot reach src/risk_analytics, where the credential bug its own live probe found must be fixed (KNOWLEDGE-98966dee). Replaced by a bounded fix task plus an acceptance task whose scope admits fixes it uncovers.",
+      "revision": null
+    },
+    {
+      "id": "76205e5d-5f2f-4677-9a26-9bd1e83dc17f",
+      "at": "2026-09-17T17:23:30.920Z",
+      "action": "resume",
+      "task": "T10A",
+      "human": null,
+      "reason": "Plan approved; starting the credential fix",
+      "revision": null
+    },
+    {
+      "id": "bb10626d-7520-4b90-a11e-c3256a46b19a",
+      "at": "2026-09-17T17:28:24.699Z",
+      "action": "approve",
+      "task": "T10A",
+      "human": "Milap Vaghasia",
+      "reason": "Reviewed the credential fix and its live verification",
+      "revision": null
+    },
+    {
+      "id": "5bf86b67-ddef-4afe-921b-eba62387f077",
+      "at": "2026-09-17T18:12:44.866Z",
+      "action": "approve",
+      "task": "T11A",
+      "human": "Milap Vaghasia",
+      "reason": "Reviewed the live golden-question runs, the model retune and the retrieval fixes",
       "revision": null
     }
   ],
@@ -2580,6 +3064,150 @@
       "cost": null,
       "stop_reason": null,
       "ended_at": "2026-09-17T15:32:53.217Z"
+    },
+    {
+      "id": "c4920dad-7ed9-429b-b354-ed78be105d9d",
+      "task": "T7A",
+      "kind": "gate",
+      "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_router.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 5536,
+      "child_pid": 6344,
+      "started_at": "2026-09-17T15:46:43.346Z",
+      "status": "passed",
+      "before_hash": "9bba5d188fc9233c63b576f2585efde639747c867227f4562d718d5887db4da5",
+      "config_hash": "1d83f948d7208c9ec2fdd5b3dd1144645dd46dbba8708cbc5aa2d2e7cc7e43cb",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-17T15:47:48.699Z"
+    },
+    {
+      "id": "24e04c51-58f6-4337-9f6b-52ec82957fd1",
+      "task": "T8A",
+      "kind": "gate",
+      "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_note.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 5228,
+      "child_pid": 4440,
+      "started_at": "2026-09-17T16:07:54.616Z",
+      "status": "passed",
+      "before_hash": "f1e84eab1ad6fe543327109bd63e64c9bca6a80a2440f3c8742032a233d578d4",
+      "config_hash": "2d7ffcdb20df25550239d1b7956b695af44da7d0474997783e783e5769a2edb4",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-17T16:09:03.568Z"
+    },
+    {
+      "id": "d9c257cc-cd57-48f2-916d-a07c520c9bb9",
+      "task": "T8A",
+      "kind": "gate",
+      "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_note.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 26196,
+      "child_pid": 14876,
+      "started_at": "2026-09-17T16:21:39.332Z",
+      "status": "passed",
+      "before_hash": "0a42bb810109d22a5d58e3d6addc7cb0a8765b55a2ed9dcf5b6b0644f611e487",
+      "config_hash": "2d7ffcdb20df25550239d1b7956b695af44da7d0474997783e783e5769a2edb4",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-17T16:22:09.131Z"
+    },
+    {
+      "id": "bfbe4e4b-1b6b-49de-922d-7046f48c884e",
+      "task": "T8A",
+      "kind": "gate",
+      "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_note.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 5504,
+      "child_pid": 19236,
+      "started_at": "2026-09-17T16:27:07.791Z",
+      "status": "passed",
+      "before_hash": "f5ffa879dcf3c59dc1e589b50369fc98b78c8ab2baad1acc7ffafdc845bf11ea",
+      "config_hash": "2d7ffcdb20df25550239d1b7956b695af44da7d0474997783e783e5769a2edb4",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-17T16:27:36.732Z"
+    },
+    {
+      "id": "e58e5af4-dcf8-495c-bb34-85efa5749a09",
+      "task": "T10A",
+      "kind": "gate",
+      "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_credentials.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 3600,
+      "child_pid": 12404,
+      "started_at": "2026-09-17T17:27:06.190Z",
+      "status": "passed",
+      "before_hash": "2d44e2e07d91df43341b3c7c4f7accdd19bcae1c4479127cf18b7845de8edfdf",
+      "config_hash": "25b44f572c1bec44190d117975426c32cea821e09a60f68388d490cd6a3385fe",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-17T17:27:10.298Z"
+    },
+    {
+      "id": "4d2d8b54-421b-4a26-83f8-7213bba69e74",
+      "task": "T11A",
+      "kind": "gate",
+      "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_acceptance.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 18400,
+      "child_pid": 6176,
+      "started_at": "2026-09-17T18:09:51.214Z",
+      "status": "passed",
+      "before_hash": "d07ee681afba7a06b081b2aa92f4ee0d73ec0ec263664589999d6e7097bb240a",
+      "config_hash": "1f403585b73804a43a76f3959f97a9913b1dd20ab5f13fb79c111636ef1f76aa",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-17T18:09:55.187Z"
     }
   ],
   "authorizations": [],
@@ -2587,13 +3215,13 @@
   "incidents": [],
   "discovery": null,
   "checkpoint": {
-    "at": "2026-09-17T15:33:17.627Z",
+    "at": "2026-09-17T18:10:21.737Z",
     "revision": {
-      "commit": null,
-      "dirty": null,
-      "source_hash": "d65a56a9547a05813b54a1f214e65c02e41ae42026302c906ac0c029a4fb5056"
+      "commit": "ed1bf767166e1e558e2a2f96c3276f75b658624a",
+      "dirty": true,
+      "source_hash": "d07ee681afba7a06b081b2aa92f4ee0d73ec0ec263664589999d6e7097bb240a"
     },
-    "active_task": "T6A",
+    "active_task": "T11A",
     "next_action": "Run the task pre-flight."
   },
   "legacy": null

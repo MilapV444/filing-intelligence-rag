@@ -1,0 +1,508 @@
+{
+  "question": "As at 30 June 2026, what are APSEZ's Net Gearing and DSCR, what covenant thresholds do they run against, and how much headroom remains?",
+  "scope": "Covenant metrics disclosed by APSEZ for the period ended 30 June 2026 (Q1 FY27 filing): Net Gearing and DSCR per the covenant compliance certificate, the stated covenant thresholds, resulting headroom, and the separately disclosed Regulation 52 quarterly ratios. Limited to figures reported in the filing excerpts provided by the specialists.",
+  "generated_at": "2026-09-17T18:05:03+00:00",
+  "key_findings": [
+    {
+      "text": "Net Gearing (Total Net Debt / Tangible Net Worth) as at June 2026 is reported at 0.55x per the covenant compliance certificate, derived from Total Debt of INR 56,775.53 Cr less Cash and Cash Equivalents of INR 7,921.05 Cr (Total Net Debt INR 48,854.48 Cr) over Tangible Net Worth of INR 88,545.78 Cr.",
+      "evidence_ids": [
+        "apsez-q1fy27:p34:table0"
+      ],
+      "citations": [
+        "[apsez-q1fy27 p.34]"
+      ]
+    },
+    {
+      "text": "The Net Gearing covenant threshold is stated in the table heading as <3x ('Net Gearing ratio (Total Net Debt/ Tangible Net worth) <3x'); against the reported 0.55x this leaves approximately 2.45x of headroom before the ceiling, i.e. net debt could rise materially or tangible net worth fall before a breach, based solely on the disclosed figures.",
+      "evidence_ids": [
+        "apsez-q1fy27:p34:table0"
+      ],
+      "citations": [
+        "[apsez-q1fy27 p.34]"
+      ]
+    },
+    {
+      "text": "DSCR for the year ended June 2026 per the covenant compliance certificate is 5.42x, computed as Total(A) INR 23,052.14 Cr (PAT 13,120.93 + Depreciation & Amortisation 5,973.74 + Interest Expense 3,957.47) divided by Total(B) INR 4,249.89 Cr (repayment during the year 399.04 + interest paid during the year 3,850.85).",
+      "evidence_ids": [
+        "apsez-q1fy27:p34:table1"
+      ],
+      "citations": [
+        "[apsez-q1fy27 p.34]"
+      ]
+    },
+    {
+      "text": "The DSCR covenant threshold is stated in the table heading as >1.10x; the reported 5.42x implies roughly 4.32x of headroom above the floor, i.e. debt service could increase substantially or earnings fall considerably before a breach, based solely on the disclosed figures.",
+      "evidence_ids": [
+        "apsez-q1fy27:p34:table1"
+      ],
+      "citations": [
+        "[apsez-q1fy27 p.34]"
+      ]
+    },
+    {
+      "text": "The Regulation 52 quarterly disclosure for the quarter ended 30 June 2026 (unaudited) reports different figures: Debt Service Coverage Ratio 5.54, Interest Service Coverage Ratio 6.25 and Debt Equity Ratio 0.58. No covenant threshold is stated alongside these particular figures.",
+      "evidence_ids": [
+        "apsez-q1fy27:p12:table0"
+      ],
+      "citations": [
+        "[apsez-q1fy27 p.12]"
+      ]
+    },
+    {
+      "text": "Comparatives in the Regulation 52 table show Debt Equity Ratio / DSCR of 0.83 and 5.57 for the quarter ended 30 June 2025, and 0.57 and 3.24 for the quarter ended 31 March 2026.",
+      "evidence_ids": [
+        "apsez-q1fy27:p12:table0"
+      ],
+      "citations": [
+        "[apsez-q1fy27 p.12]"
+      ]
+    },
+    {
+      "text": "The Regulation 52 ratio formulae are defined in the filing as Debt Equity Ratio = Total Debt / Shareholder's Equity and DSCR = (PAT + Interest cost + Forex Loss/(Gain) net + Depreciation) / (Interest cost + lease payments + scheduled non-current debt repayment excluding refinanced loans).",
+      "evidence_ids": [
+        "apsez-q1fy27:p17:table0"
+      ],
+      "citations": [
+        "[apsez-q1fy27 p.17]"
+      ]
+    },
+    {
+      "text": "The Regulation 52 DSCR (5.54) and Debt Equity Ratio (0.58) do not tie to the covenant certificate DSCR (5.42x) and Net Gearing (0.55x) for the same period. Specialists agree the gap reflects differing calculation definitions; the compliance specialist additionally notes the filing excerpts provided contain no reconciliation or explanation of the difference.",
+      "evidence_ids": [
+        "apsez-q1fy27:p12:table0",
+        "apsez-q1fy27:p17:table0",
+        "apsez-q1fy27:p34:table1"
+      ],
+      "citations": [
+        "[apsez-q1fy27 p.12]",
+        "[apsez-q1fy27 p.17]",
+        "[apsez-q1fy27 p.34]"
+      ]
+    },
+    {
+      "text": "Secured Non-Convertible Debentures stand at INR 10,085.40 Cr as on 30 June 2026 (INR 10,185.40 Cr as on 31 March 2026), secured on identified assets, with asset cover as of 30 June 2026 stated to exceed one hundred percent of the requirement in the Debenture Documents for both principal and interest.",
+      "evidence_ids": [
+        "apsez-q1fy27:p12:table0"
+      ],
+      "citations": [
+        "[apsez-q1fy27 p.12]"
+      ]
+    },
+    {
+      "text": "The consolidated financial results for the quarter ended 30 June 2026, including the ratio disclosures, were reviewed by the Audit Committee and approved by the Board and were subject only to a limited review by the Statutory Auditors, not a full audit; the excerpts contain no auditor opinion, qualification or emphasis of matter on the gearing or DSCR figures.",
+      "evidence_ids": [
+        "apsez-q1fy27:p12:table0"
+      ],
+      "citations": [
+        "[apsez-q1fy27 p.12]"
+      ]
+    }
+  ],
+  "by_specialist": [
+    {
+      "specialist": "credit",
+      "claims": [
+        {
+          "text": "Per the covenant compliance certificate, Net Gearing (Total Net Debt/Tangible Net Worth) as at June 2026 was 0.55x, calculated from Total Debt of INR 56,775.53 Cr less Cash and Cash Equivalents of INR 7,921.05 Cr (= Total Net Debt of INR 48,854.48 Cr), divided by Tangible Net Worth of INR 88,545.78 Cr.",
+          "evidence_ids": [
+            "apsez-q1fy27:p34:table0"
+          ],
+          "citations": [
+            "[apsez-q1fy27 p.34]"
+          ]
+        },
+        {
+          "text": "This Net Gearing metric is tested against a covenant threshold of <3x, as stated in the table heading 'Net Gearing ratio (Total Net Debt/ Tangible Net worth) <3x'.",
+          "evidence_ids": [
+            "apsez-q1fy27:p34:table0"
+          ],
+          "citations": [
+            "[apsez-q1fy27 p.34]"
+          ]
+        },
+        {
+          "text": "With actual Net Gearing of 0.55x against a covenant limit of 3x, headroom is approximately 2.45x before the covenant threshold would be breached.",
+          "evidence_ids": [
+            "apsez-q1fy27:p34:table0"
+          ],
+          "citations": [
+            "[apsez-q1fy27 p.34]"
+          ]
+        },
+        {
+          "text": "Per the same covenant compliance certificate, DSCR for the year ended June-2026 was 5.42x, computed as Total(A) of INR 23,052.14 Cr (PAT 13,120.93 + Depreciation & Amortisation 5,973.74 + Interest Expense 3,957.47) divided by Total(B) of INR 4,249.89 Cr (Repayment during the year 399.04 + Interest paid during the year 3,850.85).",
+          "evidence_ids": [
+            "apsez-q1fy27:p34:table1"
+          ],
+          "citations": [
+            "[apsez-q1fy27 p.34]"
+          ]
+        },
+        {
+          "text": "This DSCR is tested against a covenant threshold of >1.10x, as stated in the table heading 'DSCR>1.10x'.",
+          "evidence_ids": [
+            "apsez-q1fy27:p34:table1"
+          ],
+          "citations": [
+            "[apsez-q1fy27 p.34]"
+          ]
+        },
+        {
+          "text": "With actual DSCR of 5.42x against a minimum covenant requirement of 1.10x, headroom is approximately 4.32x above the required minimum.",
+          "evidence_ids": [
+            "apsez-q1fy27:p34:table1"
+          ],
+          "citations": [
+            "[apsez-q1fy27 p.34]"
+          ]
+        },
+        {
+          "text": "Separately, the Regulation 52 quarterly disclosure for the quarter ended June 30, 2026 (unaudited) reports a Debt Service Coverage Ratio of 5.54, an Interest Service Coverage Ratio of 6.25, and a Debt Equity Ratio of 0.58, computed per the ratio formulae defined in the filing (DSCR = Earnings available for debt service / Debt Service; Debt Equity Ratio = Total Debt/Shareholder's Equity). These figures differ from the covenant compliance certificate values (DSCR 5.42x, Net Gearing 0.55x) due to differing calculation definitions, though both relate to the June 2026 period.",
+          "evidence_ids": [
+            "apsez-q1fy27:p12:table0",
+            "apsez-q1fy27:p17:table0"
+          ],
+          "citations": [
+            "[apsez-q1fy27 p.12]",
+            "[apsez-q1fy27 p.17]"
+          ]
+        },
+        {
+          "text": "Separately, the filing notes that Secured Non-Convertible Debentures of INR 10,085.40 crore as on June 30, 2026 (INR 10,185.40 crore as on March 31, 2026) are secured on identified assets, and the asset cover for these NCDs as of June 30, 2026 exceeds hundred percent of the requirement stated in the Debenture Documents for both principal and interest payments.",
+          "evidence_ids": [
+            "apsez-q1fy27:p12:table0"
+          ],
+          "citations": [
+            "[apsez-q1fy27 p.12]"
+          ]
+        }
+      ],
+      "insufficient_evidence": false,
+      "note": "The excerpts include a covenant compliance certificate (as at/for the period ended June 2026) that explicitly computes Net Gearing and DSCR against stated covenant thresholds, plus the quarterly Regulation 52 disclosure showing related ratios computed on a different formula basis. No debt maturity schedule or general liquidity (cash/undrawn facilities) disclosure beyond the cash figure used in the Net Gearing calculation was found in the excerpts, so those aspects cannot be addressed.",
+      "dropped_claims": []
+    },
+    {
+      "specialist": "compliance",
+      "claims": [
+        {
+          "text": "As at June 2026, APSEZ's Net Gearing ratio (Total Net Debt \\u00f7 Tangible Net Worth) is reported at 0.55x, computed from Total Debt of \\u20b956,775.53 Cr less cash of \\u20b97,921.05 Cr (net debt \\u20b948,854.48 Cr) divided by Tangible Net Worth of \\u20b988,545.78 Cr.",
+          "evidence_ids": [
+            "apsez-q1fy27:p34:table0"
+          ],
+          "citations": [
+            "[apsez-q1fy27 p.34]"
+          ]
+        },
+        {
+          "text": "The covenant threshold for Net Gearing is stated as <3x, so the reported 0.55x leaves substantial headroom \\u2014 the ratio would need to rise by roughly 2.45x (i.e., net debt could increase materially, or tangible net worth fall) before the 3x ceiling is breached, based solely on this disclosed figure.",
+          "evidence_ids": [
+            "apsez-q1fy27:p34:table0"
+          ],
+          "citations": [
+            "[apsez-q1fy27 p.34]"
+          ]
+        },
+        {
+          "text": "A separate covenant-format DSCR calculation for the period shows earnings available for debt service (PAT + Interest + Depreciation, Total A = \\u20b923,052.14 Cr) divided by debt service (repayments + interest paid, Total B = \\u20b94,249.89 Cr), yielding a DSCR of 5.42x.",
+          "evidence_ids": [
+            "apsez-q1fy27:p34:table1"
+          ],
+          "citations": [
+            "[apsez-q1fy27 p.34]"
+          ]
+        },
+        {
+          "text": "The covenant threshold for this DSCR metric is stated as >1.10x, so the reported 5.42x is well above the minimum required, implying headroom of roughly 4.32x (i.e., debt service could increase substantially, or earnings fall considerably, before breaching the 1.10x floor) based on this disclosed figure.",
+          "evidence_ids": [
+            "apsez-q1fy27:p34:table1"
+          ],
+          "citations": [
+            "[apsez-q1fy27 p.34]"
+          ]
+        },
+        {
+          "text": "Separately, under the Regulation 52 ratio disclosure for the quarter ended June 30, 2026, the company reports a Debt Equity Ratio of 0.58 and a Debt Service Coverage Ratio of 5.54 (versus 0.83 and 5.57 respectively for the quarter ended June 30, 2025, and 0.57 and 3.24 for the quarter ended March 31, 2026); no covenant threshold is stated alongside these particular figures.",
+          "evidence_ids": [
+            "apsez-q1fy27:p12:table0"
+          ],
+          "citations": [
+            "[apsez-q1fy27 p.12]"
+          ]
+        },
+        {
+          "text": "The DSCR figure in the Regulation 52 table (5.54) differs from the DSCR figure in the separate covenant-compliance table (5.42) for the same period, indicating the two disclosures use different formulae/definitions of debt service coverage; the filing does not reconcile or explain this difference in the excerpts provided.",
+          "evidence_ids": [
+            "apsez-q1fy27:p12:table0",
+            "apsez-q1fy27:p34:table1"
+          ],
+          "citations": [
+            "[apsez-q1fy27 p.12]",
+            "[apsez-q1fy27 p.34]"
+          ]
+        },
+        {
+          "text": "The formulae definitions used for Debt Equity Ratio and Debt Service Coverage Ratio in the Regulation 52 disclosure are: Debt Equity Ratio = Total Debt/Shareholder's Equity; DSCR = (PAT + Interest cost + Forex Loss/(Gain) net + Depreciation) / (Interest cost + lease payments + scheduled non-current debt repayment excluding refinanced loans).",
+          "evidence_ids": [
+            "apsez-q1fy27:p17:table0"
+          ],
+          "citations": [
+            "[apsez-q1fy27 p.17]"
+          ]
+        },
+        {
+          "text": "These consolidated financial results for the quarter ended June 30, 2026, including the ratio disclosures, were reviewed by the Audit Committee and approved by the Board, and were subject only to a limited review by the Statutory Auditors, not a full audit; the excerpts contain no auditor opinion, qualification, or emphasis of matter regarding the gearing or DSCR figures.",
+          "evidence_ids": [
+            "apsez-q1fy27:p12:table0"
+          ],
+          "citations": [
+            "[apsez-q1fy27 p.12]"
+          ]
+        }
+      ],
+      "insufficient_evidence": false,
+      "note": "The filing (APSEZ Q1 FY27 results, quarter ended 30 June 2026, subjected only to limited review by the Statutory Auditors rather than a full audit) discloses two relevant sets of figures: (a) a specific covenant-format computation of Net Gearing and DSCR with explicit thresholds, and (b) a Regulation 52 ratio table showing a somewhat different DSCR and a Debt-Equity Ratio for the same quarter, without a stated threshold. Both are company-computed disclosures; no auditor commentary or qualification on these ratios is present in the excerpts.",
+      "dropped_claims": []
+    }
+  ],
+  "watch_items": [
+    "Unreconciled difference between the covenant-certificate DSCR (5.42x) and the Regulation 52 DSCR (5.54), and between Net Gearing (0.55x) and Debt Equity Ratio (0.58) for the same period \u2014 confirm which definition governs the financing documents.",
+    "Volatility in the Regulation 52 DSCR series (5.57 at Q1 FY26, 3.24 at Q4 FY26, 5.54 at Q1 FY27) versus the annualised covenant DSCR.",
+    "Covenant DSCR is computed on a 'year ended June-2026' basis while the Regulation 52 ratio is quarterly \u2014 confirm the testing period applicable under the finance documents.",
+    "Q1 FY27 figures are limited-reviewed, not audited.",
+    "NCD balance declined marginally from INR 10,185.40 Cr to INR 10,085.40 Cr; asset cover confirmation is management-stated in the filing."
+  ],
+  "limitations": [
+    "Findings rest solely on the Q1 FY27 filing excerpts cited (pages 12, 17 and 34); no other documents, financing agreements or covenant definitions were reviewed.",
+    "Headroom figures (c.2.45x on Net Gearing, c.4.32x on DSCR) are simple arithmetic differences between the reported ratio and the stated threshold, not sensitivity or stress analysis.",
+    "The full covenant package, including any other covenants, cure rights, testing frequency or step-downs, is not evidenced in the excerpts.",
+    "No rating, score or outlook is expressed in this note.",
+    "Retrieval was restricted to apsez-q1fy27 because the question names that issuer; other corpus documents were not searched."
+  ],
+  "contradictions": [
+    {
+      "specialists": [
+        "credit",
+        "compliance"
+      ],
+      "claims": [
+        "Separately, the Regulation 52 quarterly disclosure for the quarter ended June 30, 2026 (unaudited) reports a Debt Service Coverage Ratio of 5.54, an Interest Service Coverage Ratio of 6.25, and a Debt Equity Ratio of 0.58, computed per the ratio formulae defined in the filing (DSCR = Earnings available for debt service / Debt Service; Debt Equity Ratio = Total Debt/Shareholder's Equity). These figures differ from the covenant compliance certificate values (DSCR 5.42x, Net Gearing 0.55x) due to differing calculation definitions, though both relate to the June 2026 period.",
+        "Separately, under the Regulation 52 ratio disclosure for the quarter ended June 30, 2026, the company reports a Debt Equity Ratio of 0.58 and a Debt Service Coverage Ratio of 5.54 (versus 0.83 and 5.57 respectively for the quarter ended June 30, 2025, and 0.57 and 3.24 for the quarter ended March 31, 2026); no covenant threshold is stated alongside these particular figures."
+      ]
+    },
+    {
+      "specialists": [
+        "credit",
+        "compliance"
+      ],
+      "claims": [
+        "Separately, the Regulation 52 quarterly disclosure for the quarter ended June 30, 2026 (unaudited) reports a Debt Service Coverage Ratio of 5.54, an Interest Service Coverage Ratio of 6.25, and a Debt Equity Ratio of 0.58, computed per the ratio formulae defined in the filing (DSCR = Earnings available for debt service / Debt Service; Debt Equity Ratio = Total Debt/Shareholder's Equity). These figures differ from the covenant compliance certificate values (DSCR 5.42x, Net Gearing 0.55x) due to differing calculation definitions, though both relate to the June 2026 period.",
+        "The DSCR figure in the Regulation 52 table (5.54) differs from the DSCR figure in the separate covenant-compliance table (5.42) for the same period, indicating the two disclosures use different formulae/definitions of debt service coverage; the filing does not reconcile or explain this difference in the excerpts provided."
+      ]
+    }
+  ],
+  "routing": {
+    "selected": [
+      "credit",
+      "compliance"
+    ],
+    "reasons": {
+      "credit": "Net Gearing and DSCR are core leverage and coverage metrics; covenant thresholds and headroom calculation fall squarely within credit analysis scope.",
+      "esg": "ESG analysis does not address financial leverage, debt service metrics, or covenant levels.",
+      "compliance": "Covenant compliance statements and headroom disclosure are compliance-related matters that validate and contextualize credit metrics.",
+      "peer": "Peer comparison is unnecessary here as the question seeks absolute metrics and thresholds for a single issuer, not relative positioning."
+    },
+    "truncated": []
+  },
+  "trace": {
+    "question": "As at 30 June 2026, what are APSEZ's Net Gearing and DSCR, what covenant thresholds do they run against, and how much headroom remains?",
+    "plan": [
+      "APSEZ Net Gearing 30 June 2026",
+      "APSEZ Debt Service Coverage Ratio DSCR 30 June 2026",
+      "APSEZ financial covenants Net Gearing threshold",
+      "APSEZ financial covenants DSCR threshold",
+      "APSEZ covenant headroom capacity 30 June 2026",
+      "APSEZ Net Gearing covenant threshold limit 30 June 2026 binding agreement",
+      "APSEZ financial covenant headroom 0.55x 5.42x calculation June 2026",
+      "APSEZ loan agreement covenant breaches compliance margin June 2026",
+      "APSEZ debenture indenture Net Gearing DSCR limits thresholds"
+    ],
+    "plan_reasoning": "The question requires four distinct pieces of information: (1) the actual Net Gearing ratio as at 30 June 2026, (2) the actual DSCR as at 30 June 2026, (3) the covenant threshold/maximum for Net Gearing, and (4) the covenant threshold/maximum for DSCR. To calculate headroom, we need both the actual metrics and their covenant limits. Separate queries target the metric calculations (typically found in financial statements or risk management disclosures) versus the covenant terms (typically found in debt facility agreements, loan facility notes, or covenant compliance sections). An additional query captures covenant headroom information that may be explicitly stated in management discussion sections.",
+    "iterations": [
+      {
+        "index": 1,
+        "queries": [
+          "APSEZ Net Gearing 30 June 2026",
+          "APSEZ Debt Service Coverage Ratio DSCR 30 June 2026",
+          "APSEZ financial covenants Net Gearing threshold",
+          "APSEZ financial covenants DSCR threshold",
+          "APSEZ covenant headroom capacity 30 June 2026"
+        ],
+        "hit_ids": [
+          "apsez-q1fy27:p10:table0",
+          "apsez-q1fy27:p11:table0",
+          "apsez-q1fy27:p12:table0",
+          "apsez-q1fy27:p14:table0",
+          "apsez-q1fy27:p16:table0",
+          "apsez-q1fy27:p17:table0",
+          "apsez-q1fy27:p18:table0",
+          "apsez-q1fy27:p23:table0",
+          "apsez-q1fy27:p30:table0",
+          "apsez-q1fy27:p31:table0",
+          "apsez-q1fy27:p34:table0",
+          "apsez-q1fy27:p34:table1",
+          "apsez-q1fy27:p6:table0",
+          "apsez-q1fy27:p6:table1",
+          "apsez-q1fy27:p7:table0",
+          "apsez-q1fy27:p7:table1",
+          "apsez-q1fy27:p8:table0",
+          "apsez-q1fy27:p8:table1",
+          "apsez-q1fy27:p9:table0"
+        ],
+        "new_hits": 19,
+        "sufficient": false,
+        "reason": "The excerpts provide two of the four required metrics with specific covenant thresholds and headroom calculations, but are missing the Net Gearing covenant threshold. Specifically: DSCR is stated as 5.42x against a covenant threshold of >1.10x (providing clear headroom); Net Gearing ratio is stated as 0.55x but the covenant threshold stated in the table header is '<3x' without explicit confirmation this is the binding covenant, and the headroom calculation (3x - 0.55x = 2.45x) is not quantified in the excerpts. Additionally, there is no explicit statement of remaining headroom in percentage or absolute terms for either metric as of 30 June 2026.",
+        "missing": [
+          "Explicit confirmation of the Net Gearing covenant threshold binding on APSEZ as of 30 June 2026",
+          "Quantified headroom remaining under the Net Gearing covenant (difference between covenant ceiling and actual ratio)",
+          "Quantified headroom remaining under the DSCR covenant (difference between actual ratio and covenant floor)"
+        ],
+        "next_queries": [
+          "APSEZ Net Gearing covenant threshold limit 30 June 2026 binding agreement",
+          "APSEZ financial covenant headroom 0.55x 5.42x calculation June 2026",
+          "APSEZ loan agreement covenant breaches compliance margin June 2026",
+          "APSEZ debenture indenture Net Gearing DSCR limits thresholds"
+        ]
+      },
+      {
+        "index": 2,
+        "queries": [
+          "APSEZ Net Gearing covenant threshold limit 30 June 2026 binding agreement",
+          "APSEZ financial covenant headroom 0.55x 5.42x calculation June 2026",
+          "APSEZ loan agreement covenant breaches compliance margin June 2026",
+          "APSEZ debenture indenture Net Gearing DSCR limits thresholds"
+        ],
+        "hit_ids": [
+          "apsez-q1fy27:p10:table0",
+          "apsez-q1fy27:p11:table0",
+          "apsez-q1fy27:p12:table0",
+          "apsez-q1fy27:p14:table0",
+          "apsez-q1fy27:p16:table0",
+          "apsez-q1fy27:p17:table0",
+          "apsez-q1fy27:p18:table0",
+          "apsez-q1fy27:p23:table0",
+          "apsez-q1fy27:p24:table0",
+          "apsez-q1fy27:p30:table0",
+          "apsez-q1fy27:p31:table0",
+          "apsez-q1fy27:p34:table0",
+          "apsez-q1fy27:p34:table1",
+          "apsez-q1fy27:p6:table0",
+          "apsez-q1fy27:p6:table1",
+          "apsez-q1fy27:p7:table0",
+          "apsez-q1fy27:p7:table1",
+          "apsez-q1fy27:p8:table0",
+          "apsez-q1fy27:p8:table1",
+          "apsez-q1fy27:p9:table0"
+        ],
+        "new_hits": 1,
+        "sufficient": true,
+        "reason": "The retrieved excerpts contain all required information as of 30 June 2026: Net Gearing ratio of 0.55x (from page 34), DSCR of 5.42x (from page 34), the covenant threshold for Net Gearing of <3x (from page 34), and the DSCR covenant threshold of >1.10x (from page 34). Headroom can be calculated from these figures: Net Gearing headroom is 2.45x (3.00 - 0.55), and DSCR headroom is 4.32x (5.42 - 1.10).",
+        "missing": [],
+        "next_queries": []
+      }
+    ],
+    "termination": "sufficient",
+    "iteration_count": 2,
+    "revised_after_reflection": true,
+    "started_at": "2026-09-17T18:03:16+00:00",
+    "budget": {
+      "ceiling_usd": 0.25,
+      "spent_usd": 0.024195,
+      "calls": 3,
+      "by_call": [
+        {
+          "model": "claude-haiku-4-5",
+          "purpose": "plan",
+          "input_tokens": 330,
+          "output_tokens": 252,
+          "cost_usd": 0.00159
+        },
+        {
+          "model": "claude-haiku-4-5",
+          "purpose": "reflect",
+          "input_tokens": 9875,
+          "output_tokens": 343,
+          "cost_usd": 0.01159
+        },
+        {
+          "model": "claude-haiku-4-5",
+          "purpose": "reflect",
+          "input_tokens": 10165,
+          "output_tokens": 170,
+          "cost_usd": 0.011015
+        }
+      ]
+    }
+  },
+  "dropped_claims": [],
+  "citations": [
+    "[apsez-q1fy27 p.12]",
+    "[apsez-q1fy27 p.17]",
+    "[apsez-q1fy27 p.34]"
+  ],
+  "budget": {
+    "ceiling_usd": 0.25,
+    "spent_usd": 0.190431,
+    "calls": 7,
+    "by_call": [
+      {
+        "model": "claude-haiku-4-5",
+        "purpose": "plan",
+        "input_tokens": 330,
+        "output_tokens": 252,
+        "cost_usd": 0.00159
+      },
+      {
+        "model": "claude-haiku-4-5",
+        "purpose": "reflect",
+        "input_tokens": 9875,
+        "output_tokens": 343,
+        "cost_usd": 0.01159
+      },
+      {
+        "model": "claude-haiku-4-5",
+        "purpose": "reflect",
+        "input_tokens": 10165,
+        "output_tokens": 170,
+        "cost_usd": 0.011015
+      },
+      {
+        "model": "claude-haiku-4-5",
+        "purpose": "route",
+        "input_tokens": 593,
+        "output_tokens": 131,
+        "cost_usd": 0.001248
+      },
+      {
+        "model": "claude-sonnet-5",
+        "purpose": "specialist:credit",
+        "input_tokens": 9163,
+        "output_tokens": 3003,
+        "cost_usd": 0.048356
+      },
+      {
+        "model": "claude-sonnet-5",
+        "purpose": "specialist:compliance",
+        "input_tokens": 9161,
+        "output_tokens": 2818,
+        "cost_usd": 0.046502
+      },
+      {
+        "model": "claude-opus-5",
+        "purpose": "synthesis",
+        "input_tokens": 2936,
+        "output_tokens": 2218,
+        "cost_usd": 0.07013
+      }
+    ]
+  }
+}

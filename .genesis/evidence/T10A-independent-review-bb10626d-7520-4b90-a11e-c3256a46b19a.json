@@ -1,0 +1,13 @@
+{
+  "task": "T10A",
+  "gate": "independent-review",
+  "kind": "review",
+  "attempt": "bb10626d-7520-4b90-a11e-c3256a46b19a",
+  "human": "Milap Vaghasia",
+  "reason": "Reviewed the credential fix and its live verification",
+  "observed_at": "2026-09-17T17:28:24.699Z",
+  "source_hash": "2d44e2e07d91df43341b3c7c4f7accdd19bcae1c4479127cf18b7845de8edfdf",
+  "config_hash": "25b44f572c1bec44190d117975426c32cea821e09a60f68388d490cd6a3385fe",
+  "reviewed_proofs": "5191a5b1eb4052f9e2ffd80e207ecb7cc0ca067364ce83290cd2490fcf7115e7",
+  "hash": "f6c9996226d42a2d7396cd2e4faf3a5fc92b1713c66d340978c0fc3ac3263bd9"
+}

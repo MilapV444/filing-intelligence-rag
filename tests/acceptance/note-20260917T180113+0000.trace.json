@@ -1,0 +1,549 @@
+{
+  "question": "What does AGEL's FY25 auditor's report flag as Emphasis of Matter and Key Audit Matters, and what related-party and contingent-liability exposures accompany them?",
+  "scope": "First-pass review of what AGEL's FY25 auditor's report flags as Emphasis of Matter and Key Audit Matters, and any related-party or contingent-liability exposures tied to those flags, based solely on the excerpts supplied by the compliance specialist.",
+  "generated_at": "2026-09-17T18:01:13+00:00",
+  "key_findings": [
+    {
+      "text": "The provided material does not identify AGEL's FY25 Emphasis of Matter paragraph content, nor does it enumerate or describe the Key Audit Matters themselves. The auditor's report on the consolidated financial statements references that certain matters 'are therefore the key audit matters' and that 'we describe these matters in our auditor's report,' but the actual list and subject matter of the KAMs is absent from the excerpts. The analyst question therefore cannot be answered on the current evidence base.",
+      "evidence_ids": [
+        "agel-fy25:p142:prose2"
+      ],
+      "citations": [
+        "[agel-fy25 p.142]"
+      ]
+    },
+    {
+      "text": "An 'Other Matters' paragraph in the auditor's report on the consolidated financial statements states the principal auditor did not audit the financial statements of 53 subsidiaries. On a pre-consolidation-adjustment basis these subsidiaries contributed total assets of Rs 62,926 crore, total revenues of Rs 3,940 crore, and net cash inflows of Rs 260 crore for the year ended March 31, 2025. Note: this is an Other Matters paragraph, not an Emphasis of Matter paragraph, in the excerpt as reported.",
+      "evidence_ids": [
+        "agel-fy25:p142:prose2"
+      ],
+      "citations": [
+        "[agel-fy25 p.142]"
+      ]
+    },
+    {
+      "text": "The auditor's report discloses an audit-trail (edit log) limitation: the feature operated throughout the year for all relevant transactions except for certain direct changes made to the SAP application and its underlying HANA database using privileged/administrative access rights, for which the audit trail was only enabled and stabilised from March 18, 2025. The Company/Group and auditors state no instance of tampering was found where the feature was enabled, and prior-year audit trails were preserved to the extent they were enabled and recorded.",
+      "evidence_ids": [
+        "agel-fy25:p336:prose0",
+        "agel-fy25:p132:prose1"
+      ],
+      "citations": [
+        "[agel-fy25 p.132]",
+        "[agel-fy25 p.336]"
+      ]
+    },
+    {
+      "text": "On contingent liabilities, only generic accounting-policy language is available: contingent liabilities may arise from litigation, taxation and other claims against the Group and are disclosed where management assesses the outcome as uncertain or not reliably quantifiable, unless the likelihood of an adverse outcome is remote; contingent assets are disclosed but not recognised where an inflow is probable. No contingent-liability amounts are quantified in the excerpts and none are linked to an Emphasis of Matter or KAM.",
+      "evidence_ids": [
+        "agel-fy25:p182:prose2",
+        "agel-fy25:p182:prose3"
+      ],
+      "citations": [
+        "[agel-fy25 p.182]"
+      ]
+    },
+    {
+      "text": "On related parties, only generic disclosure language is available: year-end outstanding balances with related parties are unsecured, transactions are stated to be on arm's-length terms, and transactions exceeding 10% of total related-party transactions for each type are separately disclosed. No specific counterparties or amounts are identified, and no related-party exposure is connected to an Emphasis of Matter or KAM in the excerpts.",
+      "evidence_ids": [
+        "agel-fy25:p302:prose2"
+      ],
+      "citations": [
+        "[agel-fy25 p.302]"
+      ]
+    },
+    {
+      "text": "A CARO-type paragraph records that the auditor gives no assurance as to the Company's future viability and no guarantee that liabilities falling due within one year of the balance sheet date will be discharged as they fall due. The same paragraph confirms there are no unspent CSR amounts for other-than-ongoing projects requiring transfer to a Schedule VII fund and no unspent amounts for ongoing projects requiring transfer to a special account under Section 135(6), as disclosed in the Company's Note 44.",
+      "evidence_ids": [
+        "agel-fy25:p10:prose2"
+      ],
+      "citations": [
+        "[agel-fy25 p.10]"
+      ]
+    }
+  ],
+  "by_specialist": [
+    {
+      "specialist": "compliance",
+      "claims": [
+        {
+          "text": "The Company's/Group's auditor's report notes that the audit-trail (edit log) feature in the accounting software operated throughout the year for all relevant transactions, except that for certain direct changes made to the SAP application and its underlying HANA database using privileged/administrative access rights, the audit-trail feature was only enabled and stabilized starting March 18, 2025; no instance of tampering was found where the feature was enabled, and prior-year audit trails were preserved to the extent they were enabled and recorded.",
+          "evidence_ids": [
+            "agel-fy25:p336:prose0",
+            "agel-fy25:p132:prose1"
+          ],
+          "citations": [
+            "[agel-fy25 p.132]",
+            "[agel-fy25 p.336]"
+          ]
+        },
+        {
+          "text": "In the auditor's report on the consolidated financial statements, an 'Other Matters' paragraph states that the auditor did not audit the financial statements of 53 subsidiaries, whose pre-consolidation-adjustment financials included total assets of \\u20b962,926 crore, total revenues of \\u20b93,940 crore, and net cash inflows of \\u20b9260 crore for the year ended March 31, 2025; the report also references that certain matters were determined to be key audit matters for the FY2025 audit, though the specific matters are not detailed in the excerpt.",
+          "evidence_ids": [
+            "agel-fy25:p142:prose2"
+          ],
+          "citations": [
+            "[agel-fy25 p.142]"
+          ]
+        },
+        {
+          "text": "The Company's accounting policy (as disclosed in the notes) states that contingent liabilities may arise from litigation, taxation and other claims against the Group, and are disclosed where management assesses the outcome as uncertain or not reliably quantifiable, unless the likelihood of an adverse outcome is remote; contingent assets are only disclosed, not recognized, when an inflow of economic benefit is probable.",
+          "evidence_ids": [
+            "agel-fy25:p182:prose2",
+            "agel-fy25:p182:prose3"
+          ],
+          "citations": [
+            "[agel-fy25 p.182]"
+          ]
+        },
+        {
+          "text": "The Company states that outstanding balances with related parties at year end are unsecured and that related-party transactions are conducted on arm's-length terms; transactions exceeding 10% of total related-party transactions for each type are separately disclosed.",
+          "evidence_ids": [
+            "agel-fy25:p302:prose2"
+          ],
+          "citations": [
+            "[agel-fy25 p.302]"
+          ]
+        },
+        {
+          "text": "In a CARO-type paragraph, the auditor states there is no assurance regarding future viability of the Company and no guarantee that liabilities falling due within one year of the balance sheet date will be discharged as they fall due; the auditor also confirms there are no unspent CSR amounts (for other-than-ongoing projects) requiring transfer to a Schedule VII fund, and no unspent amounts for ongoing projects requiring transfer to a special account under Section 135(6) of the Companies Act, matters disclosed in the Company's Note 44.",
+          "evidence_ids": [
+            "agel-fy25:p10:prose2"
+          ],
+          "citations": [
+            "[agel-fy25 p.10]"
+          ]
+        }
+      ],
+      "insufficient_evidence": true,
+      "note": "The excerpts do not identify the specific content of AGEL's FY25 Emphasis of Matter paragraph or enumerate the Key Audit Matters themselves (e.g., their subject matter, such as revenue recognition, impairment, or litigation). One excerpt (p142) references that 'these matters...are therefore the key audit matters' and 'we describe these matters in our auditor's report,' but the actual list/description of KAMs is not present in the provided material. Similarly, no excerpt quantifies specific contingent-liability amounts or names specific related-party exposures tied to an Emphasis of Matter or KAM. What is available covers: (1) an auditor disclosure regarding the audit-trail/edit-log feature in the accounting software, which was not enabled for certain direct SAP/HANA administrative-access changes until March 18, 2025, though the Company/Group and its auditors state no tampering was found for years/periods when it was enabled; (2) an 'Other Matters' paragraph in the auditor's report on the consolidated financials noting that 53 subsidiaries were not audited by the principal auditor, with those subsidiaries' unaudited financials contributing specified total assets, revenues and net cash inflows; (3) generic accounting-policy language on contingent liabilities (arising from litigation, taxation, and other claims), stating such items are disclosed when outcome is uncertain and not reliably quantifiable, unless remote; (4) generic related-party disclosure language stating that outstanding balances with related parties are unsecured and transactions are on arm's-length terms; and (5) a CARO-type auditor statement (para xx) regarding no unspent CSR amounts requiring transfer under Section 135. These do not, by themselves, establish what AGEL's FY25 auditor flagged as Emphasis of Matter or as Key Audit Matters, nor do they connect specific related-party or contingent-liability figures to those flagged matters.",
+      "dropped_claims": []
+    }
+  ],
+  "watch_items": [
+    "Obtain the full Key Audit Matters section and any Emphasis of Matter paragraph from the FY25 standalone and consolidated auditor's reports to establish the actual flagged matters.",
+    "Retrieve the contingent liabilities and commitments note to quantify litigation, taxation and other claims exposures, which the excerpts describe only in policy terms.",
+    "Retrieve the full related-party transactions note (including the items exceeding the 10% separate-disclosure threshold) to size counterparty-specific exposures and outstanding unsecured balances.",
+    "Assess materiality of the 53 unaudited subsidiaries (Rs 62,926 crore total assets; Rs 3,940 crore revenues) relative to consolidated totals, and identify the component auditors relied upon.",
+    "Track remediation and coverage of the SAP/HANA privileged-access audit trail gap for the period prior to March 18, 2025, including any management or auditor conclusions on the unlogged window.",
+    "Review Note 44 and the balance of the CARO report for any further qualifications not captured in the excerpts."
+  ],
+  "limitations": [
+    "The compliance specialist returned an explicit INSUFFICIENT EVIDENCE conclusion: the excerpts neither state the Emphasis of Matter content nor enumerate the Key Audit Matters.",
+    "No contingent-liability amounts and no named related-party exposures appear in the excerpts; only generic policy and disclosure language is available, so no linkage to flagged audit matters can be established.",
+    "It is unclear from the excerpts whether an Emphasis of Matter paragraph exists at all in the FY25 report; the only paragraph of that family identified is an 'Other Matters' paragraph.",
+    "Some excerpts (e.g., p336, p132, p10) do not clearly distinguish standalone from consolidated reporting, so entity-level attribution of the audit-trail and CARO statements is not fully resolved.",
+    "No specialist disagreements were reported; only a single specialist contributed, so findings are unverified by a second source.",
+    "Compliance and disclosure: The excerpts do not identify the specific content of AGEL's FY25 Emphasis of Matter paragraph or enumerate the Key Audit Matters themselves (e.g., their subject matter, such as revenue recognition, impairment, or litigation). One excerpt (p142) references that 'these matters...are therefore the key audit matters' and 'we describe these matters in our auditor's report,' but the actual list/description of KAMs is not present in the provided material. Similarly, no excerpt quantifies specific contingent-liability amounts or names specific related-party exposures tied to an Emphasis of Matter or KAM. What is available covers: (1) an auditor disclosure regarding the audit-trail/edit-log feature in the accounting software, which was not enabled for certain direct SAP/HANA administrative-access changes until March 18, 2025, though the Company/Group and its auditors state no tampering was found for years/periods when it was enabled; (2) an 'Other Matters' paragraph in the auditor's report on the consolidated financials noting that 53 subsidiaries were not audited by the principal auditor, with those subsidiaries' unaudited financials contributing specified total assets, revenues and net cash inflows; (3) generic accounting-policy language on contingent liabilities (arising from litigation, taxation, and other claims), stating such items are disclosed when outcome is uncertain and not reliably quantifiable, unless remote; (4) generic related-party disclosure language stating that outstanding balances with related parties are unsecured and transactions are on arm's-length terms; and (5) a CARO-type auditor statement (para xx) regarding no unspent CSR amounts requiring transfer under Section 135. These do not, by themselves, establish what AGEL's FY25 auditor flagged as Emphasis of Matter or as Key Audit Matters, nor do they connect specific related-party or contingent-liability figures to those flagged matters.",
+    "Retrieval was restricted to agel-fy25 because the question names that issuer; other corpus documents were not searched.",
+    "Retrieval stopped on iteration ceiling rather than on sufficient evidence, so the note may rest on an incomplete search."
+  ],
+  "contradictions": [],
+  "routing": {
+    "selected": [
+      "compliance"
+    ],
+    "reasons": {
+      "credit": "The question focuses on auditor findings, related-party transactions, and contingent liabilities rather than leverage, coverage, liquidity, or debt profile metrics.",
+      "esg": "ESG and climate disclosures are not relevant to auditor emphasis of matter, key audit matters, or related-party and contingent-liability exposures.",
+      "compliance": "This question directly addresses auditor opinion components (Emphasis of Matter and Key Audit Matters), related-party transactions, and contingent liabilities\u2014all core compliance and disclosure matters.",
+      "peer": "Peer comparison is unnecessary when analyzing a single issuer's specific auditor findings and liability disclosures."
+    },
+    "truncated": []
+  },
+  "trace": {
+    "question": "What does AGEL's FY25 auditor's report flag as Emphasis of Matter and Key Audit Matters, and what related-party and contingent-liability exposures accompany them?",
+    "plan": [
+      "AGEL FY25 auditor's report Emphasis of Matter",
+      "AGEL FY25 Key Audit Matters",
+      "AGEL FY25 related party transactions and balances",
+      "AGEL FY25 contingent liabilities",
+      "AGEL FY25 auditor's report Key Audit Matters detailed description",
+      "AGEL FY25 Emphasis of Matter auditor report",
+      "AGEL FY25 contingent liabilities note disclosure",
+      "AGEL FY25 auditor opinion auditor's report independent auditor",
+      "AGEL FY25 independent auditor's report Emphasis of Matter section",
+      "AGEL FY25 independent auditor's report Key Audit Matters KAM full text",
+      "AGEL auditor report management fraud litigation contingent",
+      "AGEL FY25 audit report areas of significant audit judgment accounting estimates",
+      "AGEL FY25 independent auditor's report full text Emphasis of Matter KAM",
+      "AGEL FY25 auditor's report page 1 introduction key audit matters",
+      "AGEL FY25 contingent liabilities note 28 29 30 disclosure amounts",
+      "AGEL FY25 related party transactions note 38 39 listing transactions amounts"
+    ],
+    "plan_reasoning": "The analyst's question has four distinct components: (1) identifying Emphasis of Matter items in the auditor's report, (2) identifying Key Audit Matters in the auditor's report, (3) understanding related-party transactions and exposures, and (4) identifying contingent liabilities. Each requires targeted searches of the audit report and financial statement notes to gather the complete picture of audit concerns and potential exposures.",
+    "iterations": [
+      {
+        "index": 1,
+        "queries": [
+          "AGEL FY25 auditor's report Emphasis of Matter",
+          "AGEL FY25 Key Audit Matters",
+          "AGEL FY25 related party transactions and balances",
+          "AGEL FY25 contingent liabilities"
+        ],
+        "hit_ids": [
+          "agel-fy25:p132:prose2",
+          "agel-fy25:p136:prose3",
+          "agel-fy25:p136:prose4",
+          "agel-fy25:p138:prose0",
+          "agel-fy25:p142:prose1",
+          "agel-fy25:p143:prose0",
+          "agel-fy25:p143:prose4",
+          "agel-fy25:p143:prose5",
+          "agel-fy25:p145:prose3",
+          "agel-fy25:p182:prose2",
+          "agel-fy25:p182:prose3",
+          "agel-fy25:p1:prose3",
+          "agel-fy25:p214:prose1",
+          "agel-fy25:p229:prose0",
+          "agel-fy25:p229:prose1",
+          "agel-fy25:p242:prose1",
+          "agel-fy25:p242:table0",
+          "agel-fy25:p27:prose1",
+          "agel-fy25:p302:prose2",
+          "agel-fy25:p334:prose2",
+          "agel-fy25:p350:prose3",
+          "agel-fy25:p358:prose0",
+          "agel-fy25:p35:prose1",
+          "agel-fy25:p360:prose4",
+          "agel-fy25:p5:prose0",
+          "agel-fy25:p5:prose1",
+          "agel-fy25:p61:prose0",
+          "agel-fy25:p6:prose3",
+          "agel-fy25:p71:prose2",
+          "agel-fy25:p97:prose1"
+        ],
+        "new_hits": 30,
+        "sufficient": false,
+        "reason": "The retrieved excerpts contain general accounting policy disclosures about related parties and contingent liabilities, and references to Key Audit Matters being communicated, but they do not actually specify what the FY25 auditor's report flags as Emphasis of Matter items or the specific Key Audit Matters themselves. The excerpts show boilerplate language about how key audit matters are determined but not their actual content. Similarly, while contingent liability accounting policies and some provisions are disclosed, there are no specific contingent liabilities tied to the auditor's flagged matters.",
+        "missing": [
+          "Specific Emphasis of Matter items flagged in the FY25 auditor's report",
+          "Specific Key Audit Matters identified in the FY25 auditor's report (actual content, not just methodology)",
+          "Description of how related-party exposures connect to the flagged audit matters",
+          "Description of how contingent-liability exposures connect to the flagged audit matters",
+          "Contingent liabilities disclosure note listing specific items and amounts"
+        ],
+        "next_queries": [
+          "AGEL FY25 auditor's report Key Audit Matters detailed description",
+          "AGEL FY25 Emphasis of Matter auditor report",
+          "AGEL FY25 contingent liabilities note disclosure",
+          "AGEL FY25 auditor opinion auditor's report independent auditor"
+        ]
+      },
+      {
+        "index": 2,
+        "queries": [
+          "AGEL FY25 auditor's report Key Audit Matters detailed description",
+          "AGEL FY25 Emphasis of Matter auditor report",
+          "AGEL FY25 contingent liabilities note disclosure",
+          "AGEL FY25 auditor opinion auditor's report independent auditor"
+        ],
+        "hit_ids": [
+          "agel-fy25:p10:prose2",
+          "agel-fy25:p11:prose2",
+          "agel-fy25:p132:prose2",
+          "agel-fy25:p134:prose1",
+          "agel-fy25:p136:prose3",
+          "agel-fy25:p136:prose4",
+          "agel-fy25:p138:prose0",
+          "agel-fy25:p142:prose0",
+          "agel-fy25:p142:prose1",
+          "agel-fy25:p142:prose4",
+          "agel-fy25:p143:prose0",
+          "agel-fy25:p143:prose4",
+          "agel-fy25:p143:prose5",
+          "agel-fy25:p145:prose3",
+          "agel-fy25:p182:prose2",
+          "agel-fy25:p182:prose3",
+          "agel-fy25:p1:prose3",
+          "agel-fy25:p214:prose1",
+          "agel-fy25:p229:prose0",
+          "agel-fy25:p229:prose1",
+          "agel-fy25:p22:prose0",
+          "agel-fy25:p22:prose1",
+          "agel-fy25:p242:prose1",
+          "agel-fy25:p242:table0",
+          "agel-fy25:p27:prose1",
+          "agel-fy25:p302:prose2",
+          "agel-fy25:p334:prose2",
+          "agel-fy25:p350:prose3",
+          "agel-fy25:p358:prose0",
+          "agel-fy25:p35:prose1",
+          "agel-fy25:p360:prose4",
+          "agel-fy25:p5:prose0",
+          "agel-fy25:p5:prose1",
+          "agel-fy25:p61:prose0",
+          "agel-fy25:p6:prose3",
+          "agel-fy25:p71:prose2",
+          "agel-fy25:p83:prose1",
+          "agel-fy25:p97:prose1",
+          "agel-fy25:p9:prose3"
+        ],
+        "new_hits": 9,
+        "sufficient": false,
+        "reason": "The retrieved excerpts contain general accounting policy disclosures about contingent liabilities and related party transactions, as well as specific balances, but do not include the auditor's report section flagging Emphasis of Matter (EOM) or Key Audit Matters (KAM). The excerpts show audit report language on internal controls and management representations, but not the actual EOM or KAM sections that would connect specific audit concerns to related-party and contingent-liability exposures.",
+        "missing": [
+          "FY25 Auditor's Report Emphasis of Matter section with specific matters flagged",
+          "FY25 Auditor's Report Key Audit Matters section with detailed descriptions and audit responses",
+          "Specific connection between auditor-flagged matters and related-party transaction risks",
+          "Specific connection between auditor-flagged matters and contingent-liability exposures"
+        ],
+        "next_queries": [
+          "AGEL FY25 independent auditor's report Emphasis of Matter section",
+          "AGEL FY25 independent auditor's report Key Audit Matters KAM full text",
+          "AGEL auditor report management fraud litigation contingent",
+          "AGEL FY25 audit report areas of significant audit judgment accounting estimates"
+        ]
+      },
+      {
+        "index": 3,
+        "queries": [
+          "AGEL FY25 independent auditor's report Emphasis of Matter section",
+          "AGEL FY25 independent auditor's report Key Audit Matters KAM full text",
+          "AGEL auditor report management fraud litigation contingent",
+          "AGEL FY25 audit report areas of significant audit judgment accounting estimates"
+        ],
+        "hit_ids": [
+          "agel-fy25:p10:prose2",
+          "agel-fy25:p11:prose1",
+          "agel-fy25:p11:prose2",
+          "agel-fy25:p132:prose1",
+          "agel-fy25:p132:prose2",
+          "agel-fy25:p134:prose1",
+          "agel-fy25:p136:prose3",
+          "agel-fy25:p136:prose4",
+          "agel-fy25:p138:prose0",
+          "agel-fy25:p141:prose4",
+          "agel-fy25:p142:prose0",
+          "agel-fy25:p142:prose1",
+          "agel-fy25:p142:prose2",
+          "agel-fy25:p142:prose3",
+          "agel-fy25:p142:prose4",
+          "agel-fy25:p143:prose0",
+          "agel-fy25:p143:prose4",
+          "agel-fy25:p143:prose5",
+          "agel-fy25:p145:prose3",
+          "agel-fy25:p182:prose2",
+          "agel-fy25:p182:prose3",
+          "agel-fy25:p1:prose3",
+          "agel-fy25:p214:prose1",
+          "agel-fy25:p229:prose0",
+          "agel-fy25:p229:prose1",
+          "agel-fy25:p22:prose0",
+          "agel-fy25:p22:prose1",
+          "agel-fy25:p242:prose1",
+          "agel-fy25:p242:table0",
+          "agel-fy25:p27:prose1",
+          "agel-fy25:p302:prose2",
+          "agel-fy25:p334:prose2",
+          "agel-fy25:p336:prose0",
+          "agel-fy25:p350:prose3",
+          "agel-fy25:p358:prose0",
+          "agel-fy25:p35:prose1",
+          "agel-fy25:p360:prose4",
+          "agel-fy25:p4:prose2",
+          "agel-fy25:p4:prose3",
+          "agel-fy25:p5:prose0",
+          "agel-fy25:p5:prose1",
+          "agel-fy25:p5:prose3",
+          "agel-fy25:p61:prose0",
+          "agel-fy25:p6:prose3",
+          "agel-fy25:p71:prose2",
+          "agel-fy25:p83:prose1",
+          "agel-fy25:p97:prose1",
+          "agel-fy25:p9:prose3"
+        ],
+        "new_hits": 9,
+        "sufficient": false,
+        "reason": "The retrieved excerpts contain general accounting policy disclosures about contingent liabilities and provisions, as well as related-party transaction disclosure standards, but do not include the actual auditor's report sections flagging specific Emphasis of Matter items or Key Audit Matters, nor do they identify which contingent liabilities or related-party exposures are explicitly connected to those audit concerns.",
+        "missing": [
+          "The auditor's report section explicitly titled 'Emphasis of Matter' with specific items flagged",
+          "The auditor's report section explicitly titled 'Key Audit Matters' with detailed descriptions of each KAM",
+          "Specific contingent liabilities disclosed in the notes that relate to or accompany the flagged Emphasis of Matter or KAM items",
+          "Specific related-party transactions or balances that relate to or accompany the flagged audit matters"
+        ],
+        "next_queries": [
+          "AGEL FY25 independent auditor's report full text Emphasis of Matter KAM",
+          "AGEL FY25 auditor's report page 1 introduction key audit matters",
+          "AGEL FY25 contingent liabilities note 28 29 30 disclosure amounts",
+          "AGEL FY25 related party transactions note 38 39 listing transactions amounts"
+        ]
+      },
+      {
+        "index": 4,
+        "queries": [
+          "AGEL FY25 independent auditor's report full text Emphasis of Matter KAM",
+          "AGEL FY25 auditor's report page 1 introduction key audit matters",
+          "AGEL FY25 contingent liabilities note 28 29 30 disclosure amounts",
+          "AGEL FY25 related party transactions note 38 39 listing transactions amounts"
+        ],
+        "hit_ids": [
+          "agel-fy25:p10:prose2",
+          "agel-fy25:p11:prose1",
+          "agel-fy25:p11:prose2",
+          "agel-fy25:p132:prose1",
+          "agel-fy25:p132:prose2",
+          "agel-fy25:p134:prose1",
+          "agel-fy25:p136:prose2",
+          "agel-fy25:p136:prose3",
+          "agel-fy25:p136:prose4",
+          "agel-fy25:p138:prose0",
+          "agel-fy25:p141:prose4",
+          "agel-fy25:p142:prose0",
+          "agel-fy25:p142:prose1",
+          "agel-fy25:p142:prose2",
+          "agel-fy25:p142:prose3",
+          "agel-fy25:p142:prose4",
+          "agel-fy25:p143:prose0",
+          "agel-fy25:p143:prose4",
+          "agel-fy25:p143:prose5",
+          "agel-fy25:p145:prose3",
+          "agel-fy25:p182:prose2",
+          "agel-fy25:p182:prose3",
+          "agel-fy25:p1:prose1",
+          "agel-fy25:p1:prose3",
+          "agel-fy25:p214:prose1",
+          "agel-fy25:p229:prose0",
+          "agel-fy25:p229:prose1",
+          "agel-fy25:p22:prose0",
+          "agel-fy25:p22:prose1",
+          "agel-fy25:p233:prose5",
+          "agel-fy25:p233:table0",
+          "agel-fy25:p242:prose1",
+          "agel-fy25:p242:table0",
+          "agel-fy25:p27:prose1",
+          "agel-fy25:p302:prose2",
+          "agel-fy25:p334:prose2",
+          "agel-fy25:p336:prose0",
+          "agel-fy25:p350:prose3",
+          "agel-fy25:p358:prose0",
+          "agel-fy25:p35:prose1",
+          "agel-fy25:p360:prose4",
+          "agel-fy25:p361:prose1",
+          "agel-fy25:p4:prose2",
+          "agel-fy25:p4:prose3",
+          "agel-fy25:p56:table2",
+          "agel-fy25:p5:prose0",
+          "agel-fy25:p5:prose1",
+          "agel-fy25:p5:prose3",
+          "agel-fy25:p61:prose0",
+          "agel-fy25:p62:prose0",
+          "agel-fy25:p6:prose3",
+          "agel-fy25:p71:prose2",
+          "agel-fy25:p71:prose3",
+          "agel-fy25:p83:prose1",
+          "agel-fy25:p97:prose1",
+          "agel-fy25:p9:prose3"
+        ],
+        "new_hits": 8,
+        "sufficient": null,
+        "reason": "",
+        "missing": [],
+        "next_queries": []
+      }
+    ],
+    "termination": "iteration_ceiling",
+    "iteration_count": 4,
+    "revised_after_reflection": true,
+    "started_at": "2026-09-17T17:59:35+00:00",
+    "budget": {
+      "ceiling_usd": 0.25,
+      "spent_usd": 0.01952,
+      "calls": 4,
+      "by_call": [
+        {
+          "model": "claude-haiku-4-5",
+          "purpose": "plan",
+          "input_tokens": 329,
+          "output_tokens": 160,
+          "cost_usd": 0.001129
+        },
+        {
+          "model": "claude-haiku-4-5",
+          "purpose": "reflect",
+          "input_tokens": 4277,
+          "output_tokens": 323,
+          "cost_usd": 0.005892
+        },
+        {
+          "model": "claude-haiku-4-5",
+          "purpose": "reflect",
+          "input_tokens": 4874,
+          "output_tokens": 279,
+          "cost_usd": 0.006269
+        },
+        {
+          "model": "claude-haiku-4-5",
+          "purpose": "reflect",
+          "input_tokens": 4695,
+          "output_tokens": 307,
+          "cost_usd": 0.00623
+        }
+      ]
+    }
+  },
+  "dropped_claims": [],
+  "citations": [
+    "[agel-fy25 p.10]",
+    "[agel-fy25 p.132]",
+    "[agel-fy25 p.142]",
+    "[agel-fy25 p.182]",
+    "[agel-fy25 p.302]",
+    "[agel-fy25 p.336]"
+  ],
+  "budget": {
+    "ceiling_usd": 0.25,
+    "spent_usd": 0.11085,
+    "calls": 7,
+    "by_call": [
+      {
+        "model": "claude-haiku-4-5",
+        "purpose": "plan",
+        "input_tokens": 329,
+        "output_tokens": 160,
+        "cost_usd": 0.001129
+      },
+      {
+        "model": "claude-haiku-4-5",
+        "purpose": "reflect",
+        "input_tokens": 4277,
+        "output_tokens": 323,
+        "cost_usd": 0.005892
+      },
+      {
+        "model": "claude-haiku-4-5",
+        "purpose": "reflect",
+        "input_tokens": 4874,
+        "output_tokens": 279,
+        "cost_usd": 0.006269
+      },
+      {
+        "model": "claude-haiku-4-5",
+        "purpose": "reflect",
+        "input_tokens": 4695,
+        "output_tokens": 307,
+        "cost_usd": 0.00623
+      },
+      {
+        "model": "claude-haiku-4-5",
+        "purpose": "route",
+        "input_tokens": 592,
+        "output_tokens": 155,
+        "cost_usd": 0.001367
+      },
+      {
+        "model": "claude-sonnet-5",
+        "purpose": "specialist:compliance",
+        "input_tokens": 4824,
+        "output_tokens": 2109,
+        "cost_usd": 0.030738
+      },
+      {
+        "model": "claude-opus-5",
+        "purpose": "synthesis",
+        "input_tokens": 2170,
+        "output_tokens": 1935,
+        "cost_usd": 0.059225
+      }
+    ]
+  }
+}

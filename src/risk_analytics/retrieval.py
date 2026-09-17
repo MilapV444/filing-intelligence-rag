@@ -30,6 +30,13 @@ ITERATION_CEILING = "iteration_ceiling"
 SPEND_CEILING = "spend_ceiling"
 NO_PROGRESS = "no_progress"
 
+# The Messages API rejects maxItems in a structured-output schema
+# (KNOWLEDGE-2137310e); minItems and enum are accepted. Upper bounds are asked
+# for in the prompt and enforced in code below, the same arrangement FR-13 uses
+# for the specialist cap.
+MAX_SUB_QUERIES = 5
+MAX_NEXT_QUERIES = 4
+
 PLAN_SCHEMA = {
     "type": "object",
     "properties": {
@@ -37,7 +44,6 @@ PLAN_SCHEMA = {
             "type": "array",
             "items": {"type": "string"},
             "minItems": 1,
-            "maxItems": 5,
         },
         "reasoning": {"type": "string"},
     },
@@ -51,7 +57,7 @@ REFLECT_SCHEMA = {
         "sufficient": {"type": "boolean"},
         "reason": {"type": "string"},
         "missing": {"type": "array", "items": {"type": "string"}},
-        "next_queries": {"type": "array", "items": {"type": "string"}, "maxItems": 4},
+        "next_queries": {"type": "array", "items": {"type": "string"}},
     },
     "required": ["sufficient", "reason", "missing", "next_queries"],
     "additionalProperties": False,
@@ -157,9 +163,21 @@ class RetrievalResult:
         return sorted({h.citation() for h in self.evidence})
 
 
-def _render(hits: list[indexing.Hit], limit: int = 12) -> str:
+def rank(hits: list[indexing.Hit], limit: int | None = None) -> list[indexing.Hit]:
+    """Best-matching first, optionally truncated.
+
+    Insertion order is arrival order, which is not relevance. Rendering the first
+    N of an accumulating set showed reflection the same earliest chunks on every
+    iteration while newly retrieved evidence was never seen at all, so the loop
+    could not converge and burned its full iteration budget.
+    """
+    ordered = sorted(hits, key=lambda h: h.distance)
+    return ordered[:limit] if limit else ordered
+
+
+def _render(hits: list[indexing.Hit], limit: int = config.REFLECTION_EVIDENCE_CHUNKS) -> str:
     parts = []
-    for hit in hits[:limit]:
+    for hit in rank(hits, limit):
         parts.append(f"{hit.citation()} ({hit.kind})\n{hit.text}")
     return "\n\n---\n\n".join(parts)
 
@@ -173,7 +191,7 @@ def plan(question: str, model: llm.LLM) -> tuple[list[str], str, llm.Usage]:
         purpose="plan",
     )
     queries = [q.strip() for q in data.get("sub_queries", []) if q.strip()]
-    return queries or [question], data.get("reasoning", ""), usage
+    return queries[:MAX_SUB_QUERIES] or [question], data.get("reasoning", ""), usage
 
 
 def reflect(question: str, hits: list[indexing.Hit], tried: list[str], model: llm.LLM):
@@ -200,6 +218,7 @@ def answer(
     max_iterations: int = config.MAX_RETRIEVAL_ITERATIONS,
     where: dict | None = None,
     index_dir=None,
+    doc_ids: list[str] | None = None,
 ) -> RetrievalResult:
     """Run the loop until one of the three stop conditions fires."""
     model = model or llm.LLM()
@@ -221,7 +240,9 @@ def answer(
     for index in range(1, max_iterations + 1):
         before = len(seen)
         for query in queries:
-            for hit in indexing.search(query, k=k, where=where, index_dir=index_dir):
+            for hit in indexing.search(
+                query, k=k, where=where, index_dir=index_dir, doc_ids=doc_ids
+            ):
                 seen.setdefault(hit.chunk_id, hit)
 
         iteration = Iteration(
@@ -246,7 +267,9 @@ def answer(
         iteration.sufficient = bool(verdict.get("sufficient"))
         iteration.reason = verdict.get("reason", "")
         iteration.missing = list(verdict.get("missing", []))
-        iteration.next_queries = [q.strip() for q in verdict.get("next_queries", []) if q.strip()]
+        iteration.next_queries = [
+            q.strip() for q in verdict.get("next_queries", []) if q.strip()
+        ][:MAX_NEXT_QUERIES]
 
         if iteration.sufficient:
             termination = SUFFICIENT

@@ -1,0 +1,30 @@
+{
+  "task": "T8A",
+  "gate": "note",
+  "kind": "command",
+  "attempt": "24e04c51-58f6-4337-9f6b-52ec82957fd1",
+  "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_note.py -q",
+  "started_at": "2026-09-17T16:07:54.616Z",
+  "observed_at": "2026-09-17T16:09:03.568Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "....................                                                     [100%]\r\n20 passed in 61.53s (0:01:01)\r\n",
+  "stderr": "",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": "ed1bf767166e1e558e2a2f96c3276f75b658624a",
+    "dirty": true
+  },
+  "source_hash": "f1e84eab1ad6fe543327109bd63e64c9bca6a80a2440f3c8742032a233d578d4",
+  "before_hash": "f1e84eab1ad6fe543327109bd63e64c9bca6a80a2440f3c8742032a233d578d4",
+  "config_hash": "2d7ffcdb20df25550239d1b7956b695af44da7d0474997783e783e5769a2edb4",
+  "environment": {
+    "node": "v22.23.0",
+    "platform": "win32",
+    "arch": "x64",
+    "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+    "variables": {}
+  },
+  "hash": "88b59863f3e3f617e9ee7d7c9d1a41959e30e90cab462d712c2fe3c8b74fb1bb"
+}

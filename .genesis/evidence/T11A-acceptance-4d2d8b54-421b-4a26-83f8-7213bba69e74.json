@@ -1,0 +1,30 @@
+{
+  "task": "T11A",
+  "gate": "acceptance",
+  "kind": "command",
+  "attempt": "4d2d8b54-421b-4a26-83f8-7213bba69e74",
+  "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_acceptance.py -q",
+  "started_at": "2026-09-17T18:09:51.214Z",
+  "observed_at": "2026-09-17T18:09:55.187Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": "....................                                                     [100%]\r\n20 passed in 1.52s\r\n",
+  "stderr": "",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": "ed1bf767166e1e558e2a2f96c3276f75b658624a",
+    "dirty": true
+  },
+  "source_hash": "d07ee681afba7a06b081b2aa92f4ee0d73ec0ec263664589999d6e7097bb240a",
+  "before_hash": "d07ee681afba7a06b081b2aa92f4ee0d73ec0ec263664589999d6e7097bb240a",
+  "config_hash": "1f403585b73804a43a76f3959f97a9913b1dd20ab5f13fb79c111636ef1f76aa",
+  "environment": {
+    "node": "v22.23.0",
+    "platform": "win32",
+    "arch": "x64",
+    "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+    "variables": {}
+  },
+  "hash": "618fabde21ffb7188fd063944416204e58e5e0fa71a12bab1028c258fdc9c996"
+}

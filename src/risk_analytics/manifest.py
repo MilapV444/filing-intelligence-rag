@@ -9,6 +9,7 @@ manifest that omits or malforms one fails to load rather than loading with a gap
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
@@ -110,6 +111,53 @@ def by_id(documents: list[Document] | None = None) -> dict[str, Document]:
     origin, which is the thing NFR-3 exists to prevent.
     """
     return {d.doc_id: d for d in (documents if documents is not None else load())}
+
+
+# "Adani Ports and Special Economic Zone" contributes "and" as a token unique to
+# that issuer, so any question containing the word "and" matched both documents
+# and scoping silently did nothing. Four characters keeps every real identifier
+# (agel, fy25, zone, ports) and drops the conjunctions.
+MIN_TOKEN_LENGTH = 4
+
+
+def _tokens(text: str) -> set[str]:
+    return {
+        w for w in re.findall(r"[a-z0-9]+", text.lower()) if len(w) >= MIN_TOKEN_LENGTH
+    }
+
+
+def distinguishing_tokens(documents: list[Document] | None = None) -> dict[str, set[str]]:
+    """Words that identify one corpus document and not the others.
+
+    Tokens shared by every document are dropped, which removes "adani" and
+    "limited" automatically rather than by a hand-maintained stopword list: a
+    word common to the whole corpus cannot disambiguate within it.
+    """
+    documents = documents if documents is not None else load()
+    per_doc = {
+        d.doc_id: _tokens(f"{d.doc_id} {d.issuer} {d.doc_type}") for d in documents
+    }
+    if len(per_doc) < 2:
+        return per_doc
+    shared = set.intersection(*per_doc.values())
+    return {doc_id: tokens - shared for doc_id, tokens in per_doc.items()}
+
+
+def match_documents(question: str, documents: list[Document] | None = None) -> list[str]:
+    """Which corpus documents a question is about, or all of them if unclear.
+
+    A question naming one issuer retrieved from both by default, and chunks from
+    the other issuer crowded the answer out of the top-ranked evidence: 38 of 50
+    chunks in the first live run belonged to the document the question was not
+    about. Scoping is a retrieval-quality fix, not an optimisation.
+    """
+    asked = _tokens(question)
+    matched = [
+        doc_id for doc_id, tokens in distinguishing_tokens(documents).items() if tokens & asked
+    ]
+    # No match, or every document matched: the question is not issuer-specific,
+    # so do not narrow it and risk hiding the answer.
+    return matched if 0 < len(matched) < len(distinguishing_tokens(documents)) else []
 
 
 def missing_files(documents: list[Document], documents_dir: Path | None = None) -> list[str]:

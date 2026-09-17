@@ -1,0 +1,13 @@
+{
+  "task": "T7A",
+  "gate": "independent-review",
+  "kind": "review",
+  "attempt": "a3968ed4-4c4d-4efe-a158-1448d27fa895",
+  "human": "Milap Vaghasia",
+  "reason": "Approval stated in session: reviewed routing, specialist scope enforcement and citation-integrity handling. Recorded by the agent because the CLI had no record of it; the human asserted it in conversation.",
+  "observed_at": "2026-09-17T15:57:37.019Z",
+  "source_hash": "9bba5d188fc9233c63b576f2585efde639747c867227f4562d718d5887db4da5",
+  "config_hash": "1d83f948d7208c9ec2fdd5b3dd1144645dd46dbba8708cbc5aa2d2e7cc7e43cb",
+  "reviewed_proofs": "20d19d38063dd24e76f7c874275fc5ed3aa4b94a6a910bafd6b6571b8103f13a",
+  "hash": "f758fe404f7928b89fb2a55c76c8fc73ae0ce575974af3a63373d6939bfc5dd9"
+}

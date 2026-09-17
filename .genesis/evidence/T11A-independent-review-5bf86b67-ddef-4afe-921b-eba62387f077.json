@@ -1,0 +1,13 @@
+{
+  "task": "T11A",
+  "gate": "independent-review",
+  "kind": "review",
+  "attempt": "5bf86b67-ddef-4afe-921b-eba62387f077",
+  "human": "Milap Vaghasia",
+  "reason": "Reviewed the live golden-question runs, the model retune and the retrieval fixes",
+  "observed_at": "2026-09-17T18:12:44.866Z",
+  "source_hash": "d07ee681afba7a06b081b2aa92f4ee0d73ec0ec263664589999d6e7097bb240a",
+  "config_hash": "1f403585b73804a43a76f3959f97a9913b1dd20ab5f13fb79c111636ef1f76aa",
+  "reviewed_proofs": "5303dc08dfe63051c4eb766219b9785d9337b4585e5ef9c4dc2d78130e4baefa",
+  "hash": "d5be8845253abfd7c0d86c9868fa329b195a8f4649e2130311ec06325f97675f"
+}

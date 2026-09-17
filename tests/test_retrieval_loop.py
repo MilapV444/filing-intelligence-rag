@@ -162,7 +162,8 @@ def test_the_iteration_ceiling_stops_a_loop_that_never_succeeds(index_dir):
 
 
 def test_the_spend_ceiling_stops_the_loop_and_is_recorded(index_dir):
-    """NFR-1. The ceiling has to bite before the money is spent, not after."""
+    """NFR-1. The ceiling prices the call it is about to authorise, so a run with
+    no room for even one call spends nothing rather than overshooting by one."""
     model = fake_llm(
         [plan_reply("first"), reflect_reply(False, "more", next_queries=["second"])],
         ceiling=0.004,
@@ -172,7 +173,78 @@ def test_the_spend_ceiling_stops_the_loop_and_is_recorded(index_dir):
     result = retrieval.answer("q", model, index_dir=index_dir)
 
     assert result.trace.termination == retrieval.SPEND_CEILING
-    assert model.budget.spent_usd > 0
+    assert model.budget.spent_usd <= model.budget.ceiling_usd
+    assert result.evidence, "the run should still return what it could retrieve"
+
+
+def test_spending_stays_within_the_ceiling_at_realistic_token_counts(index_dir):
+    """The first live run finished at $0.4302 against a $0.25 ceiling because the
+    check only looked at money already spent: one Opus call took it from $0.228
+    to $0.43. The ceiling now prices the call before authorising it.
+
+    The guarantee is bounded, not absolute. The projection assumes at most
+    config.ASSUMED_OUTPUT_TOKENS of output; a response longer than that can still
+    overshoot. These token counts are typical of the loop's real haiku calls.
+    """
+    for ceiling in (0.02, 0.1, 0.25):
+        model = fake_llm(
+            [plan_reply("q1"), reflect_reply(False, "more", next_queries=["q2"]),
+             reflect_reply(False, "more", next_queries=["q3"]),
+             reflect_reply(True, "ok")],
+            ceiling=ceiling, input_tokens=4_000, output_tokens=800,
+        )
+        retrieval.answer("q", model, index_dir=index_dir)
+        assert model.budget.spent_usd <= ceiling, (
+            f"ceiling ${ceiling} was breached: spent ${model.budget.spent_usd:.4f}"
+        )
+
+
+def test_the_second_expensive_call_of_the_live_overrun_is_now_refused():
+    """Replays the exact moment the first live run breached its ceiling.
+
+    After the credit specialist the run had spent $0.2283 of $0.25. The old check
+    saw money remaining and authorised a second Opus call of the same size, which
+    finished the run at $0.4302. Pricing the call first refuses it.
+    """
+    # Names Opus explicitly rather than config.SPECIALIST_MODEL: this replays a
+    # specific incident, and the specialist model has since been retuned to
+    # Sonnet precisely because of it. Pinning the historical model keeps the
+    # regression meaningful instead of silently passing on cheaper tokens.
+    incident_model = "claude-opus-5"
+    budget = llm.Budget(ceiling_usd=0.25)
+    budget.record(llm.Usage(config.ROUTER_MODEL, 10_000, 1_400, "reflect"))
+    budget.record(llm.Usage(incident_model, 22_687, 3_912, "specialist:credit"))
+
+    assert budget.spent_usd < budget.ceiling_usd, "the old check would allow another call"
+    assert budget.spent_usd == pytest.approx(0.2283, abs=0.002)
+
+    with pytest.raises(llm.BudgetExceeded, match="projected"):
+        budget.check_projected(
+            incident_model, prompt_chars=79_404, purpose="specialist:compliance"
+        )
+
+
+def test_the_first_specialist_call_is_still_affordable():
+    """The ceiling must refuse what would breach it, not refuse everything
+    expensive. A run that cannot afford its first specialist produces no
+    analysis at all."""
+    budget = llm.Budget(ceiling_usd=0.25)
+    budget.record(llm.Usage(config.ROUTER_MODEL, 10_000, 1_400, "reflect"))
+    budget.check_projected(
+        "claude-opus-5", prompt_chars=79_404, purpose="specialist:credit"
+    )
+
+
+def test_a_projected_call_that_would_breach_is_refused_before_it_runs():
+    budget = llm.Budget(ceiling_usd=0.05)
+    budget.record(llm.Usage(config.ROUTER_MODEL, 1_000, 200, "plan"))
+    with pytest.raises(llm.BudgetExceeded, match="projected"):
+        budget.check_projected(config.SPECIALIST_MODEL, prompt_chars=80_000, purpose="specialist")
+
+
+def test_a_small_call_inside_the_ceiling_is_allowed():
+    budget = llm.Budget(ceiling_usd=0.25)
+    budget.check_projected(config.ROUTER_MODEL, prompt_chars=2_000, purpose="plan")
 
 
 def test_a_reflection_with_no_new_queries_does_not_loop_forever(index_dir):

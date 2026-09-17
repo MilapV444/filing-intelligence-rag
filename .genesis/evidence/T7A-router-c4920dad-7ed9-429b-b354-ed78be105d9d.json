@@ -1,0 +1,30 @@
+{
+  "task": "T7A",
+  "gate": "router",
+  "kind": "command",
+  "attempt": "c4920dad-7ed9-429b-b354-ed78be105d9d",
+  "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_router.py -q",
+  "started_at": "2026-09-17T15:46:43.346Z",
+  "observed_at": "2026-09-17T15:47:48.699Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": ".................                                                        [100%]\r\n17 passed in 58.71s\r\n",
+  "stderr": "",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": "ed1bf767166e1e558e2a2f96c3276f75b658624a",
+    "dirty": true
+  },
+  "source_hash": "9bba5d188fc9233c63b576f2585efde639747c867227f4562d718d5887db4da5",
+  "before_hash": "9bba5d188fc9233c63b576f2585efde639747c867227f4562d718d5887db4da5",
+  "config_hash": "1d83f948d7208c9ec2fdd5b3dd1144645dd46dbba8708cbc5aa2d2e7cc7e43cb",
+  "environment": {
+    "node": "v22.23.0",
+    "platform": "win32",
+    "arch": "x64",
+    "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+    "variables": {}
+  },
+  "hash": "c4c84e47bb7b60386763c8b44d8693d2e813e7561a5e220b26b3dd0d9105a200"
+}

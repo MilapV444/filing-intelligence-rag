@@ -1,0 +1,13 @@
+{
+  "task": "T8A",
+  "gate": "independent-review",
+  "kind": "review",
+  "attempt": "96f11ccc-d226-43d9-892f-ab77d24d0c0f",
+  "human": "Milap Vaghasia",
+  "reason": "Reviewed synthesis, citation integrity, contradiction surfacing and the CLI",
+  "observed_at": "2026-09-17T16:16:01.529Z",
+  "source_hash": "f1e84eab1ad6fe543327109bd63e64c9bca6a80a2440f3c8742032a233d578d4",
+  "config_hash": "2d7ffcdb20df25550239d1b7956b695af44da7d0474997783e783e5769a2edb4",
+  "reviewed_proofs": "ca9a3a589eb588a4125cc5cacd5a7abd80488bc7fb4eb59d094c570bb77dfa39",
+  "hash": "c691798d5bd37b20b46354d121850e1480031d207059db79cb0b875b9531ed0b"
+}

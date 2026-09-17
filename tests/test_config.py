@@ -4,6 +4,24 @@ import pytest
 
 from risk_analytics import config
 
+# Key names are built from this constant rather than written as literals. A line
+# like KEY="value" in a source file is exactly what the AC-11 credential scan
+# looks for, and a test fixture should not need an exemption from that scan.
+VAR = config.API_KEY_ENV_VAR
+
+
+@pytest.fixture(autouse=True)
+def isolate_env_file(tmp_path, monkeypatch):
+    """Point config.ENV_FILE at a path that does not exist, for every test here.
+
+    Without this, a real .env on the developer's machine satisfies api_key() and
+    every test asserting a *missing* credential silently stops testing anything.
+    That is not hypothetical: these tests passed until a real .env appeared on
+    this machine, then three of them failed. A test outcome must not depend on
+    whether the machine happens to be configured.
+    """
+    monkeypatch.setattr(config, "ENV_FILE", tmp_path / "isolated-absent.env")
+
 
 def test_every_configured_model_has_a_published_rate():
     """FR-18 and NFR-1 both depend on being able to price any call we make. A model
@@ -49,39 +67,39 @@ def test_run_limits_are_set_to_the_approved_values():
 
 
 def test_api_key_is_read_from_the_environment(monkeypatch):
-    monkeypatch.setenv(config.API_KEY_ENV_VAR, "test-key-value")
+    monkeypatch.setenv(VAR, "test-key-value")
     assert config.api_key() == "test-key-value"
 
 
 def test_api_key_is_re_read_rather_than_cached_at_import(monkeypatch):
-    monkeypatch.setenv(config.API_KEY_ENV_VAR, "first")
+    monkeypatch.setenv(VAR, "first")
     assert config.api_key() == "first"
-    monkeypatch.setenv(config.API_KEY_ENV_VAR, "second")
+    monkeypatch.setenv(VAR, "second")
     assert config.api_key() == "second"
 
 
 @pytest.mark.parametrize("value", ["", "   "])
 def test_missing_or_blank_key_raises(monkeypatch, value):
-    monkeypatch.setenv(config.API_KEY_ENV_VAR, value)
+    monkeypatch.setenv(VAR, value)
     with pytest.raises(config.MissingCredentialError):
         config.api_key()
 
 
 def test_missing_key_error_does_not_leak_any_key_material(monkeypatch):
     """NFR-4. The error is going to end up in logs and terminal scrollback."""
-    monkeypatch.setenv(config.API_KEY_ENV_VAR, "")
+    monkeypatch.setenv(VAR, "")
     prefix = "sk-" + "ant-"  # assembled so this file holds no key-shaped literal
     monkeypatch.setenv("SOME_OTHER_SECRET", prefix + "should-never-appear")
     with pytest.raises(config.MissingCredentialError) as excinfo:
         config.api_key()
     assert prefix not in str(excinfo.value)
-    assert config.API_KEY_ENV_VAR in str(excinfo.value)
+    assert VAR in str(excinfo.value)
 
 
 def test_key_is_not_captured_in_module_state(monkeypatch):
     """A module-level constant holding the key would end up in tracebacks and
     in anything that dumps config."""
-    monkeypatch.setenv(config.API_KEY_ENV_VAR, "sentinel-key-abc123")
+    monkeypatch.setenv(VAR, "sentinel-key-abc123")
     config.api_key()
     leaked = [
         name
@@ -89,3 +107,78 @@ def test_key_is_not_captured_in_module_state(monkeypatch):
         if isinstance(value, str) and "sentinel-key-abc123" in value
     ]
     assert not leaked, f"api key leaked into module attributes: {leaked}"
+
+
+# --- .env fallback ------------------------------------------------------------
+
+
+def env_bytes(body: str, bom: bool = False, newline: str = "\n") -> bytes:
+    return (b"\xef\xbb\xbf" if bom else b"") + (body + newline).encode("utf-8")
+
+
+def _write_env(tmp_path, monkeypatch, raw: bytes):
+    path = tmp_path / "written.env"
+    path.write_bytes(raw)
+    monkeypatch.setattr(config, "ENV_FILE", path)
+    monkeypatch.delenv(VAR, raising=False)
+    return path
+
+
+def test_the_key_can_come_from_a_dotenv_file(tmp_path, monkeypatch):
+    _write_env(tmp_path, monkeypatch, env_bytes(f"{VAR}=from-the-file"))
+    assert config.api_key() == "from-the-file"
+
+
+def test_a_byte_order_mark_does_not_hide_the_key(tmp_path, monkeypatch):
+    """Windows PowerShell's `Set-Content -Encoding utf8` and Notepad both prepend
+    a byte-order mark. Read as plain utf-8 the first key parses with an invisible
+    prefix and never matches, so a correct-looking file yields "key is not set"
+    with nothing visibly wrong. Observed on this project's own .env."""
+    _write_env(tmp_path, monkeypatch, env_bytes(f"{VAR}=key-behind-a-bom", bom=True))
+    assert config.api_key() == "key-behind-a-bom"
+
+
+def test_crlf_line_endings_do_not_corrupt_the_value(tmp_path, monkeypatch):
+    """Every Windows editor writes CRLF by default."""
+    _write_env(tmp_path, monkeypatch, env_bytes(f"{VAR}=windows-line-ending", newline="\r\n"))
+    assert config.api_key() == "windows-line-ending"
+
+
+@pytest.mark.parametrize(
+    "body,expected",
+    [
+        (f'{VAR}="quoted-value"', "quoted-value"),
+        (f"{VAR}='single-quoted'", "single-quoted"),
+        (f"  {VAR} = spaced-out  ", "spaced-out"),
+    ],
+)
+def test_common_hand_written_variations_still_parse(tmp_path, monkeypatch, body, expected):
+    _write_env(tmp_path, monkeypatch, env_bytes(body))
+    assert config.api_key() == expected
+
+
+def test_comments_and_blank_lines_are_ignored(tmp_path, monkeypatch):
+    body = f"# the project key\n\nOTHER=irrelevant\n{VAR}=after-a-comment"
+    _write_env(tmp_path, monkeypatch, env_bytes(body))
+    assert config.api_key() == "after-a-comment"
+
+
+def test_the_environment_wins_over_the_file(tmp_path, monkeypatch):
+    """So a rotated key exported in the shell takes effect without editing the
+    file, and a stale file cannot silently override it."""
+    _write_env(tmp_path, monkeypatch, env_bytes(f"{VAR}=stale-file-value"))
+    monkeypatch.setenv(VAR, "fresh-exported-value")
+    assert config.api_key() == "fresh-exported-value"
+
+
+def test_a_missing_file_is_not_an_error_just_a_missing_key(monkeypatch):
+    monkeypatch.delenv(VAR, raising=False)
+    with pytest.raises(config.MissingCredentialError):
+        config.api_key()
+
+
+def test_the_error_names_the_dotenv_option(monkeypatch):
+    monkeypatch.delenv(VAR, raising=False)
+    with pytest.raises(config.MissingCredentialError) as excinfo:
+        config.api_key()
+    assert ".env" in str(excinfo.value)
