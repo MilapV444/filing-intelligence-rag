@@ -1,4 +1,4 @@
-# risk_analytics_agent
+# filing-intelligence-rag
 
 A local pipeline that reads public financial filings and produces a cited,
 first-pass credit rationale note.
@@ -67,7 +67,8 @@ Requires **Python 3.11+** and an **Anthropic API key with credits**. API access
 is billed separately from a Claude Pro/Max subscription.
 
 ```bash
-git clone <this repo> && cd risk_analytics_agent
+git clone https://github.com/MilapV444/filing-intelligence-rag.git
+cd filing-intelligence-rag
 
 # Windows line endings will otherwise rewrite every file on checkout and
 # invalidate the project's recorded proof hashes.
@@ -151,7 +152,7 @@ doesn't.
 - **Chart interpretation was cut.** Neither document contains a single chart
   page, so the vision path could be neither exercised nor verified. Chart pages
   are classified and skipped.
-- **No evaluation of answer quality.** The 218 tests cover plumbing, citation
+- **No evaluation of answer quality.** The 242 tests cover plumbing, citation
   integrity and cost — not whether the analysis is any good. That judgement is
   currently a human reading the note beside the PDF.
 - **The contradiction detector is a lexical heuristic**, not a finding. It is
@@ -165,7 +166,7 @@ doesn't.
 ## Development
 
 ```bash
-.venv/Scripts/python.exe -m pytest tests/ -q     # 218 tests, ~100s, no API spend
+.venv/Scripts/python.exe -m pytest tests/ -q     # 242 tests, ~100s, no API spend
 ```
 
 Every test injects a scripted model client, so the suite costs nothing and is
