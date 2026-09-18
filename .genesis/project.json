@@ -9,7 +9,7 @@
     "non_goals": [],
     "trust_boundary": "local repository",
     "created_at": "2026-09-15T15:05:11.365Z",
-    "updated_at": "2026-09-18T16:46:05.225Z"
+    "updated_at": "2026-09-18T17:08:57.391Z"
   },
   "policy": {
     "ponytail": "full",
@@ -34,13 +34,15 @@
     "type": "new-product",
     "started_at": "2026-09-15T15:05:11.368Z",
     "spec_check": {
-      "at": "2026-09-16T17:44:46.540Z",
-      "source_hash": "de8e4815cbdb6e9ad8f5d852537cce17298606217b0a67324cf38ffda8382b2a",
+      "at": "2026-09-18T16:54:35.647Z",
+      "source_hash": "81a9efd31fcc336055db886b60cf15ae0c9724e62c25c7a09cb2ecbc30cd6947",
       "requirements": [
         "AC-1",
         "AC-10",
         "AC-11",
         "AC-12",
+        "AC-13",
+        "AC-14",
         "AC-2",
         "AC-3",
         "AC-4",
@@ -79,14 +81,14 @@
       ]
     },
     "plan_check": {
-      "at": "2026-09-18T16:42:46.235Z",
-      "source_hash": "8cd2be127f7dc539f04b258407bce3dbc48a2fffdf7f580006008228e76722ed"
+      "at": "2026-09-18T16:57:05.463Z",
+      "source_hash": "a5b14dee0095bf690520738e527b47d2e7711d62513c4d2798777fb6a3439b41"
     },
     "plan_approval": {
       "human": "Milap Vaghasia",
-      "reason": "Approval stated in session: reviewed T12A, declared retrospectively for the evidence-balance fix. Recorded by the agent because the CLI had no record of it.",
-      "at": "2026-09-18T16:43:25.654Z",
-      "source_hash": "8cd2be127f7dc539f04b258407bce3dbc48a2fffdf7f580006008228e76722ed"
+      "reason": "Reviewed the corrected README and A/B tasks after a scoping error. Stated in session; the human's own command produced no output because the path given was the bash launcher, which Windows cannot execute.",
+      "at": "2026-09-18T16:58:30.290Z",
+      "source_hash": "a5b14dee0095bf690520738e527b47d2e7711d62513c4d2798777fb6a3439b41"
     }
   },
   "artifacts": [
@@ -100,6 +102,8 @@
         "AC-10",
         "AC-11",
         "AC-12",
+        "AC-13",
+        "AC-14",
         "AC-2",
         "AC-3",
         "AC-4",
@@ -136,12 +140,12 @@
         "NFR-7",
         "NFR-8"
       ],
-      "source_hash": "de8e4815cbdb6e9ad8f5d852537cce17298606217b0a67324cf38ffda8382b2a",
+      "source_hash": "81a9efd31fcc336055db886b60cf15ae0c9724e62c25c7a09cb2ecbc30cd6947",
       "approval": {
         "human": "Milap Vaghasia",
-        "reason": "Reviewed the amended FR-3, AC-9, corpus constraint, non-goals and risks",
-        "at": "2026-09-16T17:45:28.741Z",
-        "source_hash": "de8e4815cbdb6e9ad8f5d852537cce17298606217b0a67324cf38ffda8382b2a"
+        "reason": "Reviewed AC-13, AC-14 and the corrected FR-9. Approval stated in session; recorded by the agent because the CLI had no record of it.",
+        "at": "2026-09-18T16:55:27.846Z",
+        "source_hash": "81a9efd31fcc336055db886b60cf15ae0c9724e62c25c7a09cb2ecbc30cd6947"
       }
     }
   ],
@@ -542,6 +546,15 @@
       "tags": [],
       "recorded_at": "2026-09-18T16:41:36.511Z",
       "paths": []
+    },
+    {
+      "id": "KNOWLEDGE-62ea61dc",
+      "title": "Measured: the agentic loop does not beat single-shot retrieval on this corpus",
+      "text": "AC-13 comparison, three benchmark questions, both arms sharing one index, evidence cap of ten chunks, identical router, specialists and synthesis. Covenant question: both arms reached page 34, the page that answers it; the loop cost 1.24 times as much for no additional pages that mattered. Auditor question: the loop reached ten pages against six but neither arm found the Emphasis of Matter section, and both produced seven findings; the loop cost 1.45 times as much. Comparison question: single-shot reached nine pages against eight and produced ten findings against nine at 0.97 times the cost, so the control won outright. On this corpus, with these questions and these proxies, the loop costs 24 to 45 percent more and delivers no measurable advantage. FR-8's premise is unsupported by the only measurement ever taken of it. Caveats that do not rescue it: n is three, pages reached and findings counted are proxies rather than quality, and the control was deliberately given the same evidence budget rather than a handicapped one.",
+      "source": "T16A A/B run 2026-09-18, benchmarks/ab-results.json",
+      "tags": [],
+      "recorded_at": "2026-09-18T17:08:04.840Z",
+      "paths": []
     }
   ],
   "tasks": [
@@ -564,9 +577,9 @@
           "status": "pass",
           "evidence": {
             "human": "Milap Vaghasia",
-            "reason": "Reviewed the amended FR-3, AC-9, corpus constraint, non-goals and risks",
-            "source_hash": "90264c4015d36b8da57c038c0b0f930dfdd9fe628651e6e3acbf19731c6ec077",
-            "observed_at": "2026-09-16T17:45:28.741Z"
+            "reason": "Reviewed AC-13, AC-14 and the corrected FR-9. Approval stated in session; recorded by the agent because the CLI had no record of it.",
+            "source_hash": "3b253ee95f02298bfaac6481d60c82755df9e504843abcb642fcc17386868eba",
+            "observed_at": "2026-09-18T16:55:27.846Z"
           },
           "kind": "review"
         }
@@ -577,7 +590,7 @@
       "failures": [],
       "limitations": [],
       "created_at": "2026-09-15T15:05:11.368Z",
-      "updated_at": "2026-09-16T17:45:28.741Z"
+      "updated_at": "2026-09-18T16:55:27.846Z"
     },
     {
       "id": "T-1",
@@ -2567,6 +2580,337 @@
         "tests/test_router.py": "a9823bf14e52d87c431676cdce20aac9f9b0ed2346b22bd5f56730a46e7e713b",
         "tests/test_store_roundtrip.py": "149600c1b16b25a83a952e9ce55e2e70281dd13312449b0ac797d015cf3ed6c9"
       }
+    },
+    {
+      "id": "T13A",
+      "outcome": "A README lets a reader who has never seen the project install it, ingest the corpus and produce a cited note without reading the source",
+      "state": "rejected",
+      "risk": "low",
+      "owner": null,
+      "scope": [
+        "README.md"
+      ],
+      "dependencies": [],
+      "requirements": [
+        "AC-14"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "readme",
+          "kind": "command",
+          "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_readme.py -q",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T13A-readme-973c2171-1827-44db-8269-d78ed5a9895b.json",
+            "hash": "c8467c39acc28d675f834fd981b3e2823db8de2b3a33b536d759a5a2d5ff51c2",
+            "source_hash": "99564eea04e96ec6d517693baaf4a8757ca55cd49f8706e71414c8bca7d42674",
+            "config_hash": "d1cfcbbe859a624ac5a9382984ae1f32b05eef7ebd91f6249fffb7d440d7b720",
+            "observed_at": "2026-09-18T16:56:26.959Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-18T16:55:29.686Z",
+      "updated_at": "2026-09-18T16:55:29.687Z",
+      "base_manifest": {
+        ".gitignore": "9355d28940d35abe2597f2f07b49462e1dc05e140175c0be52f84b514cf2c4f1",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "README.md": "1c950675fea5b8c8f052c0ae3aadcf592406b2109955c365d76b0820a874567f",
+        "SPEC.md": "5557d00860c1e055a41939594344288f846a6a8c2a0db6b0c2f21630a4fa6fc5",
+        "corpus/README.md": "34de6979e99147fa6ea6619a79a84fdd1f95fdc6afee13955db079041fb801e7",
+        "corpus/manifest.json": "8aaeb5fd65be97cc9ff2ee56932c5d2ed012478678c9f48d26cc74ce0f80f60f",
+        "pyproject.toml": "641adbba3dd3214b20cc2c621d77a4b02ae3f8e3b147c3c0ccad8a8a1f65dc11",
+        "src/risk_analytics/__init__.py": "67e200eafe0d03e92c002ef4c95b0504fdb1c67721b083d043320bf43467eac7",
+        "src/risk_analytics/__main__.py": "1e83fdc33fa81c618835aadf804ae88ffeced9eebe988124bb14a16973f67009",
+        "src/risk_analytics/agents.py": "878ceecd5ac7245d7f3b23e0cda2f8891ab3ece7f4b5d639d0fc961f9bfe6a27",
+        "src/risk_analytics/classify.py": "ad5bfaa37fc970f6c43bae35a332232a22613c48bd5bbff76c703d284dde995f",
+        "src/risk_analytics/cli.py": "63d0446802948c3f4a34fa5a258fca08dfa80ed01bdf31a6d9f484db8aa08c59",
+        "src/risk_analytics/config.py": "11347f4fe24334304e9c60ec1c44c96840fed3e5f9eee9b5c8e72a990cc50900",
+        "src/risk_analytics/extract.py": "683dc8fffd50d3daf7a717e831dade666b23fc33fbc9a2bc7f517e3dde169b7c",
+        "src/risk_analytics/indexing.py": "4345ef396f0c54be3887482d8aadcfb0a980e66df497a376b19cab866a18c701",
+        "src/risk_analytics/llm.py": "528a66b7efe01efef01112cd0a8d973a29574072467a0646cdc9e9e736640a4b",
+        "src/risk_analytics/manifest.py": "53135e3d51fb8101216a1d653f0436ac3c87caff1d4971b127e9ff01c2a48e5a",
+        "src/risk_analytics/note.py": "290c01c72d740c8b62989a6e20abd0b9461b4b4adf88188d29a50eb38f269deb",
+        "src/risk_analytics/retrieval.py": "f649304422d36743bdbe5e3c46d42f59482a2591964ddbca21ef15f880dd9cd3",
+        "tests/acceptance/note-20260917T180113+0000.trace.json": "4f28be195320f6040e1f4456e1d86752d80964778ea5738b172c66d2671f5582",
+        "tests/acceptance/note-20260917T180503+0000.trace.json": "08aba8cb0d1894ac9e1d1f2614153c9a9ea350bd33c86882c83edc116ae9c0a3",
+        "tests/acceptance/note-20260918T163914+0000.trace.json": "da06ae2590b988e61d4b2b754ad5a67f41637a94e29932c07ed644d094160b09",
+        "tests/labelled_pages.json": "abd8416cd217dadbcf13aeed3989a481a5fd23fe1f3d99efd12f1a21012d4ede",
+        "tests/synthetic.py": "fd0b30cce3b34128f9b4df462829ec0b2ab82754ff2eb28cae69ce4f2d8c7e72",
+        "tests/test_acceptance.py": "888d23441bb034357c30469342619c71bbc3276d57117e8030fa19c390c3adec",
+        "tests/test_classifier.py": "c54272f467bb6b6313def86b22f01ff68dc348806725fdc0f25857e73df9697c",
+        "tests/test_config.py": "1ebc92a2ba581ebf4fc7c68bbd38260de86da04dc160d297a66678fe8b05c126",
+        "tests/test_corpus_registration.py": "111257ac57f5a8faeb105136892a996961b0282f527fc4b1ec413c7bc8cd2965",
+        "tests/test_credentials.py": "34a04785bb6c4c34d81630a615c5ad48192caaab58905dc64c08eef670be2ecc",
+        "tests/test_extract.py": "3dd2bd6ae2158a8841f11611198c279513e5fc1851f822b69d13bb5689b11e8d",
+        "tests/test_index.py": "6871c0c7b96aa6d1fedf9de06d07f5dc1e3cd2bb591237599b589e6b5b04031f",
+        "tests/test_manifest.py": "07859956a5f3887523fc8a05397b956c9152217544b7ca84e322b2819a429954",
+        "tests/test_note.py": "2050e1514a2a248fcaaf78962d2d6b6dbe06c1145b845e9192ee0f3d0e00349e",
+        "tests/test_retrieval_loop.py": "b499e24e64c8b612844c8818a84f4110a4988512d749f5a27f79c30163b6ab5d",
+        "tests/test_router.py": "a9823bf14e52d87c431676cdce20aac9f9b0ed2346b22bd5f56730a46e7e713b",
+        "tests/test_store_roundtrip.py": "149600c1b16b25a83a952e9ce55e2e70281dd13312449b0ac797d015cf3ed6c9"
+      }
+    },
+    {
+      "id": "T14A",
+      "outcome": "The agentic loop is measured against single-shot retrieval on the same questions, index, synthesis step and models, and the comparison is reported with its method, per-question outcome and cost, whichever arm wins",
+      "state": "rejected",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "src/risk_analytics",
+        "tests",
+        "benchmarks"
+      ],
+      "dependencies": [
+        "T13A"
+      ],
+      "requirements": [
+        "FR-8",
+        "AC-13"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "loop-versus-single-shot",
+          "actor": "the benchmark harness",
+          "scope": "the three benchmark questions over the persisted index",
+          "environment": "local, both arms sharing one index, one synthesis step and identical models",
+          "duration": "one run of each arm per question",
+          "observable": "each arm records the pages it reached, the citations it produced and its cost, the two are reported side by side per question, and the report states the result even where single-shot matches or beats the loop",
+          "gate": "ab"
+        }
+      ],
+      "gates": [
+        {
+          "id": "ab",
+          "kind": "command",
+          "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_ab.py -q",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-18T16:55:31.807Z",
+      "updated_at": "2026-09-18T16:55:31.808Z"
+    },
+    {
+      "id": "T15A",
+      "outcome": "A README lets a reader who has never seen the project install it, ingest the corpus and produce a cited note without reading the source, and its claims are bound to the code by an executable check",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [
+        "README.md",
+        "tests"
+      ],
+      "dependencies": [],
+      "requirements": [
+        "AC-14"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "readme",
+          "kind": "command",
+          "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_readme.py -q",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T15A-readme-2c376c83-4659-4212-8674-14cc6d22551e.json",
+            "hash": "1200520dd6b783241288bc8a32e597c2d3df8321efc9c5b2469b2429ede09d3d",
+            "source_hash": "99564eea04e96ec6d517693baaf4a8757ca55cd49f8706e71414c8bca7d42674",
+            "config_hash": "edb460065fefd62acc1d88d5e504324c151b12a514ef3c7cee417ec298386d5e",
+            "observed_at": "2026-09-18T16:58:37.576Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-18T16:56:48.759Z",
+      "updated_at": "2026-09-18T16:58:40.165Z",
+      "base_manifest": {
+        ".gitignore": "9355d28940d35abe2597f2f07b49462e1dc05e140175c0be52f84b514cf2c4f1",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "README.md": "e4b3aa3cc19ffbe7c96218c8002ad40af7907603f6c71811f1cb21ea96a48031",
+        "SPEC.md": "5557d00860c1e055a41939594344288f846a6a8c2a0db6b0c2f21630a4fa6fc5",
+        "corpus/README.md": "34de6979e99147fa6ea6619a79a84fdd1f95fdc6afee13955db079041fb801e7",
+        "corpus/manifest.json": "8aaeb5fd65be97cc9ff2ee56932c5d2ed012478678c9f48d26cc74ce0f80f60f",
+        "pyproject.toml": "641adbba3dd3214b20cc2c621d77a4b02ae3f8e3b147c3c0ccad8a8a1f65dc11",
+        "src/risk_analytics/__init__.py": "67e200eafe0d03e92c002ef4c95b0504fdb1c67721b083d043320bf43467eac7",
+        "src/risk_analytics/__main__.py": "1e83fdc33fa81c618835aadf804ae88ffeced9eebe988124bb14a16973f67009",
+        "src/risk_analytics/agents.py": "878ceecd5ac7245d7f3b23e0cda2f8891ab3ece7f4b5d639d0fc961f9bfe6a27",
+        "src/risk_analytics/classify.py": "ad5bfaa37fc970f6c43bae35a332232a22613c48bd5bbff76c703d284dde995f",
+        "src/risk_analytics/cli.py": "63d0446802948c3f4a34fa5a258fca08dfa80ed01bdf31a6d9f484db8aa08c59",
+        "src/risk_analytics/config.py": "11347f4fe24334304e9c60ec1c44c96840fed3e5f9eee9b5c8e72a990cc50900",
+        "src/risk_analytics/extract.py": "683dc8fffd50d3daf7a717e831dade666b23fc33fbc9a2bc7f517e3dde169b7c",
+        "src/risk_analytics/indexing.py": "4345ef396f0c54be3887482d8aadcfb0a980e66df497a376b19cab866a18c701",
+        "src/risk_analytics/llm.py": "528a66b7efe01efef01112cd0a8d973a29574072467a0646cdc9e9e736640a4b",
+        "src/risk_analytics/manifest.py": "53135e3d51fb8101216a1d653f0436ac3c87caff1d4971b127e9ff01c2a48e5a",
+        "src/risk_analytics/note.py": "290c01c72d740c8b62989a6e20abd0b9461b4b4adf88188d29a50eb38f269deb",
+        "src/risk_analytics/retrieval.py": "f649304422d36743bdbe5e3c46d42f59482a2591964ddbca21ef15f880dd9cd3",
+        "tests/acceptance/note-20260917T180113+0000.trace.json": "4f28be195320f6040e1f4456e1d86752d80964778ea5738b172c66d2671f5582",
+        "tests/acceptance/note-20260917T180503+0000.trace.json": "08aba8cb0d1894ac9e1d1f2614153c9a9ea350bd33c86882c83edc116ae9c0a3",
+        "tests/acceptance/note-20260918T163914+0000.trace.json": "da06ae2590b988e61d4b2b754ad5a67f41637a94e29932c07ed644d094160b09",
+        "tests/labelled_pages.json": "abd8416cd217dadbcf13aeed3989a481a5fd23fe1f3d99efd12f1a21012d4ede",
+        "tests/synthetic.py": "fd0b30cce3b34128f9b4df462829ec0b2ab82754ff2eb28cae69ce4f2d8c7e72",
+        "tests/test_acceptance.py": "888d23441bb034357c30469342619c71bbc3276d57117e8030fa19c390c3adec",
+        "tests/test_classifier.py": "c54272f467bb6b6313def86b22f01ff68dc348806725fdc0f25857e73df9697c",
+        "tests/test_config.py": "1ebc92a2ba581ebf4fc7c68bbd38260de86da04dc160d297a66678fe8b05c126",
+        "tests/test_corpus_registration.py": "111257ac57f5a8faeb105136892a996961b0282f527fc4b1ec413c7bc8cd2965",
+        "tests/test_credentials.py": "34a04785bb6c4c34d81630a615c5ad48192caaab58905dc64c08eef670be2ecc",
+        "tests/test_extract.py": "3dd2bd6ae2158a8841f11611198c279513e5fc1851f822b69d13bb5689b11e8d",
+        "tests/test_index.py": "6871c0c7b96aa6d1fedf9de06d07f5dc1e3cd2bb591237599b589e6b5b04031f",
+        "tests/test_manifest.py": "07859956a5f3887523fc8a05397b956c9152217544b7ca84e322b2819a429954",
+        "tests/test_note.py": "2050e1514a2a248fcaaf78962d2d6b6dbe06c1145b845e9192ee0f3d0e00349e",
+        "tests/test_readme.py": "ad0f3dbccb241dd0ae2d79dc3e2b97dd57a41b1239121871575e495e463d73cb",
+        "tests/test_retrieval_loop.py": "b499e24e64c8b612844c8818a84f4110a4988512d749f5a27f79c30163b6ab5d",
+        "tests/test_router.py": "a9823bf14e52d87c431676cdce20aac9f9b0ed2346b22bd5f56730a46e7e713b",
+        "tests/test_store_roundtrip.py": "149600c1b16b25a83a952e9ce55e2e70281dd13312449b0ac797d015cf3ed6c9"
+      }
+    },
+    {
+      "id": "T16A",
+      "outcome": "The agentic loop is measured against single-shot retrieval on the same questions, index, synthesis step and models, and the comparison is reported with its method, per-question outcome and cost, whichever arm wins",
+      "state": "done",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "src/risk_analytics",
+        "tests",
+        "benchmarks"
+      ],
+      "dependencies": [
+        "T15A"
+      ],
+      "requirements": [
+        "FR-8",
+        "AC-13"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "loop-versus-single-shot",
+          "actor": "the benchmark harness",
+          "scope": "the three benchmark questions over the persisted index",
+          "environment": "local, both arms sharing one index, one synthesis step and identical models",
+          "duration": "one run of each arm per question",
+          "observable": "each arm records the pages it reached, the citations it produced and its cost, the two are reported side by side per question, and the report states the result even where single-shot matches or beats the loop",
+          "gate": "ab"
+        }
+      ],
+      "gates": [
+        {
+          "id": "ab",
+          "kind": "command",
+          "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_ab.py -q",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T16A-ab-d0010492-3dcb-4225-a3bf-ed8c5c6cb23b.json",
+            "hash": "999d15a454570a00e42f65a229fc69a10660950f48528bf9d5be4a7ab9d2ca0b",
+            "source_hash": "7428fa5d3238fa7810019f1701c2779f36a252b39d6494c3c7b015a2987ea42e",
+            "config_hash": "eb8f2a9a39222b86e56c31b7a60bbe1d2f192be80b11d7c9543d2b0749218aba",
+            "observed_at": "2026-09-18T17:07:52.349Z"
+          }
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T16A-independent-review-806bc347-40ad-4320-8fae-28855134c97f.json",
+            "hash": "c1be1753feb2afc32758b3cc68af7a5cba8083bdd5470ab3641231ac4426c917",
+            "source_hash": "7428fa5d3238fa7810019f1701c2779f36a252b39d6494c3c7b015a2987ea42e",
+            "config_hash": "eb8f2a9a39222b86e56c31b7a60bbe1d2f192be80b11d7c9543d2b0749218aba",
+            "observed_at": "2026-09-18T17:08:51.437Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [
+        "Comparison run and reported. Result is against the loop on all three questions: it costs 24 to 45 percent more and reaches no decisive evidence the control misses. The gate asserts the comparison was run fairly and reported, and explicitly does not assert that the loop wins."
+      ],
+      "failures": [],
+      "limitations": [
+        "Three questions is a very small sample and the proxies are weak: pages reached and findings counted say nothing about whether an analysis is better. A quality eval would be needed to claim either arm is superior on substance.",
+        "The loop's reflection correctly identified what was missing on the two questions neither arm could answer. That diagnostic value is real and this benchmark does not capture it."
+      ],
+      "created_at": "2026-09-18T16:57:03.571Z",
+      "updated_at": "2026-09-18T17:08:54.748Z",
+      "base_manifest": {
+        ".gitignore": "9355d28940d35abe2597f2f07b49462e1dc05e140175c0be52f84b514cf2c4f1",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "README.md": "e4b3aa3cc19ffbe7c96218c8002ad40af7907603f6c71811f1cb21ea96a48031",
+        "SPEC.md": "5557d00860c1e055a41939594344288f846a6a8c2a0db6b0c2f21630a4fa6fc5",
+        "corpus/README.md": "34de6979e99147fa6ea6619a79a84fdd1f95fdc6afee13955db079041fb801e7",
+        "corpus/manifest.json": "8aaeb5fd65be97cc9ff2ee56932c5d2ed012478678c9f48d26cc74ce0f80f60f",
+        "pyproject.toml": "641adbba3dd3214b20cc2c621d77a4b02ae3f8e3b147c3c0ccad8a8a1f65dc11",
+        "src/risk_analytics/__init__.py": "67e200eafe0d03e92c002ef4c95b0504fdb1c67721b083d043320bf43467eac7",
+        "src/risk_analytics/__main__.py": "1e83fdc33fa81c618835aadf804ae88ffeced9eebe988124bb14a16973f67009",
+        "src/risk_analytics/agents.py": "878ceecd5ac7245d7f3b23e0cda2f8891ab3ece7f4b5d639d0fc961f9bfe6a27",
+        "src/risk_analytics/classify.py": "ad5bfaa37fc970f6c43bae35a332232a22613c48bd5bbff76c703d284dde995f",
+        "src/risk_analytics/cli.py": "63d0446802948c3f4a34fa5a258fca08dfa80ed01bdf31a6d9f484db8aa08c59",
+        "src/risk_analytics/config.py": "11347f4fe24334304e9c60ec1c44c96840fed3e5f9eee9b5c8e72a990cc50900",
+        "src/risk_analytics/extract.py": "683dc8fffd50d3daf7a717e831dade666b23fc33fbc9a2bc7f517e3dde169b7c",
+        "src/risk_analytics/indexing.py": "4345ef396f0c54be3887482d8aadcfb0a980e66df497a376b19cab866a18c701",
+        "src/risk_analytics/llm.py": "528a66b7efe01efef01112cd0a8d973a29574072467a0646cdc9e9e736640a4b",
+        "src/risk_analytics/manifest.py": "53135e3d51fb8101216a1d653f0436ac3c87caff1d4971b127e9ff01c2a48e5a",
+        "src/risk_analytics/note.py": "290c01c72d740c8b62989a6e20abd0b9461b4b4adf88188d29a50eb38f269deb",
+        "src/risk_analytics/retrieval.py": "f649304422d36743bdbe5e3c46d42f59482a2591964ddbca21ef15f880dd9cd3",
+        "tests/acceptance/note-20260917T180113+0000.trace.json": "4f28be195320f6040e1f4456e1d86752d80964778ea5738b172c66d2671f5582",
+        "tests/acceptance/note-20260917T180503+0000.trace.json": "08aba8cb0d1894ac9e1d1f2614153c9a9ea350bd33c86882c83edc116ae9c0a3",
+        "tests/acceptance/note-20260918T163914+0000.trace.json": "da06ae2590b988e61d4b2b754ad5a67f41637a94e29932c07ed644d094160b09",
+        "tests/labelled_pages.json": "abd8416cd217dadbcf13aeed3989a481a5fd23fe1f3d99efd12f1a21012d4ede",
+        "tests/synthetic.py": "fd0b30cce3b34128f9b4df462829ec0b2ab82754ff2eb28cae69ce4f2d8c7e72",
+        "tests/test_acceptance.py": "888d23441bb034357c30469342619c71bbc3276d57117e8030fa19c390c3adec",
+        "tests/test_classifier.py": "c54272f467bb6b6313def86b22f01ff68dc348806725fdc0f25857e73df9697c",
+        "tests/test_config.py": "1ebc92a2ba581ebf4fc7c68bbd38260de86da04dc160d297a66678fe8b05c126",
+        "tests/test_corpus_registration.py": "111257ac57f5a8faeb105136892a996961b0282f527fc4b1ec413c7bc8cd2965",
+        "tests/test_credentials.py": "34a04785bb6c4c34d81630a615c5ad48192caaab58905dc64c08eef670be2ecc",
+        "tests/test_extract.py": "3dd2bd6ae2158a8841f11611198c279513e5fc1851f822b69d13bb5689b11e8d",
+        "tests/test_index.py": "6871c0c7b96aa6d1fedf9de06d07f5dc1e3cd2bb591237599b589e6b5b04031f",
+        "tests/test_manifest.py": "07859956a5f3887523fc8a05397b956c9152217544b7ca84e322b2819a429954",
+        "tests/test_note.py": "2050e1514a2a248fcaaf78962d2d6b6dbe06c1145b845e9192ee0f3d0e00349e",
+        "tests/test_readme.py": "ad0f3dbccb241dd0ae2d79dc3e2b97dd57a41b1239121871575e495e463d73cb",
+        "tests/test_retrieval_loop.py": "b499e24e64c8b612844c8818a84f4110a4988512d749f5a27f79c30163b6ab5d",
+        "tests/test_router.py": "a9823bf14e52d87c431676cdce20aac9f9b0ed2346b22bd5f56730a46e7e713b",
+        "tests/test_store_roundtrip.py": "149600c1b16b25a83a952e9ce55e2e70281dd13312449b0ac797d015cf3ed6c9"
+      }
     }
   ],
   "learning_proposals": [],
@@ -2885,6 +3229,51 @@
       "task": "T12A",
       "human": "Milap Vaghasia",
       "reason": "Approval stated in session: reviewed the balanced evidence selection and its tests. Recorded by the agent because the CLI had no record of it; the human asserted it in conversation.",
+      "revision": null
+    },
+    {
+      "id": "60f0e283-818f-4a24-b21a-419862b1f4a3",
+      "at": "2026-09-18T16:55:37.265Z",
+      "action": "resume",
+      "task": "T13A",
+      "human": null,
+      "reason": "Starting the README task",
+      "revision": null
+    },
+    {
+      "id": "5b0bc227-d5f1-4c49-9319-ab46bdfc4cee",
+      "at": "2026-09-18T16:56:45.169Z",
+      "action": "reject",
+      "task": "T13A",
+      "human": null,
+      "reason": "Scope declared as README.md alone, but the task's gate runs tests/test_readme.py, which the task therefore has to own. Agent scoping error; replaced by an identical task with the test file in scope.",
+      "revision": null
+    },
+    {
+      "id": "f82fa501-9d36-471d-9ae5-f86a720bf949",
+      "at": "2026-09-18T16:57:01.731Z",
+      "action": "reject",
+      "task": "T14A",
+      "human": null,
+      "reason": "Depended on T13A, which was rejected for a scoping error, so it can never become ready. Replaced by T16A on the corrected chain.",
+      "revision": null
+    },
+    {
+      "id": "34b08abe-7812-433a-b333-f1935bd9b4a1",
+      "at": "2026-09-18T16:58:32.220Z",
+      "action": "resume",
+      "task": "T15A",
+      "human": null,
+      "reason": "Plan approved; README task on corrected scope",
+      "revision": null
+    },
+    {
+      "id": "806bc347-40ad-4320-8fae-28855134c97f",
+      "at": "2026-09-18T17:08:51.437Z",
+      "action": "approve",
+      "task": "T16A",
+      "human": "Milap Vaghasia",
+      "reason": "Reviewed the A/B method and its result: the comparison was run fairly and the finding stands against the agentic loop. Stated in session; recorded by the agent.",
       "revision": null
     }
   ],
@@ -3368,6 +3757,78 @@
       "cost": null,
       "stop_reason": null,
       "ended_at": "2026-09-18T16:43:57.618Z"
+    },
+    {
+      "id": "973c2171-1827-44db-8269-d78ed5a9895b",
+      "task": "T13A",
+      "kind": "gate",
+      "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_readme.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 9176,
+      "child_pid": 26544,
+      "started_at": "2026-09-18T16:56:23.695Z",
+      "status": "passed",
+      "before_hash": "99564eea04e96ec6d517693baaf4a8757ca55cd49f8706e71414c8bca7d42674",
+      "config_hash": "d1cfcbbe859a624ac5a9382984ae1f32b05eef7ebd91f6249fffb7d440d7b720",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-18T16:56:26.959Z"
+    },
+    {
+      "id": "2c376c83-4659-4212-8674-14cc6d22551e",
+      "task": "T15A",
+      "kind": "gate",
+      "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_readme.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 26520,
+      "child_pid": 16200,
+      "started_at": "2026-09-18T16:58:34.092Z",
+      "status": "passed",
+      "before_hash": "99564eea04e96ec6d517693baaf4a8757ca55cd49f8706e71414c8bca7d42674",
+      "config_hash": "edb460065fefd62acc1d88d5e504324c151b12a514ef3c7cee417ec298386d5e",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-18T16:58:37.576Z"
+    },
+    {
+      "id": "d0010492-3dcb-4225-a3bf-ed8c5c6cb23b",
+      "task": "T16A",
+      "kind": "gate",
+      "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_ab.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 26184,
+      "child_pid": 24612,
+      "started_at": "2026-09-18T17:07:48.738Z",
+      "status": "passed",
+      "before_hash": "7428fa5d3238fa7810019f1701c2779f36a252b39d6494c3c7b015a2987ea42e",
+      "config_hash": "eb8f2a9a39222b86e56c31b7a60bbe1d2f192be80b11d7c9543d2b0749218aba",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-18T17:07:52.348Z"
     }
   ],
   "authorizations": [],
@@ -3375,11 +3836,11 @@
   "incidents": [],
   "discovery": null,
   "checkpoint": {
-    "at": "2026-09-18T16:46:05.038Z",
+    "at": "2026-09-18T17:08:57.197Z",
     "revision": {
-      "commit": "af1d219a1425f22f93616314ada2ba0b5eba61bf",
+      "commit": "bb9fe790d2dfd61a8f3f15b6318f18dbecbef7aa",
       "dirty": true,
-      "source_hash": "c568a4cde94b26f5a6425cca146df440dc11cc189c837edf504d25082b477494"
+      "source_hash": "7428fa5d3238fa7810019f1701c2779f36a252b39d6494c3c7b015a2987ea42e"
     },
     "active_task": null,
     "next_action": "Review completed work and choose the next bounded outcome."

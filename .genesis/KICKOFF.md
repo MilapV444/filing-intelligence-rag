@@ -15,9 +15,9 @@ Load Genesis and official Ponytail full, then run `genesis brief .` for the curr
 Fetch full records with `genesis context . --id ID` only when needed. Do not load project.json or historical proof wholesale.
 Ask the index before reading code: `genesis query . search|scope|callers|callees|impact|path` (`--json` for parsing). Run `genesis query . impact PATH` before editing shared code. Answers are advisory static analysis; `ambiguous` means candidates were not ruled out, so confirm in source.
 Run `genesis serve .` for a live map of the repository when structure is unclear; it reindexes on save and is read-only. Run `genesis index .` if the index is stale and nothing is watching.
-Context fingerprint: 08c88fdd7ce9c020f743e708810df5083e7a0fc3bcfee730a0a84be56354035b. Use --since only after receiving that full packet; kickoff is not the packet.
+Context fingerprint: 67cc4dbc9687cd80c269405af533afe98e0980777220cfaf895d58bba5674f03. Use --since only after receiving that full packet; kickoff is not the packet.
+- KNOWLEDGE-62ea61dc: Measured: the agentic loop does not beat single-shot retrieval on this corpus
 - DECISION-c46c5918: Model split retuned against measured spend: specialists on Sonnet 5
 - KNOWLEDGE-49a3cb99: Balanced retrieval is undone unless the evidence trim is balanced too
-- DECISION-15852802: The sources table marks which documents a note actually cited
 Applicable invariants, active rules, authorization and proof references are in the packet. Truncated summaries are retrieval pointers, not the full evidence.
 Reuse fresh gates with --reuse. Reconcile interrupted attempts before replaying commands. Report state → evidence → blocker → next action; checkpoint before stopping.

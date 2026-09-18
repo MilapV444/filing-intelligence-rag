@@ -4,7 +4,7 @@
 
 - workflow: new-product
 - phase: verify
-- plan approval: Milap Vaghasia at 2026-09-18T16:43:25.654Z
+- plan approval: Milap Vaghasia at 2026-09-18T16:58:30.290Z
 
 ## Tasks
 
@@ -214,5 +214,37 @@
 - requirements: FR-12, AC-5, AC-7
 - scope: src/risk_analytics, tests
 - gates: balance: ".venv/Scripts/python.exe" -m pytest tests/test_retrieval_loop.py tests/test_acceptance.py -q, independent-review: pass
+- next: Run the task pre-flight.
+
+### T13A — A README lets a reader who has never seen the project install it, ingest the corpus and produce a cited note without reading the source
+
+- state/risk: rejected / low
+- requirements: AC-14
+- scope: README.md
+- gates: readme: ".venv/Scripts/python.exe" -m pytest tests/test_readme.py -q
+- next: Run the task pre-flight.
+
+### T14A — The agentic loop is measured against single-shot retrieval on the same questions, index, synthesis step and models, and the comparison is reported with its method, per-question outcome and cost, whichever arm wins
+
+- state/risk: rejected / medium
+- requirements: FR-8, AC-13
+- scope: src/risk_analytics, tests, benchmarks
+- gates: ab: ".venv/Scripts/python.exe" -m pytest tests/test_ab.py -q, independent-review: pending
+- next: Run the task pre-flight.
+
+### T15A — A README lets a reader who has never seen the project install it, ingest the corpus and produce a cited note without reading the source, and its claims are bound to the code by an executable check
+
+- state/risk: done / low
+- requirements: AC-14
+- scope: README.md, tests
+- gates: readme: ".venv/Scripts/python.exe" -m pytest tests/test_readme.py -q
+- next: Run the task pre-flight.
+
+### T16A — The agentic loop is measured against single-shot retrieval on the same questions, index, synthesis step and models, and the comparison is reported with its method, per-question outcome and cost, whichever arm wins
+
+- state/risk: done / medium
+- requirements: FR-8, AC-13
+- scope: src/risk_analytics, tests, benchmarks
+- gates: ab: ".venv/Scripts/python.exe" -m pytest tests/test_ab.py -q, independent-review: pass
 - next: Run the task pre-flight.
 

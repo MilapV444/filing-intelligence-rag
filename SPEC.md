@@ -32,7 +32,7 @@ This project is a small, local, end-to-end demonstration that a multi-agent retr
 ### Agentic retrieval
 
 - FR-8: The system answers a query with an agentic retrieval loop that plans sub-queries, searches the index, reflects on whether retrieved evidence answers the question, iterates with revised queries when it does not, and synthesizes a final answer — rather than a single retrieval followed by one generation.
-- FR-9: The retrieval loop terminates on sufficiency, on an iteration ceiling, or on a token-spend ceiling, whichever comes first, and records which condition ended it.
+- FR-9: The retrieval loop terminates on exactly one of four conditions, whichever comes first, and records which one ended it: sufficiency; an iteration ceiling; a token-spend ceiling; or no progress, meaning reflection reports the evidence insufficient but proposes no query that was not already tried. The fourth was implemented at T6A and shipped undeclared (DECISION-975bc5c0); it is stated here so the specification matches the code. A fifth condition for an unclosable evidence gap was drafted and deliberately not built, so it is not claimed.
 - FR-10: The system emits a machine-readable trace of each run: the plan, every sub-query issued, the chunks retrieved for each, every reflection verdict, and the specialists invoked.
 
 ### Multi-agent analysis
@@ -97,6 +97,8 @@ This project is a small, local, end-to-end demonstration that a multi-agent retr
 - AC-10: Every note carries the demonstration-artifact and not-a-rating disclaimer of FR-17.
 - AC-11: A secrets scan of the repository at completion finds no API key or credential, and no corpus document lacks a recorded public source URL.
 - AC-12: The page classifier has an offline test that runs with no network access and no API spend.
+- AC-13: The agentic retrieval loop is compared against single-shot retrieval on the same questions, over the same index, with the same synthesis step, and the comparison is reported with its method, its per-question outcome and its cost. The criterion is that the comparison is run and reported honestly, not that the loop wins: FR-8 asserts an architecture, and an assertion carried through a whole project without measurement is the thing this criterion exists to prevent. If single-shot retrieval matches or beats the loop, that result stands and is reported.
+- AC-14: A reader who has never seen the project can install it, ingest the corpus and produce a cited note by following the repository's own written instructions, without reading the source.
 
 ## Risks
 
@@ -117,5 +119,5 @@ This project is a small, local, end-to-end demonstration that a multi-agent retr
 - Resolved: Chroma, with faiss-cpu as the recorded fallback (DECISION-f21324fe). Proven to install and persist across a process boundary on Windows at T1.
 - Resolved as a starting point, not a measurement: Haiku 4.5 for routing, reflection and any per-page model call; Opus 5 for specialist analysis and synthesis (DECISION-39162611). AC-8 measures real per-run spend and the split is retuned there if it misses.
 - Resolved: Python 3.12.5 via the `py` launcher, satisfying the >=3.11 constraint (ASSUMPTION-c7b5f9b9).
-- Open: the APSEZ source URL recorded in the manifest is the investor-downloads index page rather than a direct link to the filing. It records provenance but will not pin this specific document once the page rolls forward. A direct PDF URL would make the corpus properly reproducible.
+- Resolved: the APSEZ source URL is now a direct link to the filing PDF rather than the investor-downloads index page, so the corpus is reproducible from the manifest without depending on a page that rolls forward.
 - Open: no `ANTHROPIC_API_KEY` is configured yet. Nothing before T5 needs one, but the agentic loop and specialists cannot run without it, and API access is billed separately from a Claude Pro subscription.
