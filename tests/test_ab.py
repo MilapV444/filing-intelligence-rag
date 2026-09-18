@@ -20,13 +20,39 @@ REPORT = ROOT / "benchmarks" / "ab-report.md"
 
 
 @pytest.fixture(scope="module")
-def results():
+def payload():
     if not RESULTS.exists():
         pytest.fail(
             f"AC-13 requires a recorded comparison at {RESULTS}. Produce it by "
             "running both arms over the benchmark questions against a funded key."
         )
     return json.loads(RESULTS.read_text(encoding="utf-8"))
+
+
+@pytest.fixture(scope="module")
+def results(payload):
+    return payload["comparisons"]
+
+
+def test_the_published_results_carry_a_disclaimer(payload):
+    """This file is committed to a public repository and holds automated
+    assertions about real listed companies. A reader landing on the raw JSON
+    must see what it is without having to find the README."""
+    notice = payload["_disclaimer"].lower()
+    assert "not a credit rating" in notice
+    assert "not investment advice" in notice
+
+
+def test_every_published_trace_carries_a_disclaimer():
+    """The rendered notes state it; the traces are what is actually committed."""
+    for trace in (ROOT / "tests" / "acceptance").glob("*.trace.json"):
+        data = json.loads(trace.read_text(encoding="utf-8"))
+        assert "not a credit rating" in data["_disclaimer"].lower(), trace.name
+
+
+def test_the_published_report_carries_a_disclaimer():
+    text = REPORT.read_text(encoding="utf-8")
+    assert "not a credit rating" in " ".join(text.lower().split())
 
 
 # --- The comparison was actually run -----------------------------------------

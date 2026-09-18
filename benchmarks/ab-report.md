@@ -1,5 +1,10 @@
 # Agentic retrieval versus single-shot retrieval
 
+> **Demonstration artifact.** This note is a demonstration artifact produced by an automated system from public documents. It is not a credit rating, not investment advice, and has not been reviewed by a rating committee. Every claim carries a citation to the source document and page; verify anything you intend to rely on.
+> Figures quoted below are automated output published as engineering
+> evidence, not as an opinion on any issuer.
+
+
 Both arms share one index, one embedding model, one evidence cap, one
 router, one set of specialists and one synthesis step. The only variable
 is how evidence is found: the control issues the analyst's question

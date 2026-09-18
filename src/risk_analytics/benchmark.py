@@ -27,6 +27,17 @@ from . import agents, config, indexing, llm, manifest, note as note_module, retr
 AGENTIC = "agentic"
 SINGLE_SHOT = "single_shot"
 
+# These artefacts are committed to a public repository and hold automated
+# assertions about real listed companies. A reader landing on the raw JSON must
+# see what it is without having to find the README, so the notice travels with
+# the data rather than sitting beside it.
+PUBLICATION_NOTICE = (
+    "DEMONSTRATION ARTIFACT. " + note_module.DISCLAIMER + " Findings below were "
+    "generated automatically from public filings by an experimental pipeline and "
+    "have not been reviewed by an analyst. They are published as engineering "
+    "evidence, not as an opinion on any issuer."
+)
+
 
 @dataclass
 class ArmResult:
@@ -160,10 +171,31 @@ def compare(question: str, k: int = 8, where: dict | None = None, index_dir=None
     )
 
 
+def write_results(comparisons: list[Comparison], path) -> None:
+    """Persist the comparison with its notice attached."""
+    import json
+    from pathlib import Path
+
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps(
+            {"_disclaimer": PUBLICATION_NOTICE,
+             "comparisons": [c.to_dict() for c in comparisons]},
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+
+
 def render_report(comparisons: list[Comparison]) -> str:
     """A report a sceptical reader can check, including against its author."""
     out = [
         "# Agentic retrieval versus single-shot retrieval",
+        "",
+        f"> **Demonstration artifact.** {note_module.DISCLAIMER}",
+        "> Figures quoted below are automated output published as engineering",
+        "> evidence, not as an opinion on any issuer.",
         "",
         "Both arms share one index, one embedding model, one evidence cap, one",
         "router, one set of specialists and one synthesis step. The only variable",

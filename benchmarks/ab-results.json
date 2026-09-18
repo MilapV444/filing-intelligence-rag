@@ -1,73 +1,141 @@
-[
-  {
-    "question": "As at 30 June 2026, what are APSEZ's Net Gearing and DSCR, what covenant thresholds do they run against, and how much headroom remains?",
-    "agentic": {
-      "arm": "agentic",
+{
+  "_disclaimer": "DEMONSTRATION ARTIFACT. This note is a demonstration artifact produced by an automated system from public documents. It is not a credit rating, not investment advice, and has not been reviewed by a rating committee. Every claim carries a citation to the source document and page; verify anything you intend to rely on. Findings below were generated automatically from public filings by an experimental pipeline and have not been reviewed by an analyst. They are published as engineering evidence, not as an opinion on any issuer.",
+  "comparisons": [
+    {
       "question": "As at 30 June 2026, what are APSEZ's Net Gearing and DSCR, what covenant thresholds do they run against, and how much headroom remains?",
-      "pages": [
-        "apsez-q1fy27 p.16",
-        "apsez-q1fy27 p.17",
-        "apsez-q1fy27 p.34"
+      "agentic": {
+        "arm": "agentic",
+        "question": "As at 30 June 2026, what are APSEZ's Net Gearing and DSCR, what covenant thresholds do they run against, and how much headroom remains?",
+        "pages": [
+          "apsez-q1fy27 p.16",
+          "apsez-q1fy27 p.17",
+          "apsez-q1fy27 p.34"
+        ],
+        "citations": [
+          "[apsez-q1fy27 p.16]",
+          "[apsez-q1fy27 p.17]",
+          "[apsez-q1fy27 p.34]"
+        ],
+        "findings": 8,
+        "dropped_claims": 0,
+        "cost_usd": 0.159175,
+        "calls": 6,
+        "iterations": 1,
+        "termination": "sufficient",
+        "specialists": [
+          "credit",
+          "compliance"
+        ],
+        "insufficient": false,
+        "error": ""
+      },
+      "single_shot": {
+        "arm": "single_shot",
+        "question": "As at 30 June 2026, what are APSEZ's Net Gearing and DSCR, what covenant thresholds do they run against, and how much headroom remains?",
+        "pages": [
+          "apsez-q1fy27 p.12",
+          "apsez-q1fy27 p.16",
+          "apsez-q1fy27 p.34"
+        ],
+        "citations": [
+          "[apsez-q1fy27 p.12]",
+          "[apsez-q1fy27 p.16]",
+          "[apsez-q1fy27 p.34]"
+        ],
+        "findings": 7,
+        "dropped_claims": 0,
+        "cost_usd": 0.127969,
+        "calls": 4,
+        "iterations": 1,
+        "termination": "single_shot",
+        "specialists": [
+          "credit",
+          "compliance"
+        ],
+        "insufficient": false,
+        "error": ""
+      },
+      "pages_only_agentic": [
+        "apsez-q1fy27 p.17"
       ],
-      "citations": [
-        "[apsez-q1fy27 p.16]",
-        "[apsez-q1fy27 p.17]",
-        "[apsez-q1fy27 p.34]"
+      "pages_only_single_shot": [
+        "apsez-q1fy27 p.12"
       ],
-      "findings": 8,
-      "dropped_claims": 0,
-      "cost_usd": 0.159175,
-      "calls": 6,
-      "iterations": 1,
-      "termination": "sufficient",
-      "specialists": [
-        "credit",
-        "compliance"
-      ],
-      "insufficient": false,
-      "error": ""
+      "cost_ratio": 1.24
     },
-    "single_shot": {
-      "arm": "single_shot",
-      "question": "As at 30 June 2026, what are APSEZ's Net Gearing and DSCR, what covenant thresholds do they run against, and how much headroom remains?",
-      "pages": [
-        "apsez-q1fy27 p.12",
-        "apsez-q1fy27 p.16",
-        "apsez-q1fy27 p.34"
-      ],
-      "citations": [
-        "[apsez-q1fy27 p.12]",
-        "[apsez-q1fy27 p.16]",
-        "[apsez-q1fy27 p.34]"
-      ],
-      "findings": 7,
-      "dropped_claims": 0,
-      "cost_usd": 0.127969,
-      "calls": 4,
-      "iterations": 1,
-      "termination": "single_shot",
-      "specialists": [
-        "credit",
-        "compliance"
-      ],
-      "insufficient": false,
-      "error": ""
-    },
-    "pages_only_agentic": [
-      "apsez-q1fy27 p.17"
-    ],
-    "pages_only_single_shot": [
-      "apsez-q1fy27 p.12"
-    ],
-    "cost_ratio": 1.24
-  },
-  {
-    "question": "What does AGEL's FY25 auditor's report flag as Emphasis of Matter and Key Audit Matters, and what related-party and contingent-liability exposures accompany them?",
-    "agentic": {
-      "arm": "agentic",
+    {
       "question": "What does AGEL's FY25 auditor's report flag as Emphasis of Matter and Key Audit Matters, and what related-party and contingent-liability exposures accompany them?",
-      "pages": [
-        "agel-fy25 p.142",
+      "agentic": {
+        "arm": "agentic",
+        "question": "What does AGEL's FY25 auditor's report flag as Emphasis of Matter and Key Audit Matters, and what related-party and contingent-liability exposures accompany them?",
+        "pages": [
+          "agel-fy25 p.142",
+          "agel-fy25 p.182",
+          "agel-fy25 p.229",
+          "agel-fy25 p.242",
+          "agel-fy25 p.27",
+          "agel-fy25 p.302",
+          "agel-fy25 p.360",
+          "agel-fy25 p.4",
+          "agel-fy25 p.71",
+          "agel-fy25 p.97"
+        ],
+        "citations": [
+          "[agel-fy25 p.142]",
+          "[agel-fy25 p.182]",
+          "[agel-fy25 p.229]",
+          "[agel-fy25 p.242]",
+          "[agel-fy25 p.27]",
+          "[agel-fy25 p.302]",
+          "[agel-fy25 p.360]",
+          "[agel-fy25 p.4]",
+          "[agel-fy25 p.71]",
+          "[agel-fy25 p.97]"
+        ],
+        "findings": 7,
+        "dropped_claims": 0,
+        "cost_usd": 0.098532,
+        "calls": 7,
+        "iterations": 4,
+        "termination": "iteration_ceiling",
+        "specialists": [
+          "compliance"
+        ],
+        "insufficient": false,
+        "error": ""
+      },
+      "single_shot": {
+        "arm": "single_shot",
+        "question": "What does AGEL's FY25 auditor's report flag as Emphasis of Matter and Key Audit Matters, and what related-party and contingent-liability exposures accompany them?",
+        "pages": [
+          "agel-fy25 p.1",
+          "agel-fy25 p.136",
+          "agel-fy25 p.138",
+          "agel-fy25 p.142",
+          "agel-fy25 p.5",
+          "agel-fy25 p.9"
+        ],
+        "citations": [
+          "[agel-fy25 p.136]",
+          "[agel-fy25 p.138]",
+          "[agel-fy25 p.142]",
+          "[agel-fy25 p.1]",
+          "[agel-fy25 p.5]",
+          "[agel-fy25 p.9]"
+        ],
+        "findings": 7,
+        "dropped_claims": 0,
+        "cost_usd": 0.068067,
+        "calls": 3,
+        "iterations": 1,
+        "termination": "single_shot",
+        "specialists": [
+          "compliance"
+        ],
+        "insufficient": false,
+        "error": ""
+      },
+      "pages_only_agentic": [
         "agel-fy25 p.182",
         "agel-fy25 p.229",
         "agel-fy25 p.242",
@@ -78,172 +146,107 @@
         "agel-fy25 p.71",
         "agel-fy25 p.97"
       ],
-      "citations": [
-        "[agel-fy25 p.142]",
-        "[agel-fy25 p.182]",
-        "[agel-fy25 p.229]",
-        "[agel-fy25 p.242]",
-        "[agel-fy25 p.27]",
-        "[agel-fy25 p.302]",
-        "[agel-fy25 p.360]",
-        "[agel-fy25 p.4]",
-        "[agel-fy25 p.71]",
-        "[agel-fy25 p.97]"
-      ],
-      "findings": 7,
-      "dropped_claims": 0,
-      "cost_usd": 0.098532,
-      "calls": 7,
-      "iterations": 4,
-      "termination": "iteration_ceiling",
-      "specialists": [
-        "compliance"
-      ],
-      "insufficient": false,
-      "error": ""
-    },
-    "single_shot": {
-      "arm": "single_shot",
-      "question": "What does AGEL's FY25 auditor's report flag as Emphasis of Matter and Key Audit Matters, and what related-party and contingent-liability exposures accompany them?",
-      "pages": [
+      "pages_only_single_shot": [
         "agel-fy25 p.1",
         "agel-fy25 p.136",
         "agel-fy25 p.138",
-        "agel-fy25 p.142",
         "agel-fy25 p.5",
         "agel-fy25 p.9"
       ],
-      "citations": [
-        "[agel-fy25 p.136]",
-        "[agel-fy25 p.138]",
-        "[agel-fy25 p.142]",
-        "[agel-fy25 p.1]",
-        "[agel-fy25 p.5]",
-        "[agel-fy25 p.9]"
-      ],
-      "findings": 7,
-      "dropped_claims": 0,
-      "cost_usd": 0.068067,
-      "calls": 3,
-      "iterations": 1,
-      "termination": "single_shot",
-      "specialists": [
-        "compliance"
-      ],
-      "insufficient": false,
-      "error": ""
+      "cost_ratio": 1.45
     },
-    "pages_only_agentic": [
-      "agel-fy25 p.182",
-      "agel-fy25 p.229",
-      "agel-fy25 p.242",
-      "agel-fy25 p.27",
-      "agel-fy25 p.302",
-      "agel-fy25 p.360",
-      "agel-fy25 p.4",
-      "agel-fy25 p.71",
-      "agel-fy25 p.97"
-    ],
-    "pages_only_single_shot": [
-      "agel-fy25 p.1",
-      "agel-fy25 p.136",
-      "agel-fy25 p.138",
-      "agel-fy25 p.5",
-      "agel-fy25 p.9"
-    ],
-    "cost_ratio": 1.45
-  },
-  {
-    "question": "Compare the disclosed financing profiles of AGEL and APSEZ on debt maturity structure, interest-rate exposure and reliance on related-party or promoter funding, and say which shows more refinancing risk on the disclosed evidence.",
-    "agentic": {
-      "arm": "agentic",
+    {
       "question": "Compare the disclosed financing profiles of AGEL and APSEZ on debt maturity structure, interest-rate exposure and reliance on related-party or promoter funding, and say which shows more refinancing risk on the disclosed evidence.",
-      "pages": [
+      "agentic": {
+        "arm": "agentic",
+        "question": "Compare the disclosed financing profiles of AGEL and APSEZ on debt maturity structure, interest-rate exposure and reliance on related-party or promoter funding, and say which shows more refinancing risk on the disclosed evidence.",
+        "pages": [
+          "agel-fy25 p.240",
+          "agel-fy25 p.69",
+          "agel-fy25 p.71",
+          "apsez-q1fy27 p.12",
+          "apsez-q1fy27 p.17",
+          "apsez-q1fy27 p.24",
+          "apsez-q1fy27 p.30",
+          "apsez-q1fy27 p.33"
+        ],
+        "citations": [
+          "[agel-fy25 p.240]",
+          "[agel-fy25 p.69]",
+          "[agel-fy25 p.71]",
+          "[apsez-q1fy27 p.12]",
+          "[apsez-q1fy27 p.17]",
+          "[apsez-q1fy27 p.24]",
+          "[apsez-q1fy27 p.30]",
+          "[apsez-q1fy27 p.33]"
+        ],
+        "findings": 9,
+        "dropped_claims": 0,
+        "cost_usd": 0.212564,
+        "calls": 8,
+        "iterations": 4,
+        "termination": "iteration_ceiling",
+        "specialists": [
+          "credit",
+          "compliance"
+        ],
+        "insufficient": false,
+        "error": ""
+      },
+      "single_shot": {
+        "arm": "single_shot",
+        "question": "Compare the disclosed financing profiles of AGEL and APSEZ on debt maturity structure, interest-rate exposure and reliance on related-party or promoter funding, and say which shows more refinancing risk on the disclosed evidence.",
+        "pages": [
+          "agel-fy25 p.226",
+          "agel-fy25 p.69",
+          "agel-fy25 p.72",
+          "agel-fy25 p.8",
+          "apsez-q1fy27 p.13",
+          "apsez-q1fy27 p.17",
+          "apsez-q1fy27 p.21",
+          "apsez-q1fy27 p.28",
+          "apsez-q1fy27 p.33"
+        ],
+        "citations": [
+          "[agel-fy25 p.226]",
+          "[agel-fy25 p.69]",
+          "[agel-fy25 p.72]",
+          "[agel-fy25 p.8]",
+          "[apsez-q1fy27 p.13]",
+          "[apsez-q1fy27 p.17]",
+          "[apsez-q1fy27 p.21]",
+          "[apsez-q1fy27 p.28]",
+          "[apsez-q1fy27 p.33]"
+        ],
+        "findings": 10,
+        "dropped_claims": 0,
+        "cost_usd": 0.218996,
+        "calls": 4,
+        "iterations": 1,
+        "termination": "single_shot",
+        "specialists": [
+          "credit",
+          "compliance"
+        ],
+        "insufficient": false,
+        "error": ""
+      },
+      "pages_only_agentic": [
         "agel-fy25 p.240",
-        "agel-fy25 p.69",
         "agel-fy25 p.71",
         "apsez-q1fy27 p.12",
-        "apsez-q1fy27 p.17",
         "apsez-q1fy27 p.24",
-        "apsez-q1fy27 p.30",
-        "apsez-q1fy27 p.33"
+        "apsez-q1fy27 p.30"
       ],
-      "citations": [
-        "[agel-fy25 p.240]",
-        "[agel-fy25 p.69]",
-        "[agel-fy25 p.71]",
-        "[apsez-q1fy27 p.12]",
-        "[apsez-q1fy27 p.17]",
-        "[apsez-q1fy27 p.24]",
-        "[apsez-q1fy27 p.30]",
-        "[apsez-q1fy27 p.33]"
-      ],
-      "findings": 9,
-      "dropped_claims": 0,
-      "cost_usd": 0.212564,
-      "calls": 8,
-      "iterations": 4,
-      "termination": "iteration_ceiling",
-      "specialists": [
-        "credit",
-        "compliance"
-      ],
-      "insufficient": false,
-      "error": ""
-    },
-    "single_shot": {
-      "arm": "single_shot",
-      "question": "Compare the disclosed financing profiles of AGEL and APSEZ on debt maturity structure, interest-rate exposure and reliance on related-party or promoter funding, and say which shows more refinancing risk on the disclosed evidence.",
-      "pages": [
+      "pages_only_single_shot": [
         "agel-fy25 p.226",
-        "agel-fy25 p.69",
         "agel-fy25 p.72",
         "agel-fy25 p.8",
         "apsez-q1fy27 p.13",
-        "apsez-q1fy27 p.17",
         "apsez-q1fy27 p.21",
-        "apsez-q1fy27 p.28",
-        "apsez-q1fy27 p.33"
+        "apsez-q1fy27 p.28"
       ],
-      "citations": [
-        "[agel-fy25 p.226]",
-        "[agel-fy25 p.69]",
-        "[agel-fy25 p.72]",
-        "[agel-fy25 p.8]",
-        "[apsez-q1fy27 p.13]",
-        "[apsez-q1fy27 p.17]",
-        "[apsez-q1fy27 p.21]",
-        "[apsez-q1fy27 p.28]",
-        "[apsez-q1fy27 p.33]"
-      ],
-      "findings": 10,
-      "dropped_claims": 0,
-      "cost_usd": 0.218996,
-      "calls": 4,
-      "iterations": 1,
-      "termination": "single_shot",
-      "specialists": [
-        "credit",
-        "compliance"
-      ],
-      "insufficient": false,
-      "error": ""
-    },
-    "pages_only_agentic": [
-      "agel-fy25 p.240",
-      "agel-fy25 p.71",
-      "apsez-q1fy27 p.12",
-      "apsez-q1fy27 p.24",
-      "apsez-q1fy27 p.30"
-    ],
-    "pages_only_single_shot": [
-      "agel-fy25 p.226",
-      "agel-fy25 p.72",
-      "agel-fy25 p.8",
-      "apsez-q1fy27 p.13",
-      "apsez-q1fy27 p.21",
-      "apsez-q1fy27 p.28"
-    ],
-    "cost_ratio": 0.97
-  }
-]
+      "cost_ratio": 0.97
+    }
+  ]
+}
