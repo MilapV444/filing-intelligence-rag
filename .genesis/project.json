@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "project": {
-    "name": "risk_analytics_agent",
+    "name": "filing-intelligence-rag",
     "mode": "init",
     "profile": "prototype",
     "objective": "Build a small-scale financial-document intelligence demo, inspired by Moody's multi-agent RAG architecture, as a personal proof-of-work project to show a credit-ratings/DCM finance professional at Adani Group. Scope: (1) ingest a handful of PUBLIC financial documents only - public annual reports, bond prospectuses, disclosures - never confidential or internal company data; (2) classify each page as text-heavy, table-heavy, or chart/image, and route to a matching extraction method; (3) chunk, embed, and store extracted content in a local vector store (Chroma or FAISS, no cloud infra); (4) implement an agentic retrieval loop - plan, search, reflect, iterate, synthesize with citations - instead of single-shot vector search; (5) implement 2-3 narrow specialist agents (credit analysis, ESG/climate, compliance) plus a router agent that decides which specialist(s) to invoke per query; (6) output a structured analysis note with citations, in the style of a first-pass credit-rating rationale note. Runs locally, small scale, built primarily via Claude Code, using the Anthropic API.",
@@ -9,7 +9,7 @@
     "non_goals": [],
     "trust_boundary": "local repository",
     "created_at": "2026-09-15T15:05:11.365Z",
-    "updated_at": "2026-09-18T17:29:13.747Z"
+    "updated_at": "2026-09-18T17:40:16.091Z"
   },
   "policy": {
     "ponytail": "full",
@@ -3836,11 +3836,11 @@
   "incidents": [],
   "discovery": null,
   "checkpoint": {
-    "at": "2026-09-18T17:29:13.559Z",
+    "at": "2026-09-18T17:40:15.910Z",
     "revision": {
-      "commit": "24f16b41e3de7c4e497ff5411ce70559dddbd401",
+      "commit": "9a61b57764febf2dbe636c98e0cd436c7ba27e33",
       "dirty": true,
-      "source_hash": "654baad18e9bd0eb259e542d1f1ace42150201c0ce54daf49e0f9600f940fed1"
+      "source_hash": "398310e26286fe1c0811239bf899f262a0c9c4d4ef1ca861a01b1bb2689b7438"
     },
     "active_task": null,
     "next_action": "Review completed work and choose the next bounded outcome."
