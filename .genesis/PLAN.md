@@ -4,7 +4,7 @@
 
 - workflow: new-product
 - phase: verify
-- plan approval: Milap Vaghasia at 2026-09-17T17:23:11.622Z
+- plan approval: Milap Vaghasia at 2026-09-18T16:43:25.654Z
 
 ## Tasks
 
@@ -206,5 +206,13 @@
 - requirements: NFR-1, NFR-6, AC-5, AC-8, AC-9, AC-11
 - scope: tests, corpus, notes, src/risk_analytics
 - gates: acceptance: ".venv/Scripts/python.exe" -m pytest tests/test_acceptance.py -q, independent-review: pass
+- next: Run the task pre-flight.
+
+### T12A — Evidence sent to specialists preserves per-document balance, so a question spanning both issuers reaches each specialist with material from each rather than only from the larger document
+
+- state/risk: done / medium
+- requirements: FR-12, AC-5, AC-7
+- scope: src/risk_analytics, tests
+- gates: balance: ".venv/Scripts/python.exe" -m pytest tests/test_retrieval_loop.py tests/test_acceptance.py -q, independent-review: pass
 - next: Run the task pre-flight.
 

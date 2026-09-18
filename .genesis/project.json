@@ -9,7 +9,7 @@
     "non_goals": [],
     "trust_boundary": "local repository",
     "created_at": "2026-09-15T15:05:11.365Z",
-    "updated_at": "2026-09-18T16:41:38.318Z"
+    "updated_at": "2026-09-18T16:46:05.225Z"
   },
   "policy": {
     "ponytail": "full",
@@ -79,14 +79,14 @@
       ]
     },
     "plan_check": {
-      "at": "2026-09-17T17:21:45.914Z",
-      "source_hash": "c145d36591acb539f7f5bef511931019d9a69f675b5a463d89b1c04bd200d7bb"
+      "at": "2026-09-18T16:42:46.235Z",
+      "source_hash": "8cd2be127f7dc539f04b258407bce3dbc48a2fffdf7f580006008228e76722ed"
     },
     "plan_approval": {
       "human": "Milap Vaghasia",
-      "reason": "Reviewed the credential fix task and the widened acceptance scope",
-      "at": "2026-09-17T17:23:11.622Z",
-      "source_hash": "c145d36591acb539f7f5bef511931019d9a69f675b5a463d89b1c04bd200d7bb"
+      "reason": "Approval stated in session: reviewed T12A, declared retrospectively for the evidence-balance fix. Recorded by the agent because the CLI had no record of it.",
+      "at": "2026-09-18T16:43:25.654Z",
+      "source_hash": "8cd2be127f7dc539f04b258407bce3dbc48a2fffdf7f580006008228e76722ed"
     }
   },
   "artifacts": [
@@ -2460,6 +2460,113 @@
         "tests/test_router.py": "4a164ecaa51280a0fa611252f6d731bbca86f0bb52612e6a690dc2c0919ee9ba",
         "tests/test_store_roundtrip.py": "149600c1b16b25a83a952e9ce55e2e70281dd13312449b0ac797d015cf3ed6c9"
       }
+    },
+    {
+      "id": "T12A",
+      "outcome": "Evidence sent to specialists preserves per-document balance, so a question spanning both issuers reaches each specialist with material from each rather than only from the larger document",
+      "state": "done",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "src/risk_analytics",
+        "tests"
+      ],
+      "dependencies": [],
+      "requirements": [
+        "FR-12",
+        "AC-5",
+        "AC-7"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [
+        {
+          "id": "cross-issuer-evidence",
+          "actor": "the analysis pipeline",
+          "scope": "one question naming both corpus issuers",
+          "environment": "local, against the persisted index, with the model scripted so the test spends nothing",
+          "duration": "one evidence-selection pass over an accumulated result set",
+          "observable": "the capped evidence contains chunks from every document the loop retrieved from, not only the document contributing the most chunks, and a document with fewer hits than its share does not waste the remainder",
+          "gate": "balance"
+        }
+      ],
+      "gates": [
+        {
+          "id": "balance",
+          "kind": "command",
+          "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_retrieval_loop.py tests/test_acceptance.py -q",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T12A-balance-f8ce25ef-27bf-412d-97bd-20a645f36cc2.json",
+            "hash": "f4949d2253485423dcdecfeb9cda08961f226692ca5f4bd1db0f617a8dd55a10",
+            "source_hash": "c568a4cde94b26f5a6425cca146df440dc11cc189c837edf504d25082b477494",
+            "config_hash": "40e172f565fe309472cdabb96740dd23ab31be2cf7e51aea8a964e26fb47b4de",
+            "observed_at": "2026-09-18T16:43:57.618Z"
+          }
+        },
+        {
+          "id": "independent-review",
+          "kind": "review",
+          "command": "",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/T12A-independent-review-656578d9-43c1-4a6f-8d9e-fe27f83f8eb4.json",
+            "hash": "40a99466af1a01bf1360e9c06c4371a04d3ad94a6b30f2044df8abb32e5ca772",
+            "source_hash": "c568a4cde94b26f5a6425cca146df440dc11cc189c837edf504d25082b477494",
+            "config_hash": "40e172f565fe309472cdabb96740dd23ab31be2cf7e51aea8a964e26fb47b4de",
+            "observed_at": "2026-09-18T16:46:00.232Z"
+          }
+        }
+      ],
+      "next_action": "Run the task pre-flight.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [
+        "Declared after the fact. The code, its tests and its commit (af1d219) existed before this task did, so the gate and review are genuine but the usual guarantee that the outcome was agreed before implementation does not hold here."
+      ],
+      "created_at": "2026-09-18T16:42:42.791Z",
+      "updated_at": "2026-09-18T16:46:02.888Z",
+      "base_manifest": {
+        ".gitignore": "9355d28940d35abe2597f2f07b49462e1dc05e140175c0be52f84b514cf2c4f1",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "SPEC.md": "cc89f63dcbaec7f4a83502de8e5a5392460c8f0338a0814523554846233b2cf3",
+        "corpus/README.md": "34de6979e99147fa6ea6619a79a84fdd1f95fdc6afee13955db079041fb801e7",
+        "corpus/manifest.json": "8aaeb5fd65be97cc9ff2ee56932c5d2ed012478678c9f48d26cc74ce0f80f60f",
+        "pyproject.toml": "641adbba3dd3214b20cc2c621d77a4b02ae3f8e3b147c3c0ccad8a8a1f65dc11",
+        "src/risk_analytics/__init__.py": "67e200eafe0d03e92c002ef4c95b0504fdb1c67721b083d043320bf43467eac7",
+        "src/risk_analytics/__main__.py": "1e83fdc33fa81c618835aadf804ae88ffeced9eebe988124bb14a16973f67009",
+        "src/risk_analytics/agents.py": "878ceecd5ac7245d7f3b23e0cda2f8891ab3ece7f4b5d639d0fc961f9bfe6a27",
+        "src/risk_analytics/classify.py": "ad5bfaa37fc970f6c43bae35a332232a22613c48bd5bbff76c703d284dde995f",
+        "src/risk_analytics/cli.py": "63d0446802948c3f4a34fa5a258fca08dfa80ed01bdf31a6d9f484db8aa08c59",
+        "src/risk_analytics/config.py": "11347f4fe24334304e9c60ec1c44c96840fed3e5f9eee9b5c8e72a990cc50900",
+        "src/risk_analytics/extract.py": "683dc8fffd50d3daf7a717e831dade666b23fc33fbc9a2bc7f517e3dde169b7c",
+        "src/risk_analytics/indexing.py": "4345ef396f0c54be3887482d8aadcfb0a980e66df497a376b19cab866a18c701",
+        "src/risk_analytics/llm.py": "528a66b7efe01efef01112cd0a8d973a29574072467a0646cdc9e9e736640a4b",
+        "src/risk_analytics/manifest.py": "53135e3d51fb8101216a1d653f0436ac3c87caff1d4971b127e9ff01c2a48e5a",
+        "src/risk_analytics/note.py": "290c01c72d740c8b62989a6e20abd0b9461b4b4adf88188d29a50eb38f269deb",
+        "src/risk_analytics/retrieval.py": "f649304422d36743bdbe5e3c46d42f59482a2591964ddbca21ef15f880dd9cd3",
+        "tests/acceptance/note-20260917T180113+0000.trace.json": "4f28be195320f6040e1f4456e1d86752d80964778ea5738b172c66d2671f5582",
+        "tests/acceptance/note-20260917T180503+0000.trace.json": "08aba8cb0d1894ac9e1d1f2614153c9a9ea350bd33c86882c83edc116ae9c0a3",
+        "tests/acceptance/note-20260918T163914+0000.trace.json": "da06ae2590b988e61d4b2b754ad5a67f41637a94e29932c07ed644d094160b09",
+        "tests/labelled_pages.json": "abd8416cd217dadbcf13aeed3989a481a5fd23fe1f3d99efd12f1a21012d4ede",
+        "tests/synthetic.py": "fd0b30cce3b34128f9b4df462829ec0b2ab82754ff2eb28cae69ce4f2d8c7e72",
+        "tests/test_acceptance.py": "888d23441bb034357c30469342619c71bbc3276d57117e8030fa19c390c3adec",
+        "tests/test_classifier.py": "c54272f467bb6b6313def86b22f01ff68dc348806725fdc0f25857e73df9697c",
+        "tests/test_config.py": "1ebc92a2ba581ebf4fc7c68bbd38260de86da04dc160d297a66678fe8b05c126",
+        "tests/test_corpus_registration.py": "111257ac57f5a8faeb105136892a996961b0282f527fc4b1ec413c7bc8cd2965",
+        "tests/test_credentials.py": "34a04785bb6c4c34d81630a615c5ad48192caaab58905dc64c08eef670be2ecc",
+        "tests/test_extract.py": "3dd2bd6ae2158a8841f11611198c279513e5fc1851f822b69d13bb5689b11e8d",
+        "tests/test_index.py": "6871c0c7b96aa6d1fedf9de06d07f5dc1e3cd2bb591237599b589e6b5b04031f",
+        "tests/test_manifest.py": "07859956a5f3887523fc8a05397b956c9152217544b7ca84e322b2819a429954",
+        "tests/test_note.py": "2050e1514a2a248fcaaf78962d2d6b6dbe06c1145b845e9192ee0f3d0e00349e",
+        "tests/test_retrieval_loop.py": "b499e24e64c8b612844c8818a84f4110a4988512d749f5a27f79c30163b6ab5d",
+        "tests/test_router.py": "a9823bf14e52d87c431676cdce20aac9f9b0ed2346b22bd5f56730a46e7e713b",
+        "tests/test_store_roundtrip.py": "149600c1b16b25a83a952e9ce55e2e70281dd13312449b0ac797d015cf3ed6c9"
+      }
     }
   ],
   "learning_proposals": [],
@@ -2760,6 +2867,24 @@
       "task": "T11A",
       "human": "Milap Vaghasia",
       "reason": "Reviewed the live golden-question runs, the model retune and the retrieval fixes",
+      "revision": null
+    },
+    {
+      "id": "5c7394c4-aacb-4f74-95d1-e0af46ed7629",
+      "at": "2026-09-18T16:43:27.312Z",
+      "action": "resume",
+      "task": "T12A",
+      "human": null,
+      "reason": "Plan approved; activating the retrospectively declared evidence-balance task",
+      "revision": null
+    },
+    {
+      "id": "656578d9-43c1-4a6f-8d9e-fe27f83f8eb4",
+      "at": "2026-09-18T16:46:00.232Z",
+      "action": "approve",
+      "task": "T12A",
+      "human": "Milap Vaghasia",
+      "reason": "Approval stated in session: reviewed the balanced evidence selection and its tests. Recorded by the agent because the CLI had no record of it; the human asserted it in conversation.",
       "revision": null
     }
   ],
@@ -3219,6 +3344,30 @@
       "cost": null,
       "stop_reason": null,
       "ended_at": "2026-09-17T18:09:55.187Z"
+    },
+    {
+      "id": "f8ce25ef-27bf-412d-97bd-20a645f36cc2",
+      "task": "T12A",
+      "kind": "gate",
+      "command": "\".venv/Scripts/python.exe\" -m pytest tests/test_retrieval_loop.py tests/test_acceptance.py -q",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 16952,
+      "child_pid": 16176,
+      "started_at": "2026-09-18T16:43:30.566Z",
+      "status": "passed",
+      "before_hash": "c568a4cde94b26f5a6425cca146df440dc11cc189c837edf504d25082b477494",
+      "config_hash": "40e172f565fe309472cdabb96740dd23ab31be2cf7e51aea8a964e26fb47b4de",
+      "environment": {
+        "node": "v22.23.0",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-18T16:43:57.618Z"
     }
   ],
   "authorizations": [],
@@ -3226,11 +3375,11 @@
   "incidents": [],
   "discovery": null,
   "checkpoint": {
-    "at": "2026-09-18T16:41:38.138Z",
+    "at": "2026-09-18T16:46:05.038Z",
     "revision": {
-      "commit": "ce053d1a9da48cefaf1b8dce703f06383f3f5587",
+      "commit": "af1d219a1425f22f93616314ada2ba0b5eba61bf",
       "dirty": true,
-      "source_hash": "ea18bda64e38ebefa4f8af4702b01935d1218318b4d385ef0579687b018583f8"
+      "source_hash": "c568a4cde94b26f5a6425cca146df440dc11cc189c837edf504d25082b477494"
     },
     "active_task": null,
     "next_action": "Review completed work and choose the next bounded outcome."

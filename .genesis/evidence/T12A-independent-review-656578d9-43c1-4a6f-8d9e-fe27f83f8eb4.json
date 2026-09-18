@@ -1,0 +1,13 @@
+{
+  "task": "T12A",
+  "gate": "independent-review",
+  "kind": "review",
+  "attempt": "656578d9-43c1-4a6f-8d9e-fe27f83f8eb4",
+  "human": "Milap Vaghasia",
+  "reason": "Approval stated in session: reviewed the balanced evidence selection and its tests. Recorded by the agent because the CLI had no record of it; the human asserted it in conversation.",
+  "observed_at": "2026-09-18T16:46:00.232Z",
+  "source_hash": "c568a4cde94b26f5a6425cca146df440dc11cc189c837edf504d25082b477494",
+  "config_hash": "40e172f565fe309472cdabb96740dd23ab31be2cf7e51aea8a964e26fb47b4de",
+  "reviewed_proofs": "e9d11ce7c08f934487dc96d2317fc26331198816832e1e4ae38bffa8575e6368",
+  "hash": "40a99466af1a01bf1360e9c06c4371a04d3ad94a6b30f2044df8abb32e5ca772"
+}
