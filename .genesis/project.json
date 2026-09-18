@@ -9,7 +9,7 @@
     "non_goals": [],
     "trust_boundary": "local repository",
     "created_at": "2026-09-15T15:05:11.365Z",
-    "updated_at": "2026-09-17T18:14:29.151Z"
+    "updated_at": "2026-09-18T16:41:38.318Z"
   },
   "policy": {
     "ponytail": "full",
@@ -532,6 +532,15 @@
       "source": "T11A 2026-09-17",
       "tags": [],
       "recorded_at": "2026-09-17T18:10:19.593Z",
+      "paths": []
+    },
+    {
+      "id": "KNOWLEDGE-49a3cb99",
+      "title": "Balanced retrieval is undone unless the evidence trim is balanced too",
+      "text": "Fixing per-document retrieval was not sufficient for cross-issuer questions. A comparison run retrieved 40 chunks from one issuer and 28 from the other, then rank() trimmed to the ten best by distance and discarded all 28: both specialists saw one issuer only and correctly reported that no comparison could be made. The larger document simply ranks better on average, so any flat top-N reproduces the imbalance the retrieval fix removed. rank_balanced allocates the cap per document and spends any unused share on the next best hits. After the fix the same question cited both issuers, 4 of 11 findings resting on APSEZ, and concluded across both. Two fixes were needed because the imbalance appears at two stages; fixing only the visible one looked like progress and changed nothing a reader would see.",
+      "source": "GQ3 rerun 2026-09-18",
+      "tags": [],
+      "recorded_at": "2026-09-18T16:41:36.511Z",
       "paths": []
     }
   ],
@@ -3217,11 +3226,11 @@
   "incidents": [],
   "discovery": null,
   "checkpoint": {
-    "at": "2026-09-17T18:14:28.972Z",
+    "at": "2026-09-18T16:41:38.138Z",
     "revision": {
-      "commit": "62c5ef36c768ae178930206ea4cf8d1ab747ebcc",
+      "commit": "ce053d1a9da48cefaf1b8dce703f06383f3f5587",
       "dirty": true,
-      "source_hash": "d07ee681afba7a06b081b2aa92f4ee0d73ec0ec263664589999d6e7097bb240a"
+      "source_hash": "ea18bda64e38ebefa4f8af4702b01935d1218318b4d385ef0579687b018583f8"
     },
     "active_task": null,
     "next_action": "Review completed work and choose the next bounded outcome."

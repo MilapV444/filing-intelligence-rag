@@ -1,0 +1,789 @@
+{
+  "question": "Compare the disclosed financing profiles of AGEL and APSEZ on debt maturity structure, interest-rate exposure and reliance on related-party or promoter funding, and say which shows more refinancing risk on the disclosed evidence.",
+  "scope": "First-pass comparison of the disclosed financing profiles of Adani Green Energy Ltd (AGEL, FY25 annual report excerpts) and Adani Ports & SEZ Ltd (APSEZ, Q1 FY27 excerpts) across three dimensions: debt maturity structure, interest-rate exposure, and reliance on related-party/promoter funding. Both the credit and compliance specialists returned INSUFFICIENT EVIDENCE for a like-for-like comparison: AGEL disclosures are detailed on all three dimensions, while the APSEZ excerpts contain only covenant/ratio formulae, NCD covenant terms and a security-cover certificate table. No comparative refinancing-risk conclusion is drawn here, and no rating, score or outlook is assigned.",
+  "generated_at": "2026-09-18T16:39:14+00:00",
+  "key_findings": [
+    {
+      "text": "AGEL consolidated contractual maturities of borrowings (including current maturities and interest accrued) at March 31, 2025: <1 year \u20b916,991 crore; 1-5 years \u20b953,684 crore; >5 years \u20b960,037 crore; total \u20b91,30,712 crore. Prior year (March 31, 2024): \u20b928,004 crore / \u20b938,012 crore / \u20b948,738 crore; total \u20b91,14,754 crore \u2014 i.e. a larger total book with a materially smaller sub-1-year bucket year on year.",
+      "evidence_ids": [
+        "agel-fy25:p242:prose1"
+      ],
+      "citations": [
+        "[agel-fy25 p.242]"
+      ]
+    },
+    {
+      "text": "AGEL standalone contractual maturities of borrowings including trade credits from banks (including current maturities and interest accrued) at March 31, 2025: <1 year \u20b98,280 crore; 1-5 years \u20b914,493 crore; nil shown beyond 5 years; total \u20b922,773 crore. The standalone disclosure also references footnotes on extension of loan tenure payable in the current and next year.",
+      "evidence_ids": [
+        "agel-fy25:p71:prose2"
+      ],
+      "citations": [
+        "[agel-fy25 p.71]"
+      ]
+    },
+    {
+      "text": "AGEL discloses explicit reliance on related-party support for repayment flexibility: at consolidated level 'the Group also has support from related parties to extend repayment terms of borrowings due to them, as needed'; at standalone level the same support is stated in respect of inter-corporate borrowings due to subsidiaries. AGEL also states it monitors funding and refinancing options in debt and capital markets and has access to debt-market instruments.",
+      "evidence_ids": [
+        "agel-fy25:p242:prose1",
+        "agel-fy25:p71:prose2"
+      ],
+      "citations": [
+        "[agel-fy25 p.242]",
+        "[agel-fy25 p.71]"
+      ]
+    },
+    {
+      "text": "A specific instance of related-party funding reliance is disclosed: unsecured inter-corporate deposits from related parties bearing interest of 10.60%-11.00% p.a.; the tenure of an ICD balance of \u20b9751 crore originally payable in January 2026 and March 2026 was extended by 3 years (further extendable by 2 years by mutual agreement) effective March 1, 2025.",
+      "evidence_ids": [
+        "agel-fy25:p59:prose2"
+      ],
+      "citations": [
+        "[agel-fy25 p.59]"
+      ]
+    },
+    {
+      "text": "AGEL current borrowings detail: current maturities of non-current borrowings of \u20b93,826 crore at March 31, 2025 versus \u20b917,611 crore at March 31, 2024; secured working capital loans from banks of \u20b91,216 crore (prior year \u20b9612 crore) at 7.75%-8.00% p.a., repayable as a bullet at the end of 6 months from disbursement, alongside trade credit from banks.",
+      "evidence_ids": [
+        "agel-fy25:p227:prose2"
+      ],
+      "citations": [
+        "[agel-fy25 p.227]"
+      ]
+    },
+    {
+      "text": "AGEL interest-rate exposure: exposure relates to floating-rate term loans from banks/financial institutions, which existed in the prior year; for the current year AGEL states there is no interest rate risk because borrowings are mostly at fixed rates of interest.",
+      "evidence_ids": [
+        "agel-fy25:p69:prose2"
+      ],
+      "citations": [
+        "[agel-fy25 p.69]"
+      ]
+    },
+    {
+      "text": "AGEL disclosed a bond issuance secured by charges over operating project cash flows and reserve accounts at a fixed 4.375% p.a., fully repaid during the year on September 8, 2024.",
+      "evidence_ids": [
+        "agel-fy25:p59:prose2"
+      ],
+      "citations": [
+        "[agel-fy25 p.59]"
+      ]
+    },
+    {
+      "text": "For APSEZ, the only debt-specific covenant disclosure is for one 2016 NCD tranche (ISIN INE742F07361, \u20b9252 crore) with financial covenants of DSCR > 1.10x and Net Gearing (Total Net Debt/Tangible Net Worth) < 3x; no maturity schedule, interest-rate exposure or related-party/promoter funding reliance is disclosed for this or other APSEZ debt in the excerpts.",
+      "evidence_ids": [
+        "apsez-q1fy27:p33:prose0"
+      ],
+      "citations": [
+        "[apsez-q1fy27 p.33]"
+      ]
+    },
+    {
+      "text": "The APSEZ security-cover certificate is the only quantitative debt disclosure in the excerpts and does not break down maturity timing, fixed/floating structure or related-party funding sources. Specialists report the figures differently: the credit specialist cites listed secured NCD book value of \u20b910,275.10 crore plus other secured/unsecured borrowings of \u20b935,608.46 crore with associated asset coverage; the compliance specialist cites the same \u20b910,275.10 crore NCD book value against total liabilities of \u20b945,171.29 crore and additionally characterises the table as having largely blank/illegible figures. This divergence in how the table is read is not resolved on the evidence provided.",
+      "evidence_ids": [
+        "apsez-q1fy27:p30:prose0",
+        "apsez-q1fy27:p30:prose1"
+      ],
+      "citations": [
+        "[apsez-q1fy27 p.30]"
+      ]
+    },
+    {
+      "text": "The remaining APSEZ material consists of ratio definitions only \u2014 formulae for Debt Equity Ratio, Debt Service Coverage Ratio, Interest Service Coverage Ratio and Long Term Debt to Working Capital Ratio \u2014 without computed values, so none of the three comparison dimensions can be populated for APSEZ.",
+      "evidence_ids": [
+        "apsez-q1fy27:p17:table0",
+        "apsez-q1fy27:p13:prose0"
+      ],
+      "citations": [
+        "[apsez-q1fy27 p.13]",
+        "[apsez-q1fy27 p.17]"
+      ]
+    },
+    {
+      "text": "Both specialists conclude that the evidence does not permit a determination of which entity carries more refinancing risk: AGEL's refinancing-risk indicators (near-term and medium-term maturity buckets, documented related-party dependency and negotiated extensions) are disclosed, while APSEZ's equivalent indicators are absent from the excerpts. The asymmetry reflects disclosure coverage in the excerpts, not a demonstrated difference in underlying risk.",
+      "evidence_ids": [
+        "agel-fy25:p242:prose1",
+        "agel-fy25:p71:prose2",
+        "agel-fy25:p59:prose2",
+        "apsez-q1fy27:p33:prose0",
+        "apsez-q1fy27:p30:prose0"
+      ],
+      "citations": [
+        "[agel-fy25 p.242]",
+        "[agel-fy25 p.59]",
+        "[agel-fy25 p.71]",
+        "[apsez-q1fy27 p.30]",
+        "[apsez-q1fy27 p.33]"
+      ]
+    }
+  ],
+  "by_specialist": [
+    {
+      "specialist": "credit",
+      "claims": [
+        {
+          "text": "AGEL's consolidated contractual maturity of borrowings (including current maturities and interest accrued) was: less than 1 year \u20b916,991 crore, 1-5 years \u20b953,684 crore, more than 5 years \u20b960,037 crore, total \u20b91,30,712 crore as at March 31, 2025; compared to less than 1 year \u20b928,004 crore, 1-5 years \u20b938,012 crore, more than 5 years \u20b948,738 crore, total \u20b91,14,754 crore as at March 31, 2024.",
+          "evidence_ids": [
+            "agel-fy25:p242:prose1"
+          ],
+          "citations": [
+            "[agel-fy25 p.242]"
+          ]
+        },
+        {
+          "text": "At the standalone (AGEL company) level, contractual maturities of borrowings including trade credits from banks (including current maturities and interest accrued) were: less than 1 year \u20b98,280 crore, 1-5 years \u20b914,493 crore, more than 5 years \u20b90, total \u20b922,773 crore as at March 31, 2025.",
+          "evidence_ids": [
+            "agel-fy25:p71:prose2"
+          ],
+          "citations": [
+            "[agel-fy25 p.71]"
+          ]
+        },
+        {
+          "text": "AGEL states it consistently monitors funding and refinancing options in debt and capital markets, and discloses that 'the Group also has support from related parties to extend repayment terms of borrowings due to them, as needed' (consolidated) and that 'the Company also has support from related parties (subsidiaries) to extend repayment terms of inter corporate borrowings due to them, as needed' (standalone).",
+          "evidence_ids": [
+            "agel-fy25:p242:prose1",
+            "agel-fy25:p71:prose2"
+          ],
+          "citations": [
+            "[agel-fy25 p.242]",
+            "[agel-fy25 p.71]"
+          ]
+        },
+        {
+          "text": "AGEL discloses a specific instance of related-party (promoter-group inter-corporate deposit) funding reliance: unsecured ICDs from related parties carrying interest of 10.60%-11.00% p.a.; the tenure of an ICD balance of \u20b9751 crore, originally payable in January 2026 and March 2026, was extended for a further 3 years (further extendable by 2 years by mutual agreement) effective March 1, 2025.",
+          "evidence_ids": [
+            "agel-fy25:p59:prose2"
+          ],
+          "citations": [
+            "[agel-fy25 p.59]"
+          ]
+        },
+        {
+          "text": "AGEL's current borrowings included 'Current maturities of Non current borrowings' of \u20b93,826 crore as at March 31, 2025, down from \u20b917,611 crore as at March 31, 2024, alongside working capital loans from banks carrying interest of 7.75%-8.00% p.a.",
+          "evidence_ids": [
+            "agel-fy25:p227:prose2"
+          ],
+          "citations": [
+            "[agel-fy25 p.227]"
+          ]
+        },
+        {
+          "text": "AGEL discloses that its interest-rate risk relates to floating-rate term loans from banks/financial institutions; in the prior year there was such exposure, but 'there is no interest rate risk during the current year, considering Company's borrowings in current year are mostly at fixed rate of interest.'",
+          "evidence_ids": [
+            "agel-fy25:p69:prose2"
+          ],
+          "citations": [
+            "[agel-fy25 p.69]"
+          ]
+        },
+        {
+          "text": "AGEL also disclosed a bond issuance secured by charges over operating project cash flows and reserve accounts carrying a fixed interest rate of 4.375% p.a., which was fully repaid during the year (repaid September 8, 2024).",
+          "evidence_ids": [
+            "agel-fy25:p59:prose2"
+          ],
+          "citations": [
+            "[agel-fy25 p.59]"
+          ]
+        },
+        {
+          "text": "For APSEZ, the only debt-related covenant information disclosed is for one 2016 NCD tranche (ISIN INE742F07361, \u20b9252 crore), with financial covenants of DSCR > 1.10x and Net Gearing (Total Net Debt/Tangible Net Worth) < 3x; no maturity schedule, interest-rate exposure, or related-party/promoter funding reliance is disclosed for this or other APSEZ debt in the excerpts.",
+          "evidence_ids": [
+            "apsez-q1fy27:p33:prose0"
+          ],
+          "citations": [
+            "[apsez-q1fy27 p.33]"
+          ]
+        },
+        {
+          "text": "APSEZ's security cover certificate shows book values of listed secured non-convertible debentures (\u20b910,275.10 crore) and other secured/unsecured borrowings (\u20b935,608.46 crore) with associated asset coverage, but provides no breakdown of maturity timing (short-term vs long-term), interest-rate structure, or related-party funding sources.",
+          "evidence_ids": [
+            "apsez-q1fy27:p30:prose0",
+            "apsez-q1fy27:p30:prose1"
+          ],
+          "citations": [
+            "[apsez-q1fy27 p.30]"
+          ]
+        },
+        {
+          "text": "On the evidence disclosed, AGEL explicitly documents reliance on related-party/promoter funding with negotiated extensions of repayment terms on inter-corporate deposits and borrowings, together with a detailed maturity ladder showing substantial near-term (under 1 year) and medium-term (1-5 year) borrowings; APSEZ's excerpts do not contain comparable maturity-ladder, interest-rate-exposure, or related-party-funding disclosures, so the evidence does not permit a definitive comparative conclusion on which entity carries more refinancing risk overall \u2014 it only supports that AGEL's disclosed refinancing-risk indicators (related-party dependency, near-term maturities) are documented, while APSEZ's equivalent indicators are not present in the provided excerpts.",
+          "evidence_ids": [
+            "agel-fy25:p242:prose1",
+            "agel-fy25:p71:prose2",
+            "agel-fy25:p59:prose2",
+            "apsez-q1fy27:p33:prose0",
+            "apsez-q1fy27:p30:prose0"
+          ],
+          "citations": [
+            "[agel-fy25 p.242]",
+            "[agel-fy25 p.59]",
+            "[agel-fy25 p.71]",
+            "[apsez-q1fy27 p.30]",
+            "[apsez-q1fy27 p.33]"
+          ]
+        }
+      ],
+      "insufficient_evidence": true,
+      "note": "The excerpts provide detailed debt maturity, interest-rate and related-party funding disclosures for AGEL (both consolidated and standalone) but do not contain comparable disclosures for APSEZ. The APSEZ excerpts consist only of ratio/covenant formula definitions, a security-cover certificate table for listed NCDs, and financial covenant terms (DSCR, Net Gearing) for one 2016 NCD tranche \u2014 they do not disclose a maturity ladder, interest-rate risk exposure, or any reliance on related-party/promoter funding for APSEZ. Consequently, a full side-by-side comparison of refinancing risk cannot be supported by the evidence provided; only AGEL's profile can be described in detail, with APSEZ's corresponding profile largely undisclosed in these excerpts.",
+      "dropped_claims": []
+    },
+    {
+      "specialist": "compliance",
+      "claims": [
+        {
+          "text": "AGEL (consolidated) discloses a maturity profile of financial liabilities showing borrowings (including current maturities and interest accrued) of \\u20b916,991 crore due in less than 1 year, \\u20b953,684 crore due in 1-5 years, and \\u20b960,037 crore due in more than 5 years as at March 31, 2025 (total \\u20b91,30,712 crore), compared to \\u20b928,004 crore, \\u20b938,012 crore and \\u20b948,738 crore respectively (total \\u20b91,14,754 crore) as at March 31, 2024.",
+          "evidence_ids": [
+            "agel-fy25:p242:prose1"
+          ],
+          "citations": [
+            "[agel-fy25 p.242]"
+          ]
+        },
+        {
+          "text": "AGEL states that the Group monitors funding and refinancing options in debt and capital markets to maintain financial flexibility, and that it has support from related parties to extend repayment terms of borrowings due to them, with access to funds from the debt market through various instruments.",
+          "evidence_ids": [
+            "agel-fy25:p242:prose1"
+          ],
+          "citations": [
+            "[agel-fy25 p.242]"
+          ]
+        },
+        {
+          "text": "At the standalone (Company) level, AGEL similarly discloses a maturity profile: borrowings (including current maturities and interest accrued) of \\u20b98,280 crore due in less than 1 year and \\u20b914,493 crore due in 1-5 years as at March 31, 2025 (total \\u20b922,773 crore), with no amount shown due beyond 5 years in that line.",
+          "evidence_ids": [
+            "agel-fy25:p71:prose2"
+          ],
+          "citations": [
+            "[agel-fy25 p.71]"
+          ]
+        },
+        {
+          "text": "AGEL (standalone) states the Company also has support from related parties (subsidiaries) to extend repayment terms of inter corporate borrowings due to them, as needed, and references footnotes regarding extension of loan tenure payable in the current and next year.",
+          "evidence_ids": [
+            "agel-fy25:p71:prose2"
+          ],
+          "citations": [
+            "[agel-fy25 p.71]"
+          ]
+        },
+        {
+          "text": "AGEL discloses that during the current year its borrowings are mostly at fixed rates of interest, and states there is no interest rate risk in the current year, whereas in the previous year the Company's exposure to interest rate risk related primarily to term loans from financial institutions/banks with floating rates.",
+          "evidence_ids": [
+            "agel-fy25:p69:prose2"
+          ],
+          "citations": [
+            "[agel-fy25 p.69]"
+          ]
+        },
+        {
+          "text": "AGEL discloses unsecured inter-corporate deposits (ICDs) from related parties carrying interest rates of 10.60% to 11.00% p.a., and states that during the year the tenure of an ICD with a balance of \\u20b9751 crore, initially payable in January'26 and March'26, was extended for 3 years (further extendable by 2 years by mutual agreement) effective March 1, 2025.",
+          "evidence_ids": [
+            "agel-fy25:p59:prose2"
+          ],
+          "citations": [
+            "[agel-fy25 p.59]"
+          ]
+        },
+        {
+          "text": "AGEL discloses current secured working capital loans from banks of \\u20b91,216 crore (previous year \\u20b9612 crore) carrying interest rates in the range of 7.75% to 8.00% p.a., repayable as a bullet payment at the end of 6 months from disbursement, alongside other current borrowings including trade credit from banks and current maturities of non-current borrowings.",
+          "evidence_ids": [
+            "agel-fy25:p227:prose2"
+          ],
+          "citations": [
+            "[agel-fy25 p.227]"
+          ]
+        },
+        {
+          "text": "For APSEZ, the disclosed evidence only provides the formulae for financial ratios (including Debt Equity Ratio, Debt Service Coverage Ratio, Interest Service Coverage Ratio, and Long Term Debt to Working Capital Ratio) and does not provide the actual computed maturity profile, interest-rate exposure mix, or related-party/promoter funding figures needed for comparison.",
+          "evidence_ids": [
+            "apsez-q1fy27:p17:table0",
+            "apsez-q1fy27:p13:prose0"
+          ],
+          "citations": [
+            "[apsez-q1fy27 p.13]",
+            "[apsez-q1fy27 p.17]"
+          ]
+        },
+        {
+          "text": "APSEZ's security cover certificate references Non-Convertible Debentures financial covenants (DSCR > 1.10x; Net Gearing/Total Net debt to Tangible Net worth < 3x) for one specific NCD issuance (INR 252 Crore, ISIN INE742F07361), but this does not disclose overall debt maturity structure, rate exposure, or related-party funding reliance.",
+          "evidence_ids": [
+            "apsez-q1fy27:p33:prose0"
+          ],
+          "citations": [
+            "[apsez-q1fy27 p.33]"
+          ]
+        },
+        {
+          "text": "APSEZ's standalone security cover table shows a total secured Non-Convertible Debenture book value of \\u20b910,275.10 crore against total liabilities of \\u20b945,171.29 crore, but the table does not break down maturity timing, interest rate type, or related-party/promoter funding sources, so it cannot be used to assess refinancing risk relative to AGEL.",
+          "evidence_ids": [
+            "apsez-q1fy27:p30:prose0",
+            "apsez-q1fy27:p30:prose1"
+          ],
+          "citations": [
+            "[apsez-q1fy27 p.30]"
+          ]
+        }
+      ],
+      "insufficient_evidence": true,
+      "note": "The evidence provided is heavily skewed toward AGEL, which has detailed disclosures on debt maturity profiles, interest-rate risk, and related-party/promoter funding reliance. For APSEZ, the excerpts only contain generic covenant ratio formulae, a security cover certificate table with largely blank/illegible figures, and NCD covenant definitions \"a\u20ac\" none of which disclose APSEZ's actual debt maturity structure, interest-rate exposure (fixed vs floating mix), or the extent of related-party/promoter funding reliance. Therefore a like-for-like comparison on all three dimensions (maturity structure, rate exposure, related-party reliance) cannot be made from the evidence given, and no determination of which entity shows more refinancing risk can be supported. Only AGEL-side facts can be reported with confidence.",
+      "dropped_claims": []
+    }
+  ],
+  "watch_items": [
+    "Obtain APSEZ maturity ladder (contractual maturities of financial liabilities), fixed/floating mix and related-party borrowing disclosures from its annual/standalone financial statements to enable the requested side-by-side comparison.",
+    "Reconcile the two specialists' differing readings of the APSEZ security-cover table (\u20b935,608.46 crore 'other secured/unsecured borrowings' vs \u20b945,171.29 crore 'total liabilities'; legibility of the table).",
+    "AGEL's \u20b9751 crore related-party ICD extension effective March 1, 2025 \u2014 confirm whether the further 2-year extension option is exercised and whether additional ICD balances are similarly rolled.",
+    "AGEL's near-term bucket: sub-1-year borrowings of \u20b916,991 crore consolidated and \u20b98,280 crore standalone at March 31, 2025, plus 6-month bullet working capital loans of \u20b91,216 crore, require refinancing or repayment sourcing confirmation.",
+    "AGEL's statement of 'no interest rate risk during the current year' rests on borrowings being 'mostly' fixed-rate; the quantified fixed/floating split is not reported in the excerpts.",
+    "APSEZ compliance status against the disclosed DSCR > 1.10x and Net Gearing < 3x covenants on ISIN INE742F07361, and whether similar covenants apply to the wider NCD stack."
+  ],
+  "limitations": [
+    "Both specialists returned INSUFFICIENT EVIDENCE; the APSEZ excerpts contain no maturity ladder, no interest-rate exposure disclosure and no related-party/promoter funding disclosure, so the three-dimension comparison requested cannot be completed.",
+    "Source periods are not aligned: AGEL data is FY25 (year ended March 31, 2025) audited-report excerpts; APSEZ data is Q1 FY27 excerpts consisting of covenant formulae and a security-cover certificate.",
+    "AGEL standalone and consolidated figures are both reported and should not be combined; the standalone ladder shows nil beyond 5 years while the consolidated ladder shows \u20b960,037 crore beyond 5 years.",
+    "The compliance specialist notes parts of the APSEZ security-cover table are blank or illegible, which limits reliance on figures extracted from it.",
+    "No rating, score or outlook is expressed, and no comparative refinancing-risk ranking is asserted.",
+    "Credit analysis: The excerpts provide detailed debt maturity, interest-rate and related-party funding disclosures for AGEL (both consolidated and standalone) but do not contain comparable disclosures for APSEZ. The APSEZ excerpts consist only of ratio/covenant formula definitions, a security-cover certificate table for listed NCDs, and financial covenant terms (DSCR, Net Gearing) for one 2016 NCD tranche \u2014 they do not disclose a maturity ladder, interest-rate risk exposure, or any reliance on related-party/promoter funding for APSEZ. Consequently, a full side-by-side comparison of refinancing risk cannot be supported by the evidence provided; only AGEL's profile can be described in detail, with APSEZ's corresponding profile largely undisclosed in these excerpts.",
+    "Compliance and disclosure: The evidence provided is heavily skewed toward AGEL, which has detailed disclosures on debt maturity profiles, interest-rate risk, and related-party/promoter funding reliance. For APSEZ, the excerpts only contain generic covenant ratio formulae, a security cover certificate table with largely blank/illegible figures, and NCD covenant definitions \"a\u20ac\" none of which disclose APSEZ's actual debt maturity structure, interest-rate exposure (fixed vs floating mix), or the extent of related-party/promoter funding reliance. Therefore a like-for-like comparison on all three dimensions (maturity structure, rate exposure, related-party reliance) cannot be made from the evidence given, and no determination of which entity shows more refinancing risk can be supported. Only AGEL-side facts can be reported with confidence.",
+    "Retrieval stopped on iteration ceiling rather than on sufficient evidence, so the note may rest on an incomplete search."
+  ],
+  "contradictions": [
+    {
+      "specialists": [
+        "credit",
+        "compliance"
+      ],
+      "claims": [
+        "AGEL's consolidated contractual maturity of borrowings (including current maturities and interest accrued) was: less than 1 year \u20b916,991 crore, 1-5 years \u20b953,684 crore, more than 5 years \u20b960,037 crore, total \u20b91,30,712 crore as at March 31, 2025; compared to less than 1 year \u20b928,004 crore, 1-5 years \u20b938,012 crore, more than 5 years \u20b948,738 crore, total \u20b91,14,754 crore as at March 31, 2024.",
+        "At the standalone (Company) level, AGEL similarly discloses a maturity profile: borrowings (including current maturities and interest accrued) of \\u20b98,280 crore due in less than 1 year and \\u20b914,493 crore due in 1-5 years as at March 31, 2025 (total \\u20b922,773 crore), with no amount shown due beyond 5 years in that line."
+      ]
+    },
+    {
+      "specialists": [
+        "credit",
+        "compliance"
+      ],
+      "claims": [
+        "At the standalone (AGEL company) level, contractual maturities of borrowings including trade credits from banks (including current maturities and interest accrued) were: less than 1 year \u20b98,280 crore, 1-5 years \u20b914,493 crore, more than 5 years \u20b90, total \u20b922,773 crore as at March 31, 2025.",
+        "At the standalone (Company) level, AGEL similarly discloses a maturity profile: borrowings (including current maturities and interest accrued) of \\u20b98,280 crore due in less than 1 year and \\u20b914,493 crore due in 1-5 years as at March 31, 2025 (total \\u20b922,773 crore), with no amount shown due beyond 5 years in that line."
+      ]
+    }
+  ],
+  "routing": {
+    "selected": [
+      "credit",
+      "compliance"
+    ],
+    "reasons": {
+      "credit": "Debt maturity structure, interest-rate exposure, and refinancing risk assessment are core credit analysis domains.",
+      "esg": "ESG specialist has no contribution to a question focused on financing profiles, debt structure, and refinancing risk.",
+      "compliance": "Related-party and promoter funding disclosure is a compliance and disclosure requirement that must be examined for completeness.",
+      "peer": "Peer comparison is essential to evaluate which of the two issuers shows more refinancing risk on a comparative basis. (not invoked: the router selected more than 2 specialists and this one fell outside the limit)"
+    },
+    "truncated": [
+      "peer"
+    ]
+  },
+  "trace": {
+    "question": "Compare the disclosed financing profiles of AGEL and APSEZ on debt maturity structure, interest-rate exposure and reliance on related-party or promoter funding, and say which shows more refinancing risk on the disclosed evidence.",
+    "plan": [
+      "AGEL debt maturity schedule long-term short-term borrowings",
+      "APSEZ debt maturity schedule long-term short-term borrowings",
+      "AGEL interest rate sensitivity fixed floating rate debt",
+      "APSEZ interest rate sensitivity fixed floating rate debt",
+      "AGEL related party borrowings promoter funding loans payable",
+      "APSEZ maturity profile financial liabilities borrowings 1 year 5 years",
+      "APSEZ floating rate debt interest rate exposure sensitivity analysis",
+      "APSEZ related party borrowings promoter loans payable to associates",
+      "APSEZ debt composition secured unsecured borrowings banks financial institutions",
+      "APSEZ borrowings debt maturity profile contractual maturities financial liabilities",
+      "APSEZ floating rate debt fixed rate interest rate risk exposure",
+      "APSEZ inter-corporate deposits related party loans promoter advances",
+      "APSEZ debt refinancing schedule next 12 months current maturities non-current borrowings",
+      "APSEZ consolidated financial liabilities maturity profile contractual undiscounted payments 1 year 5 years",
+      "APSEZ fixed rate floating rate borrowings interest rate exposure sensitivity",
+      "APSEZ inter-corporate deposits related party funds promoter advances ICD balance",
+      "APSEZ current maturities of long-term debt non-current borrowings due within 12 months"
+    ],
+    "plan_reasoning": "The question requires comparative analysis across three dimensions: (1) debt maturity structure to identify near-term refinancing needs, (2) interest-rate exposure (fixed vs floating) to assess rate risk, and (3) related-party/promoter funding reliance to evaluate dependence on connected parties. Separate queries for each company on maturity schedules, interest rate terms, and related-party funding capture the core disclosure evidence. Additional queries on refinancing obligations and leverage metrics provide context on overall financial stress and debt service capacity, enabling assessment of refinancing risk differential.",
+    "iterations": [
+      {
+        "index": 1,
+        "queries": [
+          "AGEL debt maturity schedule long-term short-term borrowings",
+          "APSEZ debt maturity schedule long-term short-term borrowings",
+          "AGEL interest rate sensitivity fixed floating rate debt",
+          "APSEZ interest rate sensitivity fixed floating rate debt",
+          "AGEL related party borrowings promoter funding loans payable"
+        ],
+        "hit_ids": [
+          "agel-fy25:p195:prose2",
+          "agel-fy25:p214:prose1",
+          "agel-fy25:p226:prose0",
+          "agel-fy25:p227:prose2",
+          "agel-fy25:p240:prose0",
+          "agel-fy25:p240:prose1",
+          "agel-fy25:p240:prose2",
+          "agel-fy25:p242:prose0",
+          "agel-fy25:p242:prose1",
+          "agel-fy25:p242:table0",
+          "agel-fy25:p262:prose3",
+          "agel-fy25:p59:prose2",
+          "agel-fy25:p69:prose2",
+          "agel-fy25:p71:prose2",
+          "agel-fy25:p72:prose2",
+          "apsez-q1fy27:p13:prose0",
+          "apsez-q1fy27:p17:table0",
+          "apsez-q1fy27:p21:prose1",
+          "apsez-q1fy27:p22:prose1",
+          "apsez-q1fy27:p23:prose1",
+          "apsez-q1fy27:p28:prose1",
+          "apsez-q1fy27:p33:prose0",
+          "apsez-q1fy27:p33:prose1",
+          "apsez-q1fy27:p34:prose1"
+        ],
+        "new_hits": 24,
+        "sufficient": false,
+        "reason": "The excerpts provide substantial data on AGEL's debt maturity structure, interest-rate exposure, and related-party funding, but contain almost no comparable information on APSEZ. Only one excerpt from APSEZ (a table of ratio definitions) appears in the retrieved set, and it does not contain actual debt maturity schedules, interest-rate sensitivity data, or related-party borrowing details for APSEZ.",
+        "missing": [
+          "APSEZ debt maturity schedule (less than 1 year, 1-5 years, more than 5 years buckets)",
+          "APSEZ interest-rate sensitivity analysis and exposure to floating vs. fixed rate debt",
+          "APSEZ related-party and promoter borrowings details and amounts",
+          "APSEZ current maturities of non-current borrowings as percentage of total debt or in absolute terms"
+        ],
+        "next_queries": [
+          "APSEZ maturity profile financial liabilities borrowings 1 year 5 years",
+          "APSEZ floating rate debt interest rate exposure sensitivity analysis",
+          "APSEZ related party borrowings promoter loans payable to associates",
+          "APSEZ debt composition secured unsecured borrowings banks financial institutions"
+        ]
+      },
+      {
+        "index": 2,
+        "queries": [
+          "APSEZ maturity profile financial liabilities borrowings 1 year 5 years",
+          "APSEZ floating rate debt interest rate exposure sensitivity analysis",
+          "APSEZ related party borrowings promoter loans payable to associates",
+          "APSEZ debt composition secured unsecured borrowings banks financial institutions"
+        ],
+        "hit_ids": [
+          "agel-fy25:p157:prose3",
+          "agel-fy25:p195:prose2",
+          "agel-fy25:p214:prose0",
+          "agel-fy25:p214:prose1",
+          "agel-fy25:p216:prose5",
+          "agel-fy25:p226:prose0",
+          "agel-fy25:p226:prose6",
+          "agel-fy25:p227:prose2",
+          "agel-fy25:p240:prose0",
+          "agel-fy25:p240:prose1",
+          "agel-fy25:p240:prose2",
+          "agel-fy25:p242:prose0",
+          "agel-fy25:p242:prose1",
+          "agel-fy25:p242:table0",
+          "agel-fy25:p243:prose1",
+          "agel-fy25:p262:prose3",
+          "agel-fy25:p59:prose2",
+          "agel-fy25:p60:prose0",
+          "agel-fy25:p69:prose2",
+          "agel-fy25:p71:prose2",
+          "agel-fy25:p71:table0",
+          "agel-fy25:p72:prose2",
+          "apsez-q1fy27:p13:prose0",
+          "apsez-q1fy27:p17:prose1",
+          "apsez-q1fy27:p17:table0",
+          "apsez-q1fy27:p21:prose1",
+          "apsez-q1fy27:p22:prose1",
+          "apsez-q1fy27:p23:prose1",
+          "apsez-q1fy27:p24:prose1",
+          "apsez-q1fy27:p24:prose2",
+          "apsez-q1fy27:p27:prose3",
+          "apsez-q1fy27:p28:prose1",
+          "apsez-q1fy27:p30:prose0",
+          "apsez-q1fy27:p33:prose0",
+          "apsez-q1fy27:p33:prose1",
+          "apsez-q1fy27:p34:prose1"
+        ],
+        "new_hits": 12,
+        "sufficient": false,
+        "reason": "While the excerpts provide detailed information about AGEL's debt maturity structure, interest-rate exposure, and related-party funding, there are NO excerpts containing comparable information about APSEZ. The retrieved documents are exclusively from AGEL's FY25 filing. A comparative analysis requiring assessment of which company shows 'more refinancing risk' cannot be completed without parallel data on APSEZ's debt profile.",
+        "missing": [
+          "APSEZ debt maturity schedule (less than 1 year, 1-5 years, more than 5 years breakdown)",
+          "APSEZ interest rate exposure and floating vs. fixed rate debt composition",
+          "APSEZ related-party borrowings and promoter funding disclosures",
+          "APSEZ refinancing needs and debt repayment obligations timeline"
+        ],
+        "next_queries": [
+          "APSEZ borrowings debt maturity profile contractual maturities financial liabilities",
+          "APSEZ floating rate debt fixed rate interest rate risk exposure",
+          "APSEZ inter-corporate deposits related party loans promoter advances",
+          "APSEZ debt refinancing schedule next 12 months current maturities non-current borrowings"
+        ]
+      },
+      {
+        "index": 3,
+        "queries": [
+          "APSEZ borrowings debt maturity profile contractual maturities financial liabilities",
+          "APSEZ floating rate debt fixed rate interest rate risk exposure",
+          "APSEZ inter-corporate deposits related party loans promoter advances",
+          "APSEZ debt refinancing schedule next 12 months current maturities non-current borrowings"
+        ],
+        "hit_ids": [
+          "agel-fy25:p157:prose3",
+          "agel-fy25:p180:prose0",
+          "agel-fy25:p195:prose2",
+          "agel-fy25:p195:table1",
+          "agel-fy25:p214:prose0",
+          "agel-fy25:p214:prose1",
+          "agel-fy25:p216:prose5",
+          "agel-fy25:p226:prose0",
+          "agel-fy25:p226:prose6",
+          "agel-fy25:p227:prose2",
+          "agel-fy25:p227:table0",
+          "agel-fy25:p239:prose2",
+          "agel-fy25:p240:prose0",
+          "agel-fy25:p240:prose1",
+          "agel-fy25:p240:prose2",
+          "agel-fy25:p242:prose0",
+          "agel-fy25:p242:prose1",
+          "agel-fy25:p242:table0",
+          "agel-fy25:p243:prose1",
+          "agel-fy25:p251:prose4",
+          "agel-fy25:p262:prose3",
+          "agel-fy25:p59:prose2",
+          "agel-fy25:p60:prose0",
+          "agel-fy25:p60:table0",
+          "agel-fy25:p69:prose2",
+          "agel-fy25:p6:prose0",
+          "agel-fy25:p71:prose2",
+          "agel-fy25:p71:table0",
+          "agel-fy25:p72:prose2",
+          "agel-fy25:p82:prose5",
+          "apsez-q1fy27:p13:prose0",
+          "apsez-q1fy27:p15:prose0",
+          "apsez-q1fy27:p17:prose1",
+          "apsez-q1fy27:p17:table0",
+          "apsez-q1fy27:p21:prose1",
+          "apsez-q1fy27:p22:prose1",
+          "apsez-q1fy27:p23:prose1",
+          "apsez-q1fy27:p24:prose1",
+          "apsez-q1fy27:p24:prose2",
+          "apsez-q1fy27:p27:prose3",
+          "apsez-q1fy27:p28:prose1",
+          "apsez-q1fy27:p30:prose0",
+          "apsez-q1fy27:p33:prose0",
+          "apsez-q1fy27:p33:prose1",
+          "apsez-q1fy27:p34:prose0",
+          "apsez-q1fy27:p34:prose1",
+          "apsez-q1fy27:p3:prose0"
+        ],
+        "new_hits": 11,
+        "sufficient": false,
+        "reason": "The retrieved excerpts provide substantial detail on AGEL's debt maturity structure, interest rate exposure, and related-party funding, but contain virtually no comparable information on APSEZ. While AGEL shows a maturity profile with near-term refinancing needs (\u20b916,991 crore due in less than 1 year as of March 31, 2025), related-party inter-corporate deposits (\u20b9751 crore extended for 3 years), and fixed-rate borrowing focus, there is almost no concrete data on APSEZ's equivalent metrics to enable a proper comparative analysis and refinancing risk assessment.",
+        "missing": [
+          "APSEZ debt maturity profile (less than 1 year, 1-5 years, more than 5 years buckets) with specific figures",
+          "APSEZ fixed vs. floating rate debt composition and interest rate sensitivity analysis",
+          "APSEZ related-party borrowings, inter-corporate deposits, and promoter funding amounts",
+          "APSEZ current maturities of non-current borrowings to assess near-term refinancing requirements",
+          "APSEZ total debt levels and capital structure metrics for comparative leverage assessment"
+        ],
+        "next_queries": [
+          "APSEZ consolidated financial liabilities maturity profile contractual undiscounted payments 1 year 5 years",
+          "APSEZ fixed rate floating rate borrowings interest rate exposure sensitivity",
+          "APSEZ inter-corporate deposits related party funds promoter advances ICD balance",
+          "APSEZ current maturities of long-term debt non-current borrowings due within 12 months"
+        ]
+      },
+      {
+        "index": 4,
+        "queries": [
+          "APSEZ consolidated financial liabilities maturity profile contractual undiscounted payments 1 year 5 years",
+          "APSEZ fixed rate floating rate borrowings interest rate exposure sensitivity",
+          "APSEZ inter-corporate deposits related party funds promoter advances ICD balance",
+          "APSEZ current maturities of long-term debt non-current borrowings due within 12 months"
+        ],
+        "hit_ids": [
+          "agel-fy25:p114:prose2",
+          "agel-fy25:p118:prose0",
+          "agel-fy25:p126:prose0",
+          "agel-fy25:p154:prose2",
+          "agel-fy25:p157:prose3",
+          "agel-fy25:p17:prose2",
+          "agel-fy25:p180:prose0",
+          "agel-fy25:p194:prose1",
+          "agel-fy25:p195:prose2",
+          "agel-fy25:p195:table1",
+          "agel-fy25:p214:prose0",
+          "agel-fy25:p214:prose1",
+          "agel-fy25:p216:prose5",
+          "agel-fy25:p226:prose0",
+          "agel-fy25:p226:prose6",
+          "agel-fy25:p227:prose2",
+          "agel-fy25:p227:table0",
+          "agel-fy25:p239:prose2",
+          "agel-fy25:p240:prose0",
+          "agel-fy25:p240:prose1",
+          "agel-fy25:p240:prose2",
+          "agel-fy25:p242:prose0",
+          "agel-fy25:p242:prose1",
+          "agel-fy25:p242:table0",
+          "agel-fy25:p243:prose1",
+          "agel-fy25:p251:prose4",
+          "agel-fy25:p262:prose3",
+          "agel-fy25:p36:prose0",
+          "agel-fy25:p49:prose0",
+          "agel-fy25:p59:prose2",
+          "agel-fy25:p60:prose0",
+          "agel-fy25:p60:table0",
+          "agel-fy25:p69:prose2",
+          "agel-fy25:p6:prose0",
+          "agel-fy25:p71:prose2",
+          "agel-fy25:p71:table0",
+          "agel-fy25:p72:prose2",
+          "agel-fy25:p82:prose5",
+          "apsez-q1fy27:p11:prose3",
+          "apsez-q1fy27:p13:prose0",
+          "apsez-q1fy27:p13:prose4",
+          "apsez-q1fy27:p15:prose0",
+          "apsez-q1fy27:p17:prose1",
+          "apsez-q1fy27:p17:table0",
+          "apsez-q1fy27:p21:prose1",
+          "apsez-q1fy27:p22:prose1",
+          "apsez-q1fy27:p23:prose1",
+          "apsez-q1fy27:p24:prose1",
+          "apsez-q1fy27:p24:prose2",
+          "apsez-q1fy27:p27:prose3",
+          "apsez-q1fy27:p28:prose1",
+          "apsez-q1fy27:p29:prose0",
+          "apsez-q1fy27:p30:prose0",
+          "apsez-q1fy27:p30:prose1",
+          "apsez-q1fy27:p31:prose2",
+          "apsez-q1fy27:p33:prose0",
+          "apsez-q1fy27:p33:prose1",
+          "apsez-q1fy27:p34:prose0",
+          "apsez-q1fy27:p34:prose1",
+          "apsez-q1fy27:p34:table0",
+          "apsez-q1fy27:p3:prose0"
+        ],
+        "new_hits": 14,
+        "sufficient": null,
+        "reason": "",
+        "missing": [],
+        "next_queries": []
+      }
+    ],
+    "termination": "iteration_ceiling",
+    "iteration_count": 4,
+    "revised_after_reflection": true,
+    "started_at": "2026-09-18T16:37:10+00:00",
+    "budget": {
+      "ceiling_usd": 0.25,
+      "spent_usd": 0.021553,
+      "calls": 4,
+      "by_call": [
+        {
+          "model": "claude-haiku-4-5",
+          "purpose": "plan",
+          "input_tokens": 335,
+          "output_tokens": 284,
+          "cost_usd": 0.001755
+        },
+        {
+          "model": "claude-haiku-4-5",
+          "purpose": "reflect",
+          "input_tokens": 4943,
+          "output_tokens": 277,
+          "cost_usd": 0.006328
+        },
+        {
+          "model": "claude-haiku-4-5",
+          "purpose": "reflect",
+          "input_tokens": 5099,
+          "output_tokens": 268,
+          "cost_usd": 0.006439
+        },
+        {
+          "model": "claude-haiku-4-5",
+          "purpose": "reflect",
+          "input_tokens": 5121,
+          "output_tokens": 382,
+          "cost_usd": 0.007031
+        }
+      ]
+    }
+  },
+  "dropped_claims": [],
+  "citations": [
+    "[agel-fy25 p.227]",
+    "[agel-fy25 p.242]",
+    "[agel-fy25 p.59]",
+    "[agel-fy25 p.69]",
+    "[agel-fy25 p.71]",
+    "[apsez-q1fy27 p.13]",
+    "[apsez-q1fy27 p.17]",
+    "[apsez-q1fy27 p.30]",
+    "[apsez-q1fy27 p.33]"
+  ],
+  "budget": {
+    "ceiling_usd": 0.25,
+    "spent_usd": 0.208255,
+    "calls": 8,
+    "by_call": [
+      {
+        "model": "claude-haiku-4-5",
+        "purpose": "plan",
+        "input_tokens": 335,
+        "output_tokens": 284,
+        "cost_usd": 0.001755
+      },
+      {
+        "model": "claude-haiku-4-5",
+        "purpose": "reflect",
+        "input_tokens": 4943,
+        "output_tokens": 277,
+        "cost_usd": 0.006328
+      },
+      {
+        "model": "claude-haiku-4-5",
+        "purpose": "reflect",
+        "input_tokens": 5099,
+        "output_tokens": 268,
+        "cost_usd": 0.006439
+      },
+      {
+        "model": "claude-haiku-4-5",
+        "purpose": "reflect",
+        "input_tokens": 5121,
+        "output_tokens": 382,
+        "cost_usd": 0.007031
+      },
+      {
+        "model": "claude-haiku-4-5",
+        "purpose": "route",
+        "input_tokens": 598,
+        "output_tokens": 126,
+        "cost_usd": 0.001228
+      },
+      {
+        "model": "claude-sonnet-5",
+        "purpose": "specialist:credit",
+        "input_tokens": 5877,
+        "output_tokens": 3929,
+        "cost_usd": 0.051044
+      },
+      {
+        "model": "claude-sonnet-5",
+        "purpose": "specialist:compliance",
+        "input_tokens": 5875,
+        "output_tokens": 1904,
+        "cost_usd": 0.03079
+      },
+      {
+        "model": "claude-opus-5",
+        "purpose": "synthesis",
+        "input_tokens": 4398,
+        "output_tokens": 3266,
+        "cost_usd": 0.10364
+      }
+    ]
+  }
+}

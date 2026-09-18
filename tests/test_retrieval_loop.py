@@ -378,3 +378,53 @@ def test_the_loop_needs_no_api_key_when_the_client_is_injected(monkeypatch, inde
     monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
     model = fake_llm([plan_reply("q"), reflect_reply(True, "ok")])
     assert retrieval.answer("q", model, index_dir=index_dir).evidence
+
+
+# --- Balanced evidence selection ---------------------------------------------
+
+
+def _hit(chunk_id, doc_id, distance):
+    return indexing.Hit(
+        chunk_id=chunk_id, doc_id=doc_id, page_number=1, page_class="table",
+        kind="table", text="x", distance=distance,
+    )
+
+
+def test_a_multi_document_question_keeps_evidence_from_every_document():
+    """Balanced retrieval is undone if the trim is not also balanced. A real
+    comparison run retrieved 40 chunks from one issuer and 28 from the other,
+    then the flat top-ten discarded all 28 and both specialists correctly
+    reported that no comparison could be made."""
+    hits = (
+        [_hit(f"a{i}", "agel-fy25", 0.10 + i * 0.001) for i in range(40)]
+        + [_hit(f"b{i}", "apsez-q1fy27", 0.30 + i * 0.001) for i in range(28)]
+    )
+    flat = retrieval.rank(hits, 10)
+    assert {h.doc_id for h in flat} == {"agel-fy25"}, "precondition: the flat trim is lopsided"
+
+    balanced = retrieval.rank_balanced(hits, 10, ["agel-fy25", "apsez-q1fy27"])
+    assert len(balanced) == 10
+    assert {h.doc_id for h in balanced} == {"agel-fy25", "apsez-q1fy27"}
+
+
+def test_a_single_document_question_is_not_diluted():
+    hits = [_hit(f"a{i}", "agel-fy25", 0.1 + i * 0.01) for i in range(20)]
+    picked = retrieval.rank_balanced(hits, 6, ["agel-fy25"])
+    assert len(picked) == 6
+    assert [h.chunk_id for h in picked] == [f"a{i}" for i in range(6)]
+
+
+def test_an_unused_share_goes_to_the_next_best_evidence():
+    """A document with little to say must not waste its allocation."""
+    hits = [_hit(f"a{i}", "agel-fy25", 0.1 + i * 0.01) for i in range(9)] + [
+        _hit("b0", "apsez-q1fy27", 0.9)
+    ]
+    picked = retrieval.rank_balanced(hits, 10, ["agel-fy25", "apsez-q1fy27"])
+    assert len(picked) == 10
+    assert sum(h.doc_id == "apsez-q1fy27" for h in picked) == 1
+
+
+def test_balanced_selection_still_returns_the_best_first():
+    hits = [_hit("a0", "agel-fy25", 0.5), _hit("b0", "apsez-q1fy27", 0.1)]
+    picked = retrieval.rank_balanced(hits, 2, ["agel-fy25", "apsez-q1fy27"])
+    assert [h.chunk_id for h in picked] == ["b0", "a0"]

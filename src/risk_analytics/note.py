@@ -254,7 +254,9 @@ def analyse(
     # Only the best-ranked evidence reaches the expensive models. The loop
     # accumulates across iterations, and sending all of it is what took the
     # first live run to $0.43 against a $0.25 ceiling.
-    evidence = retrieval.rank(result.evidence, config.MAX_EVIDENCE_CHUNKS)
+    evidence = retrieval.rank_balanced(
+        result.evidence, config.MAX_EVIDENCE_CHUNKS, balance
+    )
 
     decision = agents.route(question, model)
     findings = agents.consult_selected(decision, question, evidence, model)

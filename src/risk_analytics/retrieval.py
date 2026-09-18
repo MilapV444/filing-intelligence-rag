@@ -175,6 +175,33 @@ def rank(hits: list[indexing.Hit], limit: int | None = None) -> list[indexing.Hi
     return ordered[:limit] if limit else ordered
 
 
+def rank_balanced(
+    hits: list[indexing.Hit], limit: int, doc_ids: list[str] | None = None
+) -> list[indexing.Hit]:
+    """Take the best `limit` hits while giving each document a share.
+
+    Balanced retrieval alone is not enough. A comparison question retrieved 40
+    chunks from one issuer and 28 from the other, then the flat distance ranking
+    that trims evidence to the cap discarded all 28: the specialists saw one
+    issuer and correctly reported that no comparison could be made. Whatever the
+    loop worked to retrieve has to survive the trim.
+    """
+    if not doc_ids or len(doc_ids) < 2:
+        return rank(hits, limit)
+
+    share = max(1, limit // len(doc_ids))
+    picked: list[indexing.Hit] = []
+    for doc_id in doc_ids:
+        picked.extend(rank([h for h in hits if h.doc_id == doc_id], share))
+
+    # Any unused share goes to the best remaining hits, whichever document they
+    # come from, so a document with little to say does not waste the budget.
+    if len(picked) < limit:
+        chosen = {h.chunk_id for h in picked}
+        picked.extend(rank([h for h in hits if h.chunk_id not in chosen], limit - len(picked)))
+    return rank(picked, limit)
+
+
 def _render(hits: list[indexing.Hit], limit: int = config.REFLECTION_EVIDENCE_CHUNKS) -> str:
     parts = []
     for hit in rank(hits, limit):
