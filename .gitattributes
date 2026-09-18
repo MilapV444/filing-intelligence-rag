@@ -1,0 +1,8 @@
+# Normalise to LF in the repository and on checkout everywhere.
+# `text=auto` alone converts to CRLF on Windows checkout, which rewrites every
+# file and invalidates the source hashes Genesis binds its proof to.
+* text=auto eol=lf
+
+# Binary
+*.pdf binary
+*.png binary
